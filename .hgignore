@@ -1,0 +1,7 @@
+syntax: glob
+*/packages/*
+*/.vs/*
+WpfCritic/WpfCritic/bin/*
+*/obj/*
+WpfCritic/WpfCritic/StyleCop.Cache
+WpfCritic/WpfCritic/Settings.StyleCop
