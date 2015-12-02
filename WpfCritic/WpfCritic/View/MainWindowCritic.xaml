@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCritic"
-        xmlns:localdata="clr-namespace:Critic.Data;assembly=Critic.Data"
+        xmlns:localdata="clr-namespace:Critic.Data"
         mc:Ignorable="d"
         Title="MainWindowCritic" Height="467.197" Width="474.32">
     <Grid Background="AliceBlue">

@@ -27,7 +27,7 @@ namespace WpfCritic
         { get { return _viewModel; } }
         public AddMovie()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             DataContext = _viewModel;
         }

@@ -86,6 +86,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Model\Album.cs" />
+    <Compile Include="Model\BaseStuff.cs" />
+    <Compile Include="Model\BaseType.cs" />
+    <Compile Include="Model\Game.cs" />
+    <Compile Include="Model\Genre.cs" />
+    <Compile Include="Model\GenreInBaseStuff.cs" />
+    <Compile Include="Model\Movie.cs" />
+    <Compile Include="Model\Review.cs" />
+    <Compile Include="Model\TVSeries.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="ViewModel\AddMovieUserControlVM.cs" />
     <Compile Include="ViewModel\AddMovieWindowVM.cs" />
     <Compile Include="ViewModel\MainWindowCriticVM.cs" />
@@ -149,12 +159,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Critic.Data\Critic.Data\Critic.Data.csproj">
-      <Project>{cc52ad54-45bf-4c64-b322-281ca9988801}</Project>
-      <Name>Critic.Data</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5.2 %28x86 и x64%29</ProductName>
@@ -174,9 +178,7 @@
     <Content Include="Assets\django.mp4" />
     <Resource Include="Assets\button_play.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
