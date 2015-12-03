@@ -10,7 +10,7 @@ namespace WpfCritic.ViewModel
     public class AddMovieWindowVM : ViewModelBase
     {
         private Movie _newMovie = new Movie(string.Empty, 0, string.Empty, string.Empty, DateTime.Today, string.Empty, string.Empty);
-        public Movie NewMovie //можно ли так делать??????????????????!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        public Movie NewMovie
         { get { return _newMovie; } }
 
         private AddMovieUserControlVM _addMovieViewModel = new AddMovieUserControlVM();

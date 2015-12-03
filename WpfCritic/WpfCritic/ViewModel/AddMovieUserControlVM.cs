@@ -38,17 +38,19 @@ namespace WpfCritic.ViewModel
                 if (_movie == null)
                     return;
                 _movie.Name = value;
+                OnPropertyChanged("Name");
             }
         }
 
-        public uint Runtime
+        public uint? Runtime
         {
-            get { return _movie == null ? 0 : _movie.Runtime; }
+            get { return _movie == null ? default(uint?) : _movie.Runtime; }
                 set
             {
                 if (_movie == null)
                     return;
-                _movie.Runtime = value;
+                _movie.Runtime = (uint)value;
+                OnPropertyChanged("Runtime");
             }
         }
 
@@ -60,6 +62,7 @@ namespace WpfCritic.ViewModel
                 if (_movie == null)
                     return;
                 _movie.OfficialSite = value;
+                OnPropertyChanged("OfficialSite");
             }
         }
 
@@ -75,14 +78,15 @@ namespace WpfCritic.ViewModel
             }
         }
 
-        public DateTime ReleaseDate
+        public DateTime? ReleaseDate
         {
-            get { return _movie == null ? DateTime.Today : _movie.ReleaseDate; }
+            get { return _movie == null ? default(DateTime?) : _movie.ReleaseDate; }
             set
             {
                 if (_movie == null)
                     return;
-                _movie.ReleaseDate = value;
+                _movie.ReleaseDate = (DateTime)value;
+                OnPropertyChanged("ReleaseDate");
             }
         }
 
@@ -94,6 +98,7 @@ namespace WpfCritic.ViewModel
                 if (_movie == null)
                     return;
                 _movie.Company = value;
+                OnPropertyChanged("Company");
             }
         }
 

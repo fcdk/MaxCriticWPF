@@ -51,17 +51,19 @@ namespace WpfCritic.ViewModel
                 if (_selectedMainMovie == null)
                     return;
                 _selectedMainMovie.Name = value;
+                OnPropertyChanged("Name");
             }
         }
 
-        public uint Runtime
+        public uint? Runtime
         {
-            get { return _selectedMainMovie == null ? 0 : _selectedMainMovie.Runtime; }
+            get { return _selectedMainMovie == null ? default(uint?) : _selectedMainMovie.Runtime; }
             set
             {
                 if (_selectedMainMovie == null)
                     return;
-                _selectedMainMovie.Runtime = value;
+                _selectedMainMovie.Runtime = (uint)value;
+                OnPropertyChanged("Runtime");
             }
         }
 
@@ -73,6 +75,7 @@ namespace WpfCritic.ViewModel
                 if (_selectedMainMovie == null)
                     return;
                 _selectedMainMovie.OfficialSite = value;
+                OnPropertyChanged("OfficialSite");
             }
         }
 
@@ -84,17 +87,19 @@ namespace WpfCritic.ViewModel
                 if (_selectedMainMovie == null)
                     return;
                 _selectedMainMovie.Trailer = value;
+                OnPropertyChanged("Trailer");
             }
         }
 
-        public DateTime ReleaseDate
+        public DateTime? ReleaseDate
         {
-            get { return _selectedMainMovie == null ? new DateTime(0, 0, 0) : _selectedMainMovie.ReleaseDate; }
+            get { return _selectedMainMovie == null ? default(DateTime?) : _selectedMainMovie.ReleaseDate; }
             set
             {
                 if (_selectedMainMovie == null)
                     return;
-                _selectedMainMovie.ReleaseDate = value;
+                _selectedMainMovie.ReleaseDate = (DateTime)value;
+                OnPropertyChanged("ReleaseDate");
             }
         }
 
@@ -106,6 +111,7 @@ namespace WpfCritic.ViewModel
                 if (_selectedMainMovie == null)
                     return;
                 _selectedMainMovie.Company = value;
+                OnPropertyChanged("Company");
             }
         }
 
@@ -117,6 +123,7 @@ namespace WpfCritic.ViewModel
                 if (_selectedMainMovie == null)
                     return;
                 _selectedMainMovie.Poster = value;
+                OnPropertyChanged("Poster");
             }
         }
 

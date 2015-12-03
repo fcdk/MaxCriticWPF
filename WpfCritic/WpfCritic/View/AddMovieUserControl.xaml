@@ -27,7 +27,7 @@
                 <TextBox Name="posterTextBox" Grid.Row="1" Grid.Column="1" Text="{Binding Poster}"/>
                 <Button Name="posterBrowseButton" Grid.Row="1" Grid.Column="2" Content="Обзор" Click="posterBrowseButton_Click" />
                 <Label Name="releaseDateLabel" Grid.Row="2" Grid.Column="0" Content="Дата релиза:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <DatePicker Name="releaseDateDatePicker" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding ReleaseDate, Mode=TwoWay}" />
+                <DatePicker Name="releaseDateDatePicker" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" SelectedDate="{Binding ReleaseDate}" />
                 <Label Name="companyLabel" Grid.Row="3" Grid.Column="0" Content="Компания:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
                 <TextBox Name="companyTextBox" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Company}" />
                 <Label Name="runtimeLabel" Grid.Row="4" Grid.Column="0" Content="Продолжительность:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
