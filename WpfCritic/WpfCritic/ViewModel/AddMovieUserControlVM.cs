@@ -41,14 +41,6 @@ namespace WpfCritic.ViewModel
             }
         }
 
-        internal void BrowserButtonClick()
-        {
-            OpenFileDialog posterBrowse = new OpenFileDialog();
-            posterBrowse.Filter = "Файлы рисунков|*.png;*.jpg;*.bmp;*.tif;*.gif";
-            if (posterBrowse.ShowDialog() == true)
-                Poster = posterBrowse.FileName;
-        }
-
         public uint Runtime
         {
             get { return _movie == null ? 0 : _movie.Runtime; }
@@ -79,6 +71,7 @@ namespace WpfCritic.ViewModel
                 if (_movie == null)
                     return;
                 _movie.Trailer = value;
+                OnPropertyChanged("Trailer");
             }
         }
 
@@ -114,6 +107,22 @@ namespace WpfCritic.ViewModel
                 _movie.Poster = value;
                 OnPropertyChanged("Poster");
             }
+        }
+        
+        internal void TrailerBrowseButtonClick()
+        {
+            OpenFileDialog trailerBrowse = new OpenFileDialog();
+            trailerBrowse.Filter = "Файлы видео|*.mp4;*.avi;*.mkv;*.wmv";
+            if (trailerBrowse.ShowDialog() == true)
+                Trailer = trailerBrowse.FileName;
+        }
+
+        internal void PosterBrowseButtonClick()
+        {
+            OpenFileDialog posterBrowse = new OpenFileDialog();
+            posterBrowse.Filter = "Файлы рисунков|*.png;*.jpg;*.bmp;*.tif;*.gif";
+            if (posterBrowse.ShowDialog() == true)
+                Poster = posterBrowse.FileName;
         }
 
     }

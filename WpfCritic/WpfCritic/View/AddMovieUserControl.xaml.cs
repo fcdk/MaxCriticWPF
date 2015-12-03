@@ -30,15 +30,12 @@ namespace WpfCritic
 
         private void posterBrowseButton_Click(object sender, RoutedEventArgs e)
         {
-            ((AddMovieUserControlVM)DataContext).BrowserButtonClick();
+            ((AddMovieUserControlVM)DataContext).PosterBrowseButtonClick();
         }
 
         private void trailerBrowseButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog trailerBrowse = new OpenFileDialog();
-            trailerBrowse.Filter = "Файлы видео|*.mp4;*.avi;*.mkv;*.wmv";
-            //if (trailerBrowse.ShowDialog() == true)
-                //trailerTextBox.Text = trailerBrowse.FileName;
+            ((AddMovieUserControlVM)DataContext).TrailerBrowseButtonClick();
         }
 
     }
