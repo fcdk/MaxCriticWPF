@@ -135,5 +135,23 @@ namespace WpfCritic.ViewModel
                 _movieMainList.Add(movie);
         }
 
+        internal void MoviesListBoxMouseDoubleClick()
+        {
+            if (_selectedMainMovie == null)
+                return;
+            else
+            {
+                MovieDetails mD = new MovieDetails();
+                mD.ViewModel.SetMovie(_selectedMainMovie);
+                mD.ShowDialog();
+            }
+        }
+
+        internal void AddButtonClick()
+        {
+            AddMovie aM = new AddMovie();
+            aM.ShowDialog();
+        }
+
     }
 }

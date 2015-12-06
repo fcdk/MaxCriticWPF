@@ -83,14 +83,13 @@ namespace WpfCritic
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            // тут надо как-то обновить ListBox в MainWindow!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            ((MainWindow)App.Current.MainWindow).ViewModel.MovieMainList.Add(_viewModel.NewMovie);
+            ((AddMovieWindowVM)DataContext).OkButtonClick();
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            Movie.Items.Remove(_viewModel.NewMovie.Id);
+            ((AddMovieWindowVM)DataContext).CancelButtonClick();
         }
     }
 }

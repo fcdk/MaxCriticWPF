@@ -40,14 +40,7 @@ namespace WpfCritic
 
         private void MoviesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (MoviesListBox.SelectedIndex == -1)
-                return;
-            else
-            {
-                MovieDetails mD = new MovieDetails();
-                mD.ViewModel.SetMovie((Movie)MoviesListBox.SelectedItem);
-                mD.ShowDialog();
-            }
+            ((MainWindowCriticVM)DataContext).MoviesListBoxMouseDoubleClick();
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
@@ -57,8 +50,7 @@ namespace WpfCritic
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            AddMovie aM = new AddMovie();
-            aM.ShowDialog();
+            ((MainWindowCriticVM)DataContext).AddButtonClick();
         }
     }
 }
