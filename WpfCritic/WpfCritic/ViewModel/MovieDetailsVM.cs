@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Critic.Data;
+using System.Windows.Shapes;
+using System.Windows.Media;
 
 namespace WpfCritic.ViewModel
 {
@@ -11,10 +13,6 @@ namespace WpfCritic.ViewModel
     {
         private Movie _movie;
 
-        public Movie Movie //можно ли так делать??????????????????!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        {
-            get { return _movie; }
-        }
         public void SetMovie(Movie movie)
         {
             _movie = movie;
@@ -107,6 +105,22 @@ namespace WpfCritic.ViewModel
                     return;
                 _movie.Poster = value;
             }
+        }
+
+        internal void EllipseMouseLeave(object sender)
+        {
+            ((Ellipse)sender).Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00167C"));
+        }
+
+        internal void AddReviewClick()
+        {
+            NewReview nR = new NewReview(_movie);
+            nR.ShowDialog();
+        }
+
+        internal void EllipseMouseEnter(object sender)
+        {
+            ((Ellipse)sender).Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF0074FF"));
         }
 
     }

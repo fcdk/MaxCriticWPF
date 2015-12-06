@@ -65,12 +65,12 @@ namespace WpfCritic
 
         private void Ellipse_MouseEnter(object sender, MouseEventArgs e)
         {
-            ((Ellipse)sender).Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF0074FF"));
+            ((MovieDetailsVM)DataContext).EllipseMouseEnter(sender);
         }
 
         private void Ellipse_MouseLeave(object sender, MouseEventArgs e)
         {
-            ((Ellipse)sender).Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00167C"));
+            ((MovieDetailsVM)DataContext).EllipseMouseLeave(sender);
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
@@ -80,8 +80,7 @@ namespace WpfCritic
 
         private void addReview_Click(object sender, RoutedEventArgs e)
         {
-            NewReview nR = new NewReview(_viewModel.Movie);
-            nR.ShowDialog();
+            ((MovieDetailsVM)DataContext).AddReviewClick();
         }
     }
 }
