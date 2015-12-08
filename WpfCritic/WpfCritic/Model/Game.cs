@@ -11,6 +11,14 @@ namespace WpfCritic.Model
         public string Trailer { get; set; }
         // и т.д.
 
+        public Game() : base()
+        {
+            Name = string.Empty;
+            OfficialSite = string.Empty;
+            Developer = string.Empty;
+            Trailer = string.Empty;
+        }
+
         public Game(string name, string officialSite, string developer, string trailer, DateTime releaseDate, string company, string poster) : base(releaseDate, company, poster)
         {
             Name = name;

@@ -151,7 +151,8 @@ namespace WpfCritic.ViewModel
 
         internal void AddButtonClick()
         {
-            
+            AddGameWindow addGame = new AddGameWindow(new AddGameWindowVM(this));
+            addGame.ShowDialog(); 
         }
 
         internal void MenuButtonClick()

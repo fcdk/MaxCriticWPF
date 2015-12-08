@@ -75,6 +75,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\AddGameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddMovieWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -105,6 +109,7 @@
     <Compile Include="Model\Review.cs" />
     <Compile Include="Model\TVSeries.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="ViewModel\AddGameWindowVM.cs" />
     <Compile Include="ViewModel\AllGamesWindowVM.cs" />
     <Compile Include="ViewModel\Data\GameVM.cs" />
     <Compile Include="ViewModel\EditGameUserControlVM.cs" />
@@ -115,6 +120,9 @@
     <Compile Include="ViewModel\MenuWindowVM.cs" />
     <Compile Include="ViewModel\MovieDetailsWindowVM.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\AddGameWindow.xaml.cs">
+      <DependentUpon>AddGameWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddMovieWindow.xaml.cs">
       <DependentUpon>AddMovieWindow.xaml</DependentUpon>
     </Compile>

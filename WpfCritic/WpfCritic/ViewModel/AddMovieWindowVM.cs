@@ -11,15 +11,15 @@ namespace WpfCritic.ViewModel
     {
         private Movie _newMovie = new Movie(string.Empty, 0, string.Empty, string.Empty, DateTime.Today, string.Empty, string.Empty);
 
-        private EditMovieUserControlVM _addMovieViewModel = new EditMovieUserControlVM();
-        public EditMovieUserControlVM AddMovieViewModel
+        private EditMovieUserControlVM _editMovieViewModel = new EditMovieUserControlVM();
+        public EditMovieUserControlVM EditMovieViewModel
         {
-            get { return _addMovieViewModel; }
+            get { return _editMovieViewModel; }
         }
 
         public AddMovieWindowVM()
         {
-            _addMovieViewModel.SetMovie(_newMovie);
+            _editMovieViewModel.SetMovie(_newMovie);
         }
 
         internal void OkButtonClick()

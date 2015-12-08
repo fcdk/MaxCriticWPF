@@ -68,6 +68,15 @@ namespace WpfCritic.Model
             }
         }
 
+        public BaseStuff()
+        {
+            ReleaseDate = DateTime.Today;
+            Company = string.Empty;
+            Poster = string.Empty;
+            Id = Guid.NewGuid();
+            Items.Add(Id, (T)this);
+        }
+
         public BaseStuff(DateTime releaseDate, string company, string poster)
         {
             ReleaseDate = releaseDate;

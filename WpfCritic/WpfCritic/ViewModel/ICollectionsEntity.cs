@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfCritic.ViewModel
 {
-    interface ICollectionsEntity
+    public interface ICollectionsEntity
     {
         void Add(object item);
     }
