@@ -25,7 +25,7 @@ namespace WpfCritic.ViewModel
         internal void OkButtonClick()
         {
             // тут надо как-то обновить ListBox в MainWindow!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            ((AllMoviesWindow)App.Current.MainWindow).ViewModel.MovieMainList.Add(_newMovie);
+            ((AllMoviesWindow)App.Current.MainWindow).ViewModel.MovieCollection.Add(_newMovie);
         }
     }
 }

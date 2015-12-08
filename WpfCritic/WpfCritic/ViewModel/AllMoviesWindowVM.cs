@@ -11,8 +11,8 @@ namespace WpfCritic.ViewModel
 {
     public class AllMoviesWindowVM : ViewModelBase
     {
-        private ObservableCollection<Movie> _movieMainList = new ObservableCollection<Movie>();
-        private Movie _selectedMainMovie;
+        private ObservableCollection<Movie> _movieCollection = new ObservableCollection<Movie>();
+        private Movie _selectedMovie;
         private EditMovieUserControlVM _editMovieViewModel = new EditMovieUserControlVM();
         
         public EditMovieUserControlVM EditMovieViewModel
@@ -20,18 +20,18 @@ namespace WpfCritic.ViewModel
             get { return _editMovieViewModel; }
         }
 
-        public ObservableCollection<Movie> MovieMainList
+        public ObservableCollection<Movie> MovieCollection
         {
-            get { return _movieMainList; }
+            get { return _movieCollection; }
         }
 
-        public Movie SelectedMainMovie
+        public Movie SelectedMovie
         {
-            get { return _selectedMainMovie; }
+            get { return _selectedMovie; }
             set
             {
-                _selectedMainMovie = value;
-                _editMovieViewModel.SetMovie(_selectedMainMovie);
+                _selectedMovie = value;
+                _editMovieViewModel.SetMovie(_selectedMovie);
 
                 OnPropertyChanged("SelectedMainMovie");
                 OnPropertyChanged("Name");
@@ -46,84 +46,84 @@ namespace WpfCritic.ViewModel
 
         public string Name
         {
-            get { return _selectedMainMovie == null ? string.Empty : _selectedMainMovie.Name; }
+            get { return _selectedMovie == null ? string.Empty : _selectedMovie.Name; }
             set
             {
-                if (_selectedMainMovie == null)
+                if (_selectedMovie == null)
                     return;
-                _selectedMainMovie.Name = value;
+                _selectedMovie.Name = value;
                 OnPropertyChanged("Name");
             }
         }
 
         public uint? Runtime
         {
-            get { return _selectedMainMovie == null ? default(uint?) : _selectedMainMovie.Runtime; }
+            get { return _selectedMovie == null ? default(uint?) : _selectedMovie.Runtime; }
             set
             {
-                if (_selectedMainMovie == null)
+                if (_selectedMovie == null)
                     return;
-                _selectedMainMovie.Runtime = (uint)value;
+                _selectedMovie.Runtime = (uint)value;
                 OnPropertyChanged("Runtime");
             }
         }
 
         public string OfficialSite
         {
-            get { return _selectedMainMovie == null ? string.Empty : _selectedMainMovie.OfficialSite; }
+            get { return _selectedMovie == null ? string.Empty : _selectedMovie.OfficialSite; }
             set
             {
-                if (_selectedMainMovie == null)
+                if (_selectedMovie == null)
                     return;
-                _selectedMainMovie.OfficialSite = value;
+                _selectedMovie.OfficialSite = value;
                 OnPropertyChanged("OfficialSite");
             }
         }
 
         public string Trailer
         {
-            get { return _selectedMainMovie == null ? string.Empty : _selectedMainMovie.Trailer; }
+            get { return _selectedMovie == null ? string.Empty : _selectedMovie.Trailer; }
             set
             {
-                if (_selectedMainMovie == null)
+                if (_selectedMovie == null)
                     return;
-                _selectedMainMovie.Trailer = value;
+                _selectedMovie.Trailer = value;
                 OnPropertyChanged("Trailer");
             }
         }
 
         public DateTime? ReleaseDate
         {
-            get { return _selectedMainMovie == null ? default(DateTime?) : _selectedMainMovie.ReleaseDate; }
+            get { return _selectedMovie == null ? default(DateTime?) : _selectedMovie.ReleaseDate; }
             set
             {
-                if (_selectedMainMovie == null)
+                if (_selectedMovie == null)
                     return;
-                _selectedMainMovie.ReleaseDate = (DateTime)value;
+                _selectedMovie.ReleaseDate = (DateTime)value;
                 OnPropertyChanged("ReleaseDate");
             }
         }
 
         public string Company
         {
-            get { return _selectedMainMovie == null ? string.Empty : _selectedMainMovie.Company; }
+            get { return _selectedMovie == null ? string.Empty : _selectedMovie.Company; }
             set
             {
-                if (_selectedMainMovie == null)
+                if (_selectedMovie == null)
                     return;
-                _selectedMainMovie.Company = value;
+                _selectedMovie.Company = value;
                 OnPropertyChanged("Company");
             }
         }
 
         public string Poster
         {
-            get { return _selectedMainMovie == null ? string.Empty : _selectedMainMovie.Poster; }
+            get { return _selectedMovie == null ? string.Empty : _selectedMovie.Poster; }
             set
             {
-                if (_selectedMainMovie == null)
+                if (_selectedMovie == null)
                     return;
-                _selectedMainMovie.Poster = value;
+                _selectedMovie.Poster = value;
                 OnPropertyChanged("Poster");
             }
         }
@@ -131,19 +131,19 @@ namespace WpfCritic.ViewModel
         public void LoadData()
         {
             Movie m1 = new Movie("Джанго освобожденный", 150, "http://unchainedmovie.com/", @"C:\Users\max\Documents\Visual Studio 2015\Projects\WpfCritic\WpfCritic\Assets\django.mp4", new DateTime(2012, 12, 12), "Weinstein Company", @"C:\Users\max\Documents\Visual Studio 2015\Projects\WpfCritic\WpfCritic\Assets\django.png");
-            _movieMainList.Add(m1);
+            _movieCollection.Add(m1);
             Movie m2 = new Movie("Убить Билла 2", 136, "", @"C:\Users\max\Documents\Visual Studio 2015\Projects\WpfCritic\WpfCritic\Assets\django.mp4", new DateTime(2004, 08, 10), "Miramax Films", @"C:\Users\max\Documents\Visual Studio 2015\Projects\WpfCritic\WpfCritic\Assets\kill_bill_2.png");
-            _movieMainList.Add(m2);
+            _movieCollection.Add(m2);
         }
 
         internal void MoviesListBoxMouseDoubleClick()
         {
-            if (_selectedMainMovie == null)
+            if (_selectedMovie == null)
                 return;
             else
             {
                 MovieDetailsWindow mD = new MovieDetailsWindow();
-                mD.ViewModel.SetMovie(_selectedMainMovie);
+                mD.ViewModel.SetMovie(_selectedMovie);
                 mD.ShowDialog();
             }
         }

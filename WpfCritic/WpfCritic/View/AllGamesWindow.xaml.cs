@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfCritic.ViewModel;
 
 namespace WpfCritic.View
 {
@@ -19,9 +20,36 @@ namespace WpfCritic.View
     /// </summary>
     public partial class AllGamesWindow : Window
     {
+        private AllGamesWindowVM _viewModel = new AllGamesWindowVM();
+        public AllGamesWindowVM ViewModel
+        {
+            get { return _viewModel; }
+        }
+
         public AllGamesWindow()
         {
             InitializeComponent();
+
+            DataContext = _viewModel;
+
+            _viewModel.LoadData();
         }
+
+        private void GamesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ((AllGamesWindowVM)DataContext).MoviesListBoxMouseDoubleClick();
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((AllGamesWindowVM)DataContext).AddButtonClick();
+        }
+
+        private void menuButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((AllGamesWindowVM)DataContext).MenuButtonClick();
+            this.Close();
+        }
+
     }
 }
