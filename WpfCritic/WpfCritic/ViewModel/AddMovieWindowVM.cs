@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Critic.Data;
+using WpfCritic.Model;
 
 namespace WpfCritic.ViewModel
 {

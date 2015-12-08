@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Critic.Data
+namespace WpfCritic.Model
 {
     public class Genre<T> : BaseType<Genre<T>>
         where T : BaseStuff<T>

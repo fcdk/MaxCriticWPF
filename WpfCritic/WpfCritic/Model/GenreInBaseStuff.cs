@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Critic.Data
+namespace WpfCritic.Model
 {
     public class GenreInBaseStuff<T> : BaseType<GenreInBaseStuff<T>>
         where T : BaseStuff<T>

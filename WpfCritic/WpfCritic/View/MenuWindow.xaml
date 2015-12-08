@@ -11,6 +11,7 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                 <Label Content="MaxCritic" Margin="0, 4, 0, 4" FontWeight="Bold" FontFamily="French Script MT" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF00167C" />
                 <Button Name="moviesShowButton" Content="Фильмы" Margin="0, 4, 0, 4" Padding="4,2,4,2" FontWeight="Bold" Click="moviesShowButton_Click" />
+                <Button Name="gameShowButton" Content="Игры" Margin="0, 4, 0, 4" Padding="4,2,4,2" FontWeight="Bold" Click="gamesShowButton_Click" />
                 <Button Name="musicShowButton" Content="Музыка" Margin="0, 4, 0, 4" Padding="4,2,4,2" FontWeight="Bold" Click="musicShowButton_Click" />
                 <Button Name="exitButton" Content="Выйти" Margin="0, 4, 0, 4" Padding="4,2,4,2" FontWeight="Bold" Click="exitButton_Click" />
             </StackPanel>

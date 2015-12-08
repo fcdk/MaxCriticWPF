@@ -38,6 +38,12 @@ namespace WpfCritic.View
             this.Close();
         }
 
+        private void gamesShowButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((MenuWindowVM)DataContext).GamesShowButtonClick();
+            this.Close();
+        }
+
         private void musicShowButton_Click(object sender, RoutedEventArgs e)
         {
             //музыку добавить
@@ -48,5 +54,6 @@ namespace WpfCritic.View
         {
             this.Close();
         }
+
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfCritic.View;
 
 namespace WpfCritic.ViewModel
 {
@@ -14,6 +15,10 @@ namespace WpfCritic.ViewModel
             allMovies.Show();
         }
 
-
+        internal void GamesShowButtonClick()
+        {
+            AllGamesWindow allGames = new AllGamesWindow();
+            allGames.Show();
+        }
     }
 }

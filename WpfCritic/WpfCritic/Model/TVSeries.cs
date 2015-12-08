@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace Critic.Data
+namespace WpfCritic.Model
 {
     public class TVSeries : BaseStuff<TVSeries>
     {

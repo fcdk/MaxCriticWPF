@@ -78,7 +78,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AllMusicWindow.xaml">
+    <Page Include="View\AllGamesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,8 +113,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\AllMusicWindow.xaml.cs">
-      <DependentUpon>AllMusicWindow.xaml</DependentUpon>
+    <Compile Include="View\AllGamesWindow.xaml.cs">
+      <DependentUpon>AllGamesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditMovieUserControl.xaml.cs">
       <DependentUpon>EditMovieUserControl.xaml</DependentUpon>

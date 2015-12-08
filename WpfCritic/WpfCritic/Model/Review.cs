@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Critic.Data
+namespace WpfCritic.Model
 {
     public class Review<T> : BaseType<Review<T>>
         where T : BaseStuff<T>
