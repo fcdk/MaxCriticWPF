@@ -1,4 +1,4 @@
-﻿<Window x:Class="WpfCritic.MainWindow"
+﻿<Window x:Class="WpfCritic.AllMoviesWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -28,7 +28,7 @@
             <Label Grid.Row="0" Name="MovieLabel" Content="Фильмы" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="16" />
             <ListBox Grid.Row="1" Opacity="0.8" x:Name="MoviesListBox" MouseDoubleClick="MoviesListBox_MouseDoubleClick"
             	ItemsSource="{Binding MovieMainList}" SelectedItem="{Binding SelectedMainMovie}" />
-            <local:AddMovieUserControl Grid.Row="2" x:Name="MovieControl" DataContext="{Binding AddMovieViewModel}" />
+            <local:EditMovieUserControl Grid.Row="2" x:Name="MovieControl" DataContext="{Binding AddMovieViewModel}" />
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Name="addButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Добавить" Click="addButton_Click" />
                 <Button Name="exitButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Выйти" Click="exitButton_Click" />

@@ -21,15 +21,15 @@ namespace WpfCritic
     /// <summary>
     /// Логика взаимодействия для MovieDetails.xaml
     /// </summary>
-    public partial class MovieDetails : Window
+    public partial class MovieDetailsWindow : Window
     {
-        private MovieDetailsVM _viewModel = new MovieDetailsVM();
-        public MovieDetailsVM ViewModel
+        private MovieDetailsWindowVM _viewModel = new MovieDetailsWindowVM();
+        public MovieDetailsWindowVM ViewModel
         {
             get { return _viewModel; }
         }
 
-        public MovieDetails()
+        public MovieDetailsWindow()
         {
             this.InitializeComponent();
 
@@ -65,12 +65,12 @@ namespace WpfCritic
 
         private void Ellipse_MouseEnter(object sender, MouseEventArgs e)
         {
-            ((MovieDetailsVM)DataContext).EllipseMouseEnter(sender);
+            ((MovieDetailsWindowVM)DataContext).EllipseMouseEnter(sender);
         }
 
         private void Ellipse_MouseLeave(object sender, MouseEventArgs e)
         {
-            ((MovieDetailsVM)DataContext).EllipseMouseLeave(sender);
+            ((MovieDetailsWindowVM)DataContext).EllipseMouseLeave(sender);
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
@@ -80,7 +80,7 @@ namespace WpfCritic
 
         private void addReview_Click(object sender, RoutedEventArgs e)
         {
-            ((MovieDetailsVM)DataContext).AddReviewClick();
+            ((MovieDetailsWindowVM)DataContext).AddReviewClick();
         }
     }
 }

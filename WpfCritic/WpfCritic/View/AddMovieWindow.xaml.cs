@@ -20,12 +20,12 @@ namespace WpfCritic
     /// <summary>
     /// Логика взаимодействия для AddMovie.xaml
     /// </summary>
-    public partial class AddMovie : Window
+    public partial class AddMovieWindow : Window
     {
         private AddMovieWindowVM _viewModel = new AddMovieWindowVM();
         public AddMovieWindowVM ViewModel
         { get { return _viewModel; } }
-        public AddMovie()
+        public AddMovieWindow()
         {
             this.InitializeComponent();
 

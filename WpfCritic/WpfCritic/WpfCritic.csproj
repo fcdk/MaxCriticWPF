@@ -74,15 +74,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\AddMovie.xaml">
+    <Page Include="View\AddMovieWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AddMovieUserControl.xaml">
+    <Page Include="View\EditMovieUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainWindowCritic.xaml">
+    <Page Include="View\AllMoviesWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -96,23 +96,23 @@
     <Compile Include="Model\Review.cs" />
     <Compile Include="Model\TVSeries.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="ViewModel\AddMovieUserControlVM.cs" />
+    <Compile Include="ViewModel\EditMovieUserControlVM.cs" />
     <Compile Include="ViewModel\AddMovieWindowVM.cs" />
-    <Compile Include="ViewModel\MainWindowCriticVM.cs" />
+    <Compile Include="ViewModel\AllMoviesWindowVM.cs" />
     <Compile Include="ViewModel\MovieDetailsVM.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="View\AddMovie.xaml.cs">
-      <DependentUpon>AddMovie.xaml</DependentUpon>
+    <Compile Include="View\AddMovieWindow.xaml.cs">
+      <DependentUpon>AddMovieWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\AddMovieUserControl.xaml.cs">
-      <DependentUpon>AddMovieUserControl.xaml</DependentUpon>
+    <Compile Include="View\EditMovieUserControl.xaml.cs">
+      <DependentUpon>EditMovieUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainWindowCritic.xaml.cs">
-      <DependentUpon>MainWindowCritic.xaml</DependentUpon>
+    <Compile Include="View\AllMoviesWindow.xaml.cs">
+      <DependentUpon>AllMoviesWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\MovieDetails.xaml">
@@ -178,7 +178,9 @@
     <Content Include="Assets\django.mp4" />
     <Resource Include="Assets\button_play.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModel\Data\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

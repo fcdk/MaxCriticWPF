@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Critic.Data;
-using Microsoft.Win32;
-using System.Windows;
+using System.Windows.Shapes;
+using System.Windows.Media;
 
 namespace WpfCritic.ViewModel
 {
-    public class AddMovieUserControlVM : ViewModelBase
+    public class MovieDetailsWindowVM : ViewModelBase
     {
         private Movie _movie;
 
@@ -18,7 +18,7 @@ namespace WpfCritic.ViewModel
             _movie = movie;
             RefreshProperties();
         }
-
+        
         private void RefreshProperties()
         {
             OnPropertyChanged("Name");
@@ -38,19 +38,17 @@ namespace WpfCritic.ViewModel
                 if (_movie == null)
                     return;
                 _movie.Name = value;
-                OnPropertyChanged("Name");
             }
         }
 
-        public uint? Runtime
+        public uint Runtime
         {
-            get { return _movie == null ? default(uint?) : _movie.Runtime; }
-                set
+            get { return _movie == null ? 0 : _movie.Runtime; }
+            set
             {
                 if (_movie == null)
                     return;
-                _movie.Runtime = (uint)value;
-                OnPropertyChanged("Runtime");
+                _movie.Runtime = value;
             }
         }
 
@@ -62,7 +60,6 @@ namespace WpfCritic.ViewModel
                 if (_movie == null)
                     return;
                 _movie.OfficialSite = value;
-                OnPropertyChanged("OfficialSite");
             }
         }
 
@@ -74,19 +71,17 @@ namespace WpfCritic.ViewModel
                 if (_movie == null)
                     return;
                 _movie.Trailer = value;
-                OnPropertyChanged("Trailer");
             }
         }
 
-        public DateTime? ReleaseDate
+        public DateTime ReleaseDate
         {
-            get { return _movie == null ? default(DateTime?) : _movie.ReleaseDate; }
+            get { return _movie == null ? DateTime.Today : _movie.ReleaseDate; }
             set
             {
                 if (_movie == null)
                     return;
-                _movie.ReleaseDate = (DateTime)value;
-                OnPropertyChanged("ReleaseDate");
+                _movie.ReleaseDate = value;
             }
         }
 
@@ -98,7 +93,6 @@ namespace WpfCritic.ViewModel
                 if (_movie == null)
                     return;
                 _movie.Company = value;
-                OnPropertyChanged("Company");
             }
         }
 
@@ -110,24 +104,23 @@ namespace WpfCritic.ViewModel
                 if (_movie == null)
                     return;
                 _movie.Poster = value;
-                OnPropertyChanged("Poster");
             }
         }
-        
-        internal void TrailerBrowseButtonClick()
+
+        internal void EllipseMouseLeave(object sender)
         {
-            OpenFileDialog trailerBrowse = new OpenFileDialog();
-            trailerBrowse.Filter = "Файлы видео|*.mp4;*.avi;*.mkv;*.wmv";
-            if (trailerBrowse.ShowDialog() == true)
-                Trailer = trailerBrowse.FileName;
+            ((Ellipse)sender).Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00167C"));
         }
 
-        internal void PosterBrowseButtonClick()
+        internal void AddReviewClick()
         {
-            OpenFileDialog posterBrowse = new OpenFileDialog();
-            posterBrowse.Filter = "Файлы рисунков|*.png;*.jpg;*.bmp;*.tif;*.gif";
-            if (posterBrowse.ShowDialog() == true)
-                Poster = posterBrowse.FileName;
+            NewReviewWindow nR = new NewReviewWindow(_movie);
+            nR.ShowDialog();
+        }
+
+        internal void EllipseMouseEnter(object sender)
+        {
+            ((Ellipse)sender).Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF0074FF"));
         }
 
     }

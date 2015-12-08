@@ -21,15 +21,15 @@ namespace WpfCritic
     ////<summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AllMoviesWindow : Window
     {
-        private MainWindowCriticVM _viewModel = new MainWindowCriticVM();
-        public MainWindowCriticVM ViewModel
+        private AllMoviesWindowVM _viewModel = new AllMoviesWindowVM();
+        public AllMoviesWindowVM ViewModel
         {
             get { return _viewModel; }
         }
 
-        public MainWindow()
+        public AllMoviesWindow()
         {
             this.InitializeComponent();
 
@@ -40,7 +40,7 @@ namespace WpfCritic
 
         private void MoviesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ((MainWindowCriticVM)DataContext).MoviesListBoxMouseDoubleClick();
+            ((AllMoviesWindowVM)DataContext).MoviesListBoxMouseDoubleClick();
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
@@ -50,7 +50,7 @@ namespace WpfCritic
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindowCriticVM)DataContext).AddButtonClick();
+            ((AllMoviesWindowVM)DataContext).AddButtonClick();
         }
     }
 }

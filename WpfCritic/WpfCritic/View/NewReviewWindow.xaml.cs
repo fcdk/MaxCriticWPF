@@ -18,9 +18,9 @@ namespace WpfCritic
     /// <summary>
     /// Логика взаимодействия для NewReview.xaml
     /// </summary>
-    public partial class NewReview : Window
+    public partial class NewReviewWindow : Window
     {
-        public NewReview(Movie movie)
+        public NewReviewWindow(Movie movie)
         {
             InitializeComponent();
 

@@ -20,9 +20,9 @@ namespace WpfCritic
     /// <summary>
     /// Логика взаимодействия для AddMovieUserControl.xaml
     /// </summary>
-    public partial class AddMovieUserControl : UserControl
+    public partial class EditMovieUserControl : UserControl
     {
-        public AddMovieUserControl()
+        public EditMovieUserControl()
         {
             InitializeComponent();
 
@@ -30,12 +30,12 @@ namespace WpfCritic
 
         private void posterBrowseButton_Click(object sender, RoutedEventArgs e)
         {
-            ((AddMovieUserControlVM)DataContext).PosterBrowseButtonClick();
+            ((EditMovieUserControlVM)DataContext).PosterBrowseButtonClick();
         }
 
         private void trailerBrowseButton_Click(object sender, RoutedEventArgs e)
         {
-            ((AddMovieUserControlVM)DataContext).TrailerBrowseButtonClick();
+            ((EditMovieUserControlVM)DataContext).TrailerBrowseButtonClick();
         }
 
     }

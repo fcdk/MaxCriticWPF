@@ -11,8 +11,8 @@ namespace WpfCritic.ViewModel
     {
         private Movie _newMovie = new Movie(string.Empty, 0, string.Empty, string.Empty, DateTime.Today, string.Empty, string.Empty);
 
-        private AddMovieUserControlVM _addMovieViewModel = new AddMovieUserControlVM();
-        public AddMovieUserControlVM AddMovieViewModel
+        private EditMovieUserControlVM _addMovieViewModel = new EditMovieUserControlVM();
+        public EditMovieUserControlVM AddMovieViewModel
         {
             get { return _addMovieViewModel; }
         }
@@ -25,12 +25,11 @@ namespace WpfCritic.ViewModel
         internal void OkButtonClick()
         {
             // тут надо как-то обновить ListBox в MainWindow!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            ((MainWindow)App.Current.MainWindow).ViewModel.MovieMainList.Add(_newMovie);
+            ((AllMoviesWindow)App.Current.MainWindow).ViewModel.MovieMainList.Add(_newMovie);
         }
 
         internal void CancelButtonClick()
         {
-            Movie.Items.Remove(_newMovie.Id);
         }
     }
 }

@@ -8,13 +8,13 @@ using System.Collections.ObjectModel;
 
 namespace WpfCritic.ViewModel
 {
-    public class MainWindowCriticVM : ViewModelBase
+    public class AllMoviesWindowVM : ViewModelBase
     {
         private ObservableCollection<Movie> _movieMainList = new ObservableCollection<Movie>();
         private Movie _selectedMainMovie;
-        private AddMovieUserControlVM _addMovieViewModel = new AddMovieUserControlVM();
+        private EditMovieUserControlVM _addMovieViewModel = new EditMovieUserControlVM();
         
-        public AddMovieUserControlVM AddMovieViewModel
+        public EditMovieUserControlVM AddMovieViewModel
         {
             get { return _addMovieViewModel; }
         }
@@ -130,9 +130,9 @@ namespace WpfCritic.ViewModel
         public void LoadData()
         {
             Movie m1 = new Movie("Джанго освобожденный", 150, "http://unchainedmovie.com/", @"C:\Users\max\Documents\Visual Studio 2015\Projects\WpfCritic\WpfCritic\Assets\django.mp4", new DateTime(2012, 12, 12), "Weinstein Company", @"C:\Users\max\Documents\Visual Studio 2015\Projects\WpfCritic\WpfCritic\Assets\django.png");
+            _movieMainList.Add(m1);
             Movie m2 = new Movie("Убить Билла 2", 136, "", @"C:\Users\max\Documents\Visual Studio 2015\Projects\WpfCritic\WpfCritic\Assets\django.mp4", new DateTime(2004, 08, 10), "Miramax Films", @"C:\Users\max\Documents\Visual Studio 2015\Projects\WpfCritic\WpfCritic\Assets\kill_bill_2.png");
-            foreach (var movie in Movie.Items.Values)
-                _movieMainList.Add(movie);
+            _movieMainList.Add(m2);
         }
 
         internal void MoviesListBoxMouseDoubleClick()
@@ -141,7 +141,7 @@ namespace WpfCritic.ViewModel
                 return;
             else
             {
-                MovieDetails mD = new MovieDetails();
+                MovieDetailsWindow mD = new MovieDetailsWindow();
                 mD.ViewModel.SetMovie(_selectedMainMovie);
                 mD.ShowDialog();
             }
@@ -149,7 +149,7 @@ namespace WpfCritic.ViewModel
 
         internal void AddButtonClick()
         {
-            AddMovie aM = new AddMovie();
+            AddMovieWindow aM = new AddMovieWindow();
             aM.ShowDialog();
         }
 
