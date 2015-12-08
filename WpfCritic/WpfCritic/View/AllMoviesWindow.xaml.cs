@@ -18,9 +18,6 @@ using WpfCritic.ViewModel;
 
 namespace WpfCritic
 {
-    ////<summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class AllMoviesWindow : Window
     {
         private AllMoviesWindowVM _viewModel = new AllMoviesWindowVM();
@@ -43,8 +40,9 @@ namespace WpfCritic
             ((AllMoviesWindowVM)DataContext).MoviesListBoxMouseDoubleClick();
         }
 
-        private void exitButton_Click(object sender, RoutedEventArgs e)
+        private void menuButton_Click(object sender, RoutedEventArgs e)
         {
+            ((AllMoviesWindowVM)DataContext).MenuButtonClick();
             this.Close();
         }
 

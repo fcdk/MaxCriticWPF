@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCritic"
         mc:Ignorable="d"
-        Title="AddMovie" Height="330.83" Width="443.17">
+        Title="Добавить фильм" Height="330.83" Width="443.17">
     <Grid Background="AliceBlue">
         <Grid Margin="4,8,4,8">
             <Grid.RowDefinitions>

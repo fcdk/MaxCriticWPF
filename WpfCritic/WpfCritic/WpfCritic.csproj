@@ -78,6 +78,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AllMusicWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\EditMovieUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -99,7 +103,8 @@
     <Compile Include="ViewModel\EditMovieUserControlVM.cs" />
     <Compile Include="ViewModel\AddMovieWindowVM.cs" />
     <Compile Include="ViewModel\AllMoviesWindowVM.cs" />
-    <Compile Include="ViewModel\MovieDetailsVM.cs" />
+    <Compile Include="ViewModel\MenuWindowVM.cs" />
+    <Compile Include="ViewModel\MovieDetailsWindowVM.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddMovieWindow.xaml.cs">
       <DependentUpon>AddMovieWindow.xaml</DependentUpon>
@@ -108,6 +113,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="View\AllMusicWindow.xaml.cs">
+      <DependentUpon>AllMusicWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EditMovieUserControl.xaml.cs">
       <DependentUpon>EditMovieUserControl.xaml</DependentUpon>
     </Compile>
@@ -115,21 +123,28 @@
       <DependentUpon>AllMoviesWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\MovieDetails.xaml">
+    <Page Include="View\MenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\NewReview.xaml">
+    <Page Include="View\MovieDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NewReviewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="View\MovieDetails.xaml.cs">
-      <DependentUpon>MovieDetails.xaml</DependentUpon>
+    <Compile Include="View\MenuWindow.xaml.cs">
+      <DependentUpon>MenuWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\NewReview.xaml.cs">
-      <DependentUpon>NewReview.xaml</DependentUpon>
+    <Compile Include="View\MovieDetailsWindow.xaml.cs">
+      <DependentUpon>MovieDetailsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NewReviewWindow.xaml.cs">
+      <DependentUpon>NewReviewWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Critic.Data;
 using System.Collections.ObjectModel;
+using WpfCritic.View;
 
 namespace WpfCritic.ViewModel
 {
@@ -12,11 +13,11 @@ namespace WpfCritic.ViewModel
     {
         private ObservableCollection<Movie> _movieMainList = new ObservableCollection<Movie>();
         private Movie _selectedMainMovie;
-        private EditMovieUserControlVM _addMovieViewModel = new EditMovieUserControlVM();
+        private EditMovieUserControlVM _editMovieViewModel = new EditMovieUserControlVM();
         
-        public EditMovieUserControlVM AddMovieViewModel
+        public EditMovieUserControlVM EditMovieViewModel
         {
-            get { return _addMovieViewModel; }
+            get { return _editMovieViewModel; }
         }
 
         public ObservableCollection<Movie> MovieMainList
@@ -30,7 +31,7 @@ namespace WpfCritic.ViewModel
             set
             {
                 _selectedMainMovie = value;
-                _addMovieViewModel.SetMovie(_selectedMainMovie);
+                _editMovieViewModel.SetMovie(_selectedMainMovie);
 
                 OnPropertyChanged("SelectedMainMovie");
                 OnPropertyChanged("Name");
@@ -151,6 +152,12 @@ namespace WpfCritic.ViewModel
         {
             AddMovieWindow aM = new AddMovieWindow();
             aM.ShowDialog();
+        }
+
+        internal void MenuButtonClick()
+        {
+            MenuWindow menu = new MenuWindow();
+            menu.Show();
         }
 
     }

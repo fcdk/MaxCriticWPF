@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfCritic"
         xmlns:localdata="clr-namespace:Critic.Data"
         mc:Ignorable="d"
-        Title="MainWindowCritic" Height="467.197" Width="474.32">
+        Title="Все фильмы" Height="467.197" Width="474.32">
     <Grid Background="AliceBlue">
         <Grid.Resources>
             <DataTemplate DataType="{x:Type localdata:Movie}">
@@ -25,13 +25,13 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Name="MovieLabel" Content="Фильмы" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="16" />
+            <Label Grid.Row="0" Name="MovieLabel" Content="Фильмы" Foreground="#FF00167C" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="16" />
             <ListBox Grid.Row="1" Opacity="0.8" x:Name="MoviesListBox" MouseDoubleClick="MoviesListBox_MouseDoubleClick"
             	ItemsSource="{Binding MovieMainList}" SelectedItem="{Binding SelectedMainMovie}" />
             <local:EditMovieUserControl Grid.Row="2" x:Name="MovieControl" DataContext="{Binding AddMovieViewModel}" />
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Name="addButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Добавить" Click="addButton_Click" />
-                <Button Name="exitButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Выйти" Click="exitButton_Click" />
+                <Button Name="menuButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Главное меню" Click="menuButton_Click" />
             </StackPanel>
         </Grid>
     </Grid>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCritic"
         mc:Ignorable="d"
-        Title="NewReview" Height="392.553" Width="517.021">
+        Title="Ревью" Height="392.553" Width="517.021">
     <Grid Background="AliceBlue">
         <Grid Margin="4,8,4,8">
             <Grid.RowDefinitions>
