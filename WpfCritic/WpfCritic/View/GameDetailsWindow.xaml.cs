@@ -11,27 +11,24 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WpfCritic.Model;
-using System.IO;
-using System.Drawing.Imaging;
 using WpfCritic.ViewModel;
 
-namespace WpfCritic
+namespace WpfCritic.View
 {
     /// <summary>
-    /// Логика взаимодействия для MovieDetails.xaml
+    /// Логика взаимодействия для GameDetailsWindow.xaml
     /// </summary>
-    public partial class MovieDetailsWindow : Window
+    public partial class GameDetailsWindow : Window
     {
-        private MovieDetailsWindowVM _viewModel = new MovieDetailsWindowVM();
-        public MovieDetailsWindowVM ViewModel
+        private GameDetailsWindowVM _viewModel = new GameDetailsWindowVM();
+        public GameDetailsWindowVM ViewModel
         {
             get { return _viewModel; }
         }
 
-        public MovieDetailsWindow()
+        public GameDetailsWindow()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             DataContext = _viewModel;
         }
@@ -58,19 +55,24 @@ namespace WpfCritic
             trailer.Stop();
         }
 
-        private void MovieDetailsWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             trailer.Stop();
         }
 
         private void Ellipse_MouseEnter(object sender, MouseEventArgs e)
         {
-            ((MovieDetailsWindowVM)DataContext).EllipseMouseEnter(sender);
+            ((GameDetailsWindowVM)DataContext).EllipseMouseEnter(sender);
         }
 
         private void Ellipse_MouseLeave(object sender, MouseEventArgs e)
         {
-            ((MovieDetailsWindowVM)DataContext).EllipseMouseLeave(sender);
+            ((GameDetailsWindowVM)DataContext).EllipseMouseLeave(sender);
+        }
+
+        private void addReview_Click(object sender, RoutedEventArgs e)
+        {
+            ((GameDetailsWindowVM)DataContext).AddReviewClick();
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
@@ -78,9 +80,9 @@ namespace WpfCritic
             this.Close();
         }
 
-        private void addReview_Click(object sender, RoutedEventArgs e)
+        private void GameDetailsWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ((MovieDetailsWindowVM)DataContext).AddReviewClick();
+            trailer.Stop();
         }
     }
 }

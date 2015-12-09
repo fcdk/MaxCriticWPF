@@ -105,6 +105,7 @@
     <Compile Include="Model\Game.cs" />
     <Compile Include="Model\Genre.cs" />
     <Compile Include="Model\GenreInBaseStuff.cs" />
+    <Compile Include="Model\IStuff.cs" />
     <Compile Include="Model\Movie.cs" />
     <Compile Include="Model\Review.cs" />
     <Compile Include="Model\TVSeries.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="ViewModel\EditMovieUserControlVM.cs" />
     <Compile Include="ViewModel\AddMovieWindowVM.cs" />
     <Compile Include="ViewModel\AllMoviesWindowVM.cs" />
+    <Compile Include="ViewModel\GameDetailsWindowVM.cs" />
     <Compile Include="ViewModel\ICollectionsEntity.cs" />
     <Compile Include="ViewModel\MenuWindowVM.cs" />
     <Compile Include="ViewModel\MovieDetailsWindowVM.cs" />
@@ -143,6 +145,10 @@
       <DependentUpon>AllMoviesWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\GameDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -157,6 +163,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="View\GameDetailsWindow.xaml.cs">
+      <DependentUpon>GameDetailsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MenuWindow.xaml.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
     </Compile>
@@ -210,6 +219,9 @@
     <Resource Include="Assets\kill_bill_2.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\fallout4.mp4" />
+    <Resource Include="Assets\fallout4.png" />
+    <Resource Include="Assets\codblackops3.jpg" />
     <Content Include="Assets\django.mp4" />
     <Resource Include="Assets\button_play.png" />
   </ItemGroup>

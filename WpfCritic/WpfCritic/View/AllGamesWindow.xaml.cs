@@ -37,7 +37,7 @@ namespace WpfCritic.View
 
         private void GamesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ((AllGamesWindowVM)DataContext).MoviesListBoxMouseDoubleClick();
+            ((AllGamesWindowVM)DataContext).GamesListBoxMouseDoubleClick();
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)

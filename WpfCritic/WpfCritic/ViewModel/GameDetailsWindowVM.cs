@@ -3,26 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WpfCritic.Model;
-using System.Windows.Shapes;
 using System.Windows.Media;
+using System.Windows.Shapes;
+using WpfCritic.Model;
+using WpfCritic.ViewModel.Data;
 
 namespace WpfCritic.ViewModel
 {
-    public class MovieDetailsWindowVM : ViewModelBase
+    public class GameDetailsWindowVM : ViewModelBase
     {
-        private Movie _movie;
+        private GameVM _game;
 
-        public void SetMovie(Movie movie)
+        public void SetGame(GameVM game)
         {
-            _movie = movie;
+            _game = game;
             RefreshProperties();
         }
-        
+
         private void RefreshProperties()
         {
             OnPropertyChanged("Name");
-            OnPropertyChanged("Runtime");
+            OnPropertyChanged("Developer");
             OnPropertyChanged("OfficialSite");
             OnPropertyChanged("Trailer");
             OnPropertyChanged("ReleaseDate");
@@ -32,84 +33,84 @@ namespace WpfCritic.ViewModel
 
         public string Name
         {
-            get { return _movie == null ? string.Empty : _movie.Name; }
+            get { return _game == null ? string.Empty : _game.Name; }
             set
             {
-                if (_movie == null)
+                if (_game == null)
                     return;
-                _movie.Name = value;
+                _game.Name = value;
                 OnPropertyChanged("Name");
             }
         }
 
-        public uint Runtime
+        public string Developer
         {
-            get { return _movie == null ? 0 : _movie.Runtime; }
+            get { return _game == null ? string.Empty : _game.Developer; }
             set
             {
-                if (_movie == null)
+                if (_game == null)
                     return;
-                _movie.Runtime = value;
-                OnPropertyChanged("Runtime");
+                _game.Developer = value;
+                OnPropertyChanged("Developer");
             }
         }
 
         public string OfficialSite
         {
-            get { return _movie == null ? string.Empty : _movie.OfficialSite; }
+            get { return _game == null ? string.Empty : _game.OfficialSite; }
             set
             {
-                if (_movie == null)
+                if (_game == null)
                     return;
-                _movie.OfficialSite = value;
+                _game.OfficialSite = value;
                 OnPropertyChanged("OfficialSite");
             }
         }
 
         public string Trailer
         {
-            get { return _movie == null ? string.Empty : _movie.Trailer; }
+            get { return _game == null ? string.Empty : _game.Trailer; }
             set
             {
-                if (_movie == null)
+                if (_game == null)
                     return;
-                _movie.Trailer = value;
+                _game.Trailer = value;
                 OnPropertyChanged("Trailer");
             }
         }
 
-        public DateTime ReleaseDate
+        public DateTime? ReleaseDate
         {
-            get { return _movie == null ? DateTime.Today : _movie.ReleaseDate; }
+            get { return _game == null ? default(DateTime?) : _game.ReleaseDate; }
             set
             {
-                if (_movie == null)
+                if (_game == null)
                     return;
-                _movie.ReleaseDate = value;
+                _game.ReleaseDate = (DateTime)value;
                 OnPropertyChanged("ReleaseDate");
             }
         }
 
         public string Company
         {
-            get { return _movie == null ? string.Empty : _movie.Company; }
+            get { return _game == null ? string.Empty : _game.Company; }
             set
             {
-                if (_movie == null)
+                if (_game == null)
                     return;
-                _movie.Company = value;
+                _game.Company = value;
                 OnPropertyChanged("Company");
             }
         }
 
         public string Poster
         {
-            get { return _movie == null ? string.Empty : _movie.Poster; }
+            get { return _game == null ? string.Empty : _game.Poster; }
             set
             {
-                if (_movie == null)
+                if (_game == null)
                     return;
-                _movie.Poster = value;
+                _game.Poster = value;
                 OnPropertyChanged("Poster");
             }
         }
@@ -121,7 +122,7 @@ namespace WpfCritic.ViewModel
 
         internal void AddReviewClick()
         {
-            NewReviewWindow nR = new NewReviewWindow(_movie);
+            NewReviewWindow nR = new NewReviewWindow(_game);
             nR.ShowDialog();
         }
 
@@ -129,6 +130,5 @@ namespace WpfCritic.ViewModel
         {
             ((Ellipse)sender).Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF0074FF"));
         }
-
     }
 }

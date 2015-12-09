@@ -131,9 +131,9 @@ namespace WpfCritic.ViewModel
 
         public void LoadData()
         {
-            Game g1 = new Game("Fallout 4", "Bethesda Game Studios", "https://www.fallout4.com/", @"C:\Users\max\Documents\Visual Studio 2015\Projects\WpfCritic\WpfCritic\Assets\fallout4.mp4", new DateTime(2015, 11, 10), "Bethesda Softworks", @"C:\Users\max\Documents\Visual Studio 2015\Projects\WpfCritic\WpfCritic\Assets\fallout4.png");
+            Game g1 = new Game("Fallout 4", "https://www.fallout4.com/", "Bethesda Game Studios", @"C:\Users\max\Documents\Visual Studio 2015\Projects\Critic\WpfCritic\WpfCritic\Assets\fallout4.mp4", new DateTime(2015, 11, 10), "Bethesda Softworks", @"\Assets\fallout4.png");
             _gameCollection.Add(new GameVM(g1));
-            Game g2 = new Game("Call of Duty: Black Ops III", "Treyarch", "https://www.callofduty.com/blackops3", @"C:\Users\max\Documents\Visual Studio 2015\Projects\WpfCritic\WpfCritic\Assets\django.mp4", new DateTime(2015, 11, 6), "Activision", @"C:\Users\max\Documents\Visual Studio 2015\Projects\WpfCritic\WpfCritic\Assets\codblackops3.png");
+            Game g2 = new Game("Call of Duty: Black Ops III", "https://www.callofduty.com/blackops3", "Treyarch", @"C:\Users\max\Documents\Visual Studio 2015\Projects\Critic\WpfCritic\WpfCritic\Assets\django.mp4", new DateTime(2015, 11, 6), "Activision", @"\Assets\codblackops3.jpg");
             _gameCollection.Add(new GameVM(g2));
         }
 
@@ -144,9 +144,16 @@ namespace WpfCritic.ViewModel
                 _gameCollection.Add(newItem);
         }
 
-        internal void MoviesListBoxMouseDoubleClick()
+        internal void GamesListBoxMouseDoubleClick()
         {
-            
+            if (_selectedGame == null)
+                return;
+            else
+            {
+                GameDetailsWindow mG = new GameDetailsWindow();
+                mG.ViewModel.SetGame(_selectedGame);
+                mG.ShowDialog();
+            }
         }
 
         internal void AddButtonClick()

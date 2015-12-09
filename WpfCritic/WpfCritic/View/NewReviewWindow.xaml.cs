@@ -20,11 +20,11 @@ namespace WpfCritic
     /// </summary>
     public partial class NewReviewWindow : Window
     {
-        public NewReviewWindow(Movie movie)
+        public NewReviewWindow(IStuff stuff)
         {
             InitializeComponent();
 
-            nameTextBlock.Text += movie.ToString();
+            nameTextBlock.Text += stuff.ToString();
             pointTextBlock.Text = "0";
         }
 

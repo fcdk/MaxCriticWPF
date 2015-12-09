@@ -25,6 +25,11 @@ namespace WpfCritic.Model
             OfficialSite = officialSite;
             Developer = developer;
             Trailer = trailer;
-        } 
+        }
+
+        public override string ToString()
+        {
+            return Name + " (" + ReleaseDate.Year + ")";
+        }
     }
 }
