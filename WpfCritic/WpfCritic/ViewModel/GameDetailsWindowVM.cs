@@ -122,8 +122,7 @@ namespace WpfCritic.ViewModel
 
         internal void AddReviewClick()
         {
-            NewReviewWindow nR = new NewReviewWindow(_game);
-            nR.ShowDialog();
+            //надо сделать добавление ревью
         }
 
         internal void EllipseMouseEnter(object sender)

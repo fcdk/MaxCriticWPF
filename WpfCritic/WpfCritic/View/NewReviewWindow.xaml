@@ -15,11 +15,11 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Name="nameTextBlock" Text="Отзыв о фильме " HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="21.333" Foreground="#FF00167C" />
+            <TextBlock Grid.Row="0" Name="nameTextBlock" Text="{Binding Path=Movie, StringFormat='Отзыв о фильме {0}'}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="21.333" Foreground="#FF00167C" />
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <Label Content="Оценка:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontWeight="Bold" FontSize="16" />
-                <Slider Name="pointSlider" Maximum="100" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="pointSlider_ValueChanged" IsSnapToTickEnabled="True" />
-                <TextBlock Name="pointTextBlock" Foreground="#FF00167C" FontFamily="Impact" FontSize="21.333" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Slider Name="pointSlider" Maximum="100" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="pointSlider_ValueChanged" IsSnapToTickEnabled="True" Value="{Binding Point}" />
+                <TextBlock Name="pointTextBlock" Foreground="#FF00167C" FontFamily="Impact" FontSize="21.333" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Point}" />
             </StackPanel>
             <Label Grid.Row="2" Content="Отзыв:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontWeight="Bold" FontSize="16" />
             <RichTextBox Grid.Row="3" Name="reviewRichTextBox" VerticalScrollBarVisibility="Auto" />

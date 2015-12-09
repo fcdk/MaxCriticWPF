@@ -113,6 +113,7 @@
     <Compile Include="ViewModel\AddGameWindowVM.cs" />
     <Compile Include="ViewModel\AllGamesWindowVM.cs" />
     <Compile Include="ViewModel\Data\GameVM.cs" />
+    <Compile Include="ViewModel\Data\ReviewMovieVM.cs" />
     <Compile Include="ViewModel\EditGameUserControlVM.cs" />
     <Compile Include="ViewModel\EditMovieUserControlVM.cs" />
     <Compile Include="ViewModel\AddMovieWindowVM.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="ViewModel\ICollectionsEntity.cs" />
     <Compile Include="ViewModel\MenuWindowVM.cs" />
     <Compile Include="ViewModel\MovieDetailsWindowVM.cs" />
+    <Compile Include="ViewModel\ReviewMovieWindowVM.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddGameWindow.xaml.cs">
       <DependentUpon>AddGameWindow.xaml</DependentUpon>

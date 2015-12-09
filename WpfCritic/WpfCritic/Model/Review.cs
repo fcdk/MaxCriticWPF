@@ -25,12 +25,13 @@ namespace WpfCritic.Model
             set { _baseStuffId = value.Id; }
         }
 
-        public Review(User user, T stuff, byte point, DateTime dateReview) : base()
+        public Review(User user, T stuff, byte point, DateTime dateReview, string opinion) : base()
         {
             User = user;
             Stuff = stuff;
             Point = point;
             DateReview = dateReview;
+            Opinion = opinion;
         }
 
     }
