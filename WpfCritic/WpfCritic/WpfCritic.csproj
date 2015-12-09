@@ -105,7 +105,6 @@
     <Compile Include="Model\Game.cs" />
     <Compile Include="Model\Genre.cs" />
     <Compile Include="Model\GenreInBaseStuff.cs" />
-    <Compile Include="Model\IStuff.cs" />
     <Compile Include="Model\Movie.cs" />
     <Compile Include="Model\Review.cs" />
     <Compile Include="Model\TVSeries.cs" />

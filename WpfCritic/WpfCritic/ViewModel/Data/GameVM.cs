@@ -7,7 +7,7 @@ using WpfCritic.Model;
 
 namespace WpfCritic.ViewModel.Data
 {
-    public class GameVM : ViewModelBase, IStuff
+    public class GameVM : ViewModelBase
     {
         private Game _game;
 

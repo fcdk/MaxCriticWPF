@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace WpfCritic.Model
 {
-    public class BaseStuff<T> : IStuff
+    public class BaseStuff<T>
         where T : BaseStuff<T>
     {
         public Guid Id { get; set; }
