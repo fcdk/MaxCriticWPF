@@ -14,7 +14,8 @@ namespace WpfCritic.ViewModel.Data
         public string Name
         {
             get { return _game.Name; }
-            set { _game.Name = value; OnPropertyChanged("Name"); }
+            set { _game.Name = value;
+                OnPropertyChanged("Name"); }
         }
 
         public string OfficialSite
