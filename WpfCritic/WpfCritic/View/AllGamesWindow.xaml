@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfCritic.View"
         xmlns:localdata="clr-namespace:WpfCritic.ViewModel.Data"
         mc:Ignorable="d"
-        Title="Все игры" Height="467.197" Width="474.32">
+        Title="Все игры" Height="467.197" Width="474.32" Closing="AllGamesWindow_Closing">
     <Grid Background="AliceBlue">
         <Grid.Resources>
             <DataTemplate DataType="{x:Type localdata:GameVM}">

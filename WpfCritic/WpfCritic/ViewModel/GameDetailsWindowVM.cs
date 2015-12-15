@@ -13,6 +13,8 @@ namespace WpfCritic.ViewModel
     public class GameDetailsWindowVM : ViewModelBase
     {
         private GameVM _game;
+        public GameVM Game
+        { get { return _game; } }
 
         public void SetGame(GameVM game)
         {

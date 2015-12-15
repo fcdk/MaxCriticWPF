@@ -32,6 +32,18 @@ namespace WpfCritic.DataLayer
             _row = row;
         }
 
+        public GameDL(int gameID, DateTime releaseDate, string company, string poster, string name, string developer, string officialSite, string trailer)
+        {
+            GameID = gameID;
+            ReleaseDate = releaseDate;
+            Company = company;
+            Poster = poster;
+            Name = name;
+            Developer = developer;
+            OfficialSite = officialSite;
+            Trailer = trailer;
+        }
+
         public GameVM ToGameVM()
         {
             return new GameVM(GameID, Name, OfficialSite, Developer, Trailer, ReleaseDate, Company, Poster);

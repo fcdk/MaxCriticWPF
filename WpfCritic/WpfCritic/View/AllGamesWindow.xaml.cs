@@ -51,5 +51,9 @@ namespace WpfCritic.View
             this.Close();
         }
 
+        private void AllGamesWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ((AllGamesWindowVM)DataContext).AllGamesWindowClosing();
+        }
     }
 }

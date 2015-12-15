@@ -13,13 +13,15 @@ namespace WpfCritic.DataLayer
         private DataSet _dataSet = new DataSet();
         private SqlDataAdapter _gameAdapter;
 
+        public GameManager()
+        {
+            SqlDataAdapter gameAdapter = GetGameDataAdapter();
+            gameAdapter.Fill(_dataSet, "Game");
+        }
+
         public GameDL[] GetGames()
         {
             List<GameDL> gameList = new List<GameDL>();
-
-            SqlDataAdapter gameAdapter = GetGameDataAdapter();
-
-            gameAdapter.Fill(_dataSet, "Game");
 
             foreach (DataRow row in _dataSet.Tables["Game"].Rows)
             {
@@ -37,6 +39,41 @@ namespace WpfCritic.DataLayer
             }
 
             return gameList.ToArray();
+        }
+
+        public void Save(GameDL[] games)
+        {
+            if (_dataSet.Tables.Count == 0)
+                return;
+
+            foreach (var game in games)
+            {
+                if (game.Row != null)
+                {
+                    game.Row["ReleaseDate"] = game.ReleaseDate;
+                    game.Row["Company"] = game.Company;
+                    game.Row["Poster"] = game.Poster;
+                    game.Row["Name"] = game.Name;
+                    game.Row["Developer"] = game.Developer;
+                    game.Row["OfficialSite"] = game.OfficialSite;
+                    game.Row["Trailer"] = game.Trailer;
+                }
+                else
+                {
+                    game.SetRow(_dataSet.Tables["Game"].NewRow());
+                    _dataSet.Tables["Game"].Rows.Add(game.Row);
+
+                    game.Row["ReleaseDate"] = game.ReleaseDate;
+                    game.Row["Company"] = game.Company;
+                    game.Row["Poster"] = game.Poster;
+                    game.Row["Name"] = game.Name;
+                    game.Row["Developer"] = game.Developer;
+                    game.Row["OfficialSite"] = game.OfficialSite;
+                    game.Row["Trailer"] = game.Trailer;
+                }
+            }
+
+            GetGameDataAdapter().Update(_dataSet, "Game");
         }
 
         private SqlDataAdapter GetGameDataAdapter()

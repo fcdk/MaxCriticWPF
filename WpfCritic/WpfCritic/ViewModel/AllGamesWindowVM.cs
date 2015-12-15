@@ -177,5 +177,15 @@ namespace WpfCritic.ViewModel
             menu.Show();
         }
 
+        internal void AllGamesWindowClosing()
+        {
+            GameManager gameManager = new GameManager();
+            List<GameDL> games = new List<GameDL>();
+            foreach (var game in _gameCollection)
+
+                games.Add(game.ToGameDL(gameManager));
+            gameManager.Save(games.ToArray());
+        }
+
     }
 }

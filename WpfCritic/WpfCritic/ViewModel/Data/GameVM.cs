@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfCritic.DataLayer;
 using WpfCritic.Model;
 
 namespace WpfCritic.ViewModel.Data
@@ -77,5 +78,22 @@ namespace WpfCritic.ViewModel.Data
             return Name + " (" + ReleaseDate.Year + ")";
         }
 
+        public GameDL ToGameDL(GameManager gameManager)
+        {
+            GameDL[] games = gameManager.GetGames();
+            foreach (var game in games)
+                if (game.GameID == this.Id)
+                {
+                    game.ReleaseDate = this.ReleaseDate;
+                    game.Company = this.Company;
+                    game.Poster = this.Poster;
+                    game.Name = this.Name;
+                    game.Developer = this.Developer;
+                    game.OfficialSite = this.OfficialSite;
+                    game.Trailer = this.Trailer;
+                    return game;
+                }
+            return new GameDL(this.Id, this.ReleaseDate, this.Company, this.Poster, this.Name, this.Developer, this.OfficialSite, this.Trailer);
+        }
     }
 }
