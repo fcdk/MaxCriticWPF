@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using WpfCritic.Model;
 using System.Drawing;
 using WpfCritic.ViewModel;
+using WpfCritic.Core;
 
 namespace WpfCritic
 {
@@ -33,6 +34,8 @@ namespace WpfCritic
             DataContext = _viewModel;
                         
             _viewModel.LoadData();
+
+            Logger.Info("AllMoviesWindow", "Форма со всеми играми создана");
         }
 
         private void MoviesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)

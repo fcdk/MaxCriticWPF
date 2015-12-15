@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfCritic.Core;
 
 namespace WpfCritic.DataLayer
 {
@@ -38,6 +39,7 @@ namespace WpfCritic.DataLayer
                 gameList.Add(game);
             }
 
+            Logger.Info("GameManager.GetGames", "Данные с играми прочтены из базы данных");
             return gameList.ToArray();
         }
 
@@ -74,6 +76,8 @@ namespace WpfCritic.DataLayer
             }
 
             GetGameDataAdapter().Update(_dataSet, "Game");
+
+            Logger.Info("MainWindow", "Данные по играм обновлены в базе данных");
         }
 
         private SqlDataAdapter GetGameDataAdapter()

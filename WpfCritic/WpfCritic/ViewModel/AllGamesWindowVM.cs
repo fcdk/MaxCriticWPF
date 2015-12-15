@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 using WpfCritic.Model;
 using WpfCritic.View;
@@ -144,6 +145,8 @@ namespace WpfCritic.ViewModel
                 GameVM gameVM = game.ToGameVM();
                 _gameCollection.Add(gameVM);
             }
+
+            Logger.Info("AllGamesWindowVM.LoadData", "Коллекция фильмов заполнена");
         }
 
         public void Add(object item)
@@ -182,7 +185,6 @@ namespace WpfCritic.ViewModel
             GameManager gameManager = new GameManager();
             List<GameDL> games = new List<GameDL>();
             foreach (var game in _gameCollection)
-
                 games.Add(game.ToGameDL(gameManager));
             gameManager.Save(games.ToArray());
         }

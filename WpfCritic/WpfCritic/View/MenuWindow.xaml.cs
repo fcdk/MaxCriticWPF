@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfCritic.Core;
 using WpfCritic.ViewModel;
 
 namespace WpfCritic.View
@@ -30,6 +31,8 @@ namespace WpfCritic.View
             InitializeComponent();
 
             DataContext = _viewModel;
+
+            Logger.Info("MenuWindow", "Форма с главным меню создана");
         }
 
         private void moviesShowButton_Click(object sender, RoutedEventArgs e)

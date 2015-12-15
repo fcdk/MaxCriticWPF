@@ -49,7 +49,7 @@ namespace WpfCritic.Core
                 if (_writer == null)
                     return;
 
-                _writer.Write(string.Format("{0} | {1} | {2} | {3} | {4}", DateTime.Now.ToLongTimeString(), level, title, message, Environment.NewLine));
+                _writer.Write(string.Format("{0} | {1} | {2} | {3} | {4}", DateTime.Now, level, title, message, Environment.NewLine));
             }
             catch (Exception ex)
             {
@@ -60,7 +60,8 @@ namespace WpfCritic.Core
         public void Dispose()
         {
             _writer.Flush();
-            //дописать что-то ещё!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            _file.Close();
+            _writer.Close();
         }
     }
 }
