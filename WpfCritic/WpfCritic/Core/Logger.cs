@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Windows;
 
 namespace WpfCritic.Core
@@ -13,8 +14,8 @@ namespace WpfCritic.Core
         private Logger()
         {
             string logFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log.txt");
-            _file = File.Open(logFileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
-            _writer = new BinaryWriter(_file);
+            _file = File.Open(logFileName, FileMode.Create, FileAccess.ReadWrite, FileShare.None);
+            _writer = new BinaryWriter(_file, Encoding.Default);
         }
 
         public static Logger Instance
@@ -39,7 +40,7 @@ namespace WpfCritic.Core
 
         public static void Info(string title, string message)
         {
-            Instance.WriteMessage(string.Empty, title, message);
+            Instance.WriteMessage("Info", title, message);
         }
 
         private void WriteMessage(string level, string title, string message)
@@ -49,7 +50,7 @@ namespace WpfCritic.Core
                 if (_writer == null)
                     return;
 
-                _writer.Write(string.Format("{0} | {1} | {2} | {3} | {4}", DateTime.Now, level, title, message, Environment.NewLine));
+                _writer.Write(string.Format("{0} | {1} | {2} | {3} | {4}", DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss:fff"), level, title, message, Environment.NewLine));
             }
             catch (Exception ex)
             {

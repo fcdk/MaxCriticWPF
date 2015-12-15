@@ -77,7 +77,7 @@ namespace WpfCritic.DataLayer
 
             GetGameDataAdapter().Update(_dataSet, "Game");
 
-            Logger.Info("MainWindow", "Данные по играм обновлены в базе данных");
+            Logger.Info("MainWindow", "Данные по играм обновлены (если были какие-то изменения) в базе данных");
         }
 
         private SqlDataAdapter GetGameDataAdapter()

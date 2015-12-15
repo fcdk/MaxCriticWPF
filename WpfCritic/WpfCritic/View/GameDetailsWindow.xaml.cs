@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfCritic.Core;
 using WpfCritic.ViewModel;
 
 namespace WpfCritic.View
@@ -31,6 +32,8 @@ namespace WpfCritic.View
             InitializeComponent();
 
             DataContext = _viewModel;
+
+            Logger.Info("GameDetailsWindow", "Окно с подробной информацией об игре создано");
         }
 
         private void playCenterButton_Click(object sender, RoutedEventArgs e)
