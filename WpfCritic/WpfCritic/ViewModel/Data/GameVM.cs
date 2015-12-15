@@ -11,6 +11,7 @@ namespace WpfCritic.ViewModel.Data
     {
         private Game _game;
 
+        public int Id{ get; set; }
         public string Name
         {
             get { return _game.Name; }
@@ -57,6 +58,18 @@ namespace WpfCritic.ViewModel.Data
         public GameVM(Game game)
         {
             _game = game;
+        }
+
+        public GameVM(int id, string name, string officialSite, string developer, string trailer, DateTime releaseDate, string company, string poster)
+        {
+            Id = id;
+            Name = name;
+            OfficialSite = officialSite;
+            Developer = developer;
+            Trailer = trailer;
+            ReleaseDate = releaseDate;
+            Company = company;
+            Poster = poster;
         }
 
         public override string ToString()

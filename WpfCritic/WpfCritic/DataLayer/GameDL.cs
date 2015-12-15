@@ -4,10 +4,12 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfCritic.Model;
+using WpfCritic.ViewModel.Data;
 
 namespace WpfCritic.DataLayer
 {
-    public class MovieDL
+    public class GameDL
     {
         private DataRow _row;
 
@@ -16,18 +18,23 @@ namespace WpfCritic.DataLayer
             get { return _row; }
         }
 
-        public int MovieID { get; set; }
+        public int GameID { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string Company { get; set; }
         public string Poster { get; set; }
         public string Name { get; set; }
-        public uint Runtime { get; set; }
+        public string Developer { get; set; }
         public string OfficialSite { get; set; }
         public string Trailer { get; set; }
 
-        public MovieDL(DataRow row)
+        public GameDL(DataRow row)
         {
             _row = row;
+        }
+
+        public GameVM ToGameVM(GameDL gameDL)
+        {
+            return new GameVM(gameDL.GameID ,gameDL.Name, gameDL.OfficialSite, gameDL.Developer, gameDL.Trailer, gameDL.ReleaseDate, gameDL.Company, gameDL.Poster);
         }
 
         internal void SetRow(DataRow dataRow)
