@@ -9,7 +9,7 @@ namespace WpfCritic.ViewModel.Data
 {
     public class GameVM : ViewModelBase
     {
-        private Game _game;
+        private Game _game = new Game();
 
         public int Id{ get; set; }
         public string Name

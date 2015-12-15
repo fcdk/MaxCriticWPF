@@ -100,7 +100,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Core\Logger.cs" />
-    <Compile Include="DataLayer\MovieDL.cs" />
+    <Compile Include="DataLayer\GameDL.cs" />
+    <Compile Include="DataLayer\GameManager.cs" />
     <Compile Include="Model\Album.cs" />
     <Compile Include="Model\BaseStuff.cs" />
     <Compile Include="Model\BaseType.cs" />

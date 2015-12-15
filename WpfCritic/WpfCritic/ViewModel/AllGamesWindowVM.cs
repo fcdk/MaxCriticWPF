@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfCritic.DataLayer;
 using WpfCritic.Model;
 using WpfCritic.View;
 using WpfCritic.ViewModel.Data;
@@ -131,10 +132,18 @@ namespace WpfCritic.ViewModel
 
         public void LoadData()
         {
-            Game g1 = new Game("Fallout 4", "https://www.fallout4.com/", "Bethesda Game Studios", @"C:\Users\max\Documents\Visual Studio 2015\Projects\Critic\WpfCritic\WpfCritic\Assets\fallout4.mp4", new DateTime(2015, 11, 10), "Bethesda Softworks", @"\Assets\fallout4.png");
+            /*Game g1 = new Game("Fallout 4", "https://www.fallout4.com/", "Bethesda Game Studios", @"C:\Users\max\Documents\Visual Studio 2015\Projects\Critic\WpfCritic\WpfCritic\Assets\fallout4.mp4", new DateTime(2015, 11, 10), "Bethesda Softworks", @"\Assets\fallout4.png");
             _gameCollection.Add(new GameVM(g1));
             Game g2 = new Game("Call of Duty: Black Ops III", "https://www.callofduty.com/blackops3", "Treyarch", @"C:\Users\max\Documents\Visual Studio 2015\Projects\Critic\WpfCritic\WpfCritic\Assets\django.mp4", new DateTime(2015, 11, 6), "Activision", @"\Assets\codblackops3.jpg");
-            _gameCollection.Add(new GameVM(g2));
+            _gameCollection.Add(new GameVM(g2));*/
+
+            GameManager gameManager = new GameManager();
+            GameDL[] gameList = gameManager.GetGames();
+            foreach (var game in gameList)
+            {
+                GameVM gameVM = game.ToGameVM();
+                _gameCollection.Add(gameVM);
+            }
         }
 
         public void Add(object item)

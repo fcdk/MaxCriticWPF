@@ -32,9 +32,9 @@ namespace WpfCritic.DataLayer
             _row = row;
         }
 
-        public GameVM ToGameVM(GameDL gameDL)
+        public GameVM ToGameVM()
         {
-            return new GameVM(gameDL.GameID ,gameDL.Name, gameDL.OfficialSite, gameDL.Developer, gameDL.Trailer, gameDL.ReleaseDate, gameDL.Company, gameDL.Poster);
+            return new GameVM(GameID, Name, OfficialSite, Developer, Trailer, ReleaseDate, Company, Poster);
         }
 
         internal void SetRow(DataRow dataRow)
