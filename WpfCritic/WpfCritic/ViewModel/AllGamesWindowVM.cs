@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using WpfCritic.Core;
 using WpfCritic.DataLayer;
 using WpfCritic.Model;
@@ -45,7 +46,7 @@ namespace WpfCritic.ViewModel
                 OnPropertyChanged("Company");
                 OnPropertyChanged("Poster");
             }
-        }
+        } 
 
         public string Name
         {
