@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using WpfCritic.Core;
 using WpfCritic.DataLayer;
-using WpfCritic.Model;
 using WpfCritic.View;
 using WpfCritic.ViewModel.Data;
 
@@ -140,7 +139,7 @@ namespace WpfCritic.ViewModel
             _gameCollection.Add(new GameVM(g2));*/
 
             GameManager gameManager = new GameManager();
-            GameDL[] gameList = gameManager.GetGames();
+            Game[] gameList = gameManager.GetGames();
             foreach (var game in gameList)
             {
                 GameVM gameVM = game.ToGameVM();
@@ -184,7 +183,7 @@ namespace WpfCritic.ViewModel
         internal void AllGamesWindowClosing()
         {
             GameManager gameManager = new GameManager();
-            List<GameDL> games = new List<GameDL>();
+            List<Game> games = new List<Game>();
             foreach (var game in _gameCollection)
                 games.Add(game.ToGameDL(gameManager));
             gameManager.Save(games.ToArray());

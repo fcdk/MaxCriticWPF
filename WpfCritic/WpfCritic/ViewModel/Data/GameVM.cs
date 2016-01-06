@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfCritic.DataLayer;
-using WpfCritic.Model;
 
 namespace WpfCritic.ViewModel.Data
 {
@@ -78,9 +77,9 @@ namespace WpfCritic.ViewModel.Data
             return Name + " (" + ReleaseDate.Year + ")";
         }
 
-        public GameDL ToGameDL(GameManager gameManager)
+        public Game ToGameDL(GameManager gameManager)
         {
-            GameDL[] games = gameManager.GetGames();
+            Game[] games = gameManager.GetGames();
             foreach (var game in games)
                 if (game.GameID == this.Id)
                 {
@@ -93,7 +92,7 @@ namespace WpfCritic.ViewModel.Data
                     game.Trailer = this.Trailer;
                     return game;
                 }
-            return new GameDL(this.Id, this.ReleaseDate, this.Company, this.Poster, this.Name, this.Developer, this.OfficialSite, this.Trailer);
+            return new Game(this.Id, this.ReleaseDate, this.Company, this.Poster, this.Name, this.Developer, this.OfficialSite, this.Trailer);
         }
     }
 }

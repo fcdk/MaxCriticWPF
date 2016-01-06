@@ -20,13 +20,13 @@ namespace WpfCritic.DataLayer
             gameAdapter.Fill(_dataSet, "Game");
         }
 
-        public GameDL[] GetGames()
+        public Game[] GetGames()
         {
-            List<GameDL> gameList = new List<GameDL>();
+            List<Game> gameList = new List<Game>();
 
             foreach (DataRow row in _dataSet.Tables["Game"].Rows)
             {
-                GameDL game = new GameDL(row);
+                Game game = new Game(row);
                 game.GameID = Convert.ToInt32(row["ID"]);
                 game.ReleaseDate = Convert.ToDateTime(row["ReleaseDate"]);
                 game.Company = row["Company"].ToString();
@@ -43,7 +43,7 @@ namespace WpfCritic.DataLayer
             return gameList.ToArray();
         }
 
-        public void Save(GameDL[] games)
+        public void Save(Game[] games)
         {
             if (_dataSet.Tables.Count == 0)
                 return;

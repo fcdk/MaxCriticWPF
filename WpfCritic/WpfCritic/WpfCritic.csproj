@@ -100,18 +100,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Core\Logger.cs" />
-    <Compile Include="DataLayer\GameDL.cs" />
+    <Compile Include="DataLayer\Entity.cs" />
+    <Compile Include="DataLayer\Game.cs" />
     <Compile Include="DataLayer\GameManager.cs" />
-    <Compile Include="Model\Album.cs" />
-    <Compile Include="Model\BaseStuff.cs" />
-    <Compile Include="Model\BaseType.cs" />
-    <Compile Include="Model\Game.cs" />
-    <Compile Include="Model\Genre.cs" />
-    <Compile Include="Model\GenreInBaseStuff.cs" />
-    <Compile Include="Model\Movie.cs" />
-    <Compile Include="Model\Review.cs" />
-    <Compile Include="Model\TVSeries.cs" />
-    <Compile Include="Model\User.cs" />
+    <Compile Include="DataLayer\TableNameAttribute.cs" />
     <Compile Include="ViewModel\AddGameWindowVM.cs" />
     <Compile Include="ViewModel\AllGamesWindowVM.cs" />
     <Compile Include="ViewModel\Data\GameVM.cs" />
