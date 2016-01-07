@@ -54,6 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -100,10 +101,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Core\Logger.cs" />
+    <Compile Include="DataLayer\ConnectionNameAttribute.cs" />
     <Compile Include="DataLayer\Entity.cs" />
     <Compile Include="DataLayer\Game.cs" />
     <Compile Include="DataLayer\GameManager.cs" />
     <Compile Include="DataLayer\Entertainment.cs" />
+    <Compile Include="DataLayer\IdColumnNameAttribute.cs" />
     <Compile Include="DataLayer\TableNameAttribute.cs" />
     <Compile Include="ViewModel\AddGameWindowVM.cs" />
     <Compile Include="ViewModel\AllGamesWindowVM.cs" />

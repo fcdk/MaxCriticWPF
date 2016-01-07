@@ -23,18 +23,18 @@ namespace WpfCritic.DataLayer
             set
             {
                 if (_row == null)
-                {
                     _row = value;
-                    Id = (Guid)value[_idColumnName];
-                }
-                else
-                {
-                    Id = (Guid)value[_idColumnName];
-                }
             }
         }
 
-        public Guid Id { get; private set; }
+        private bool _isNew;
+        public bool IsNew { get { return _isNew; } }
+
+        public Guid Id
+        {
+            get { return (Guid)Row[_idColumnName]; }
+            private set { Row[_idColumnName] = value; }
+        }
 
         static Entity()
         {
@@ -60,11 +60,33 @@ namespace WpfCritic.DataLayer
         public Entity(DataRow row = null)
         {
             if (row != null)
+            {
                 Row = row;
-            else Id = Guid.NewGuid();
+                _isNew = false;
+            }
+            else
+            {
+                _row = _dataTable.NewRow();
+                Id = Guid.NewGuid();
+                _isNew = true;
+            }
         }
 
+        public void Save()
+        {
+            if (IsNew)
+            {
+                _dataTable.Rows.Add(_row);
+                _isNew = false;
+            }
+            _dataAdapter.Update(new DataRow[] { _row });
+        }
 
+        public void Delete()
+        {
+            _row.Delete();
+            _dataAdapter.Update(new DataRow[] { _row });
+        }
 
     }
 }
