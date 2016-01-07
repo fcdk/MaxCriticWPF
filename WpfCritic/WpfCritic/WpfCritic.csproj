@@ -103,7 +103,7 @@
     <Compile Include="DataLayer\Entity.cs" />
     <Compile Include="DataLayer\Game.cs" />
     <Compile Include="DataLayer\GameManager.cs" />
-    <Compile Include="DataLayer\Stuff.cs" />
+    <Compile Include="DataLayer\Entertainment.cs" />
     <Compile Include="DataLayer\TableNameAttribute.cs" />
     <Compile Include="ViewModel\AddGameWindowVM.cs" />
     <Compile Include="ViewModel\AllGamesWindowVM.cs" />
