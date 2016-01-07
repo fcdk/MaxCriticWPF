@@ -91,13 +91,13 @@ namespace WpfCritic.DataLayer
         public static T GetById(Guid id)
         {
             DataRow[] result = _dataTable.Select(_idColumnName + " = '" + id.ToString() + "'");
-            if (result.Length > 0)
+            if (result.Length == 1)
                 return (T)Activator.CreateInstance(typeof(T), result[0]);
             else
             {
                 _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE " + _idColumnName + "=@id;";
 
-                if (!_dataAdapter.SelectCommand.Parameters.Contains("@id")) ///////////////////////////////// тут возможна ошибка!!!!!!
+                if (!_dataAdapter.SelectCommand.Parameters.Contains("@id")) // тут возможна ошибка!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 {
                     _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@id", id));
                 }
