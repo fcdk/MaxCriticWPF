@@ -45,14 +45,14 @@ namespace WpfCritic.DataLayer
             _connectionString = ConfigurationManager.ConnectionStrings[_connectionName].ConnectionString;
             SqlConnection connection = new SqlConnection(_connectionString);
 
-            string selectSQL = "SELECT * FROM " + _tableName;
+            string selectSQL = "SELECT * FROM " + _tableName + ";";
             _dataAdapter = new SqlDataAdapter(selectSQL, connection);
             SqlCommandBuilder commandBuilder = new SqlCommandBuilder(_dataAdapter);
             _dataAdapter.UpdateCommand = commandBuilder.GetUpdateCommand();
             _dataAdapter.InsertCommand = commandBuilder.GetInsertCommand();
             _dataAdapter.DeleteCommand = commandBuilder.GetDeleteCommand();
 
-            _dataAdapter.SelectCommand.CommandText = "SELECT TOP(10) * FROM " + _tableName;
+            _dataAdapter.SelectCommand.CommandText = "SELECT TOP(10) * FROM " + _tableName + ";";
             _dataTable.TableName = _tableName;
             _dataAdapter.Fill(_dataTable);
         }
@@ -87,6 +87,28 @@ namespace WpfCritic.DataLayer
             _row.Delete();
             _dataAdapter.Update(new DataRow[] { _row });
         }
+
+        public static T GetById(Guid id)
+        {
+            DataRow[] result = _dataTable.Select(_idColumnName + " = '" + id.ToString() + "'");
+            if (result.Length > 0)
+                return (T)Activator.CreateInstance(typeof(T), result[0]);
+            else
+            {
+                _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE " + _idColumnName + "=@id;";
+
+                if (!_dataAdapter.SelectCommand.Parameters.Contains("@id")) ///////////////////////////////// тут возможна ошибка!!!!!!
+                {
+                    _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@id", id));
+                }
+                else
+                    _dataAdapter.SelectCommand.Parameters["@id"].Value = id;
+
+                if (_dataAdapter.Fill(_dataTable) == 1)
+                    return (T)Activator.CreateInstance(typeof(T), _dataTable.Select(_idColumnName + " = '" + id.ToString() + "'")[0]);
+                else return null;
+            }
+        } 
 
     }
 }
