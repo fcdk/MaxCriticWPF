@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WpfCritic.DataLayer
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public sealed class TableNameAttribute : Attribute
+    public class IdColumnNameAttribute : Attribute
     {
         public string Name;
-        public TableNameAttribute(string name)
+        public IdColumnNameAttribute(string name)
         {
             Name = name;
         }

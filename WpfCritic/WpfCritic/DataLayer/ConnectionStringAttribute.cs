@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WpfCritic.DataLayer
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public sealed class TableNameAttribute : Attribute
+    class ConnectionStringAttribute : Attribute
     {
         public string Name;
-        public TableNameAttribute(string name)
+        public ConnectionStringAttribute(string name)
         {
             Name = name;
         }

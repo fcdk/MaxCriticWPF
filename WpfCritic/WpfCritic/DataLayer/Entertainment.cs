@@ -2,6 +2,7 @@
 
 namespace WpfCritic.DataLayer
 {
+    [TableName("Entertainment")]
     public class Entertainment : Entity<Entertainment>
     {
         public DateTime ReleaseDate { get; set; }
