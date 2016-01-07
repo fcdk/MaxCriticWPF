@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace WpfCritic.DataLayer
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    class ConnectionStringAttribute : Attribute
+    class ConnectionNameAttribute : Attribute
     {
         public string Name;
-        public ConnectionStringAttribute(string name)
+        public ConnectionNameAttribute(string name)
         {
             Name = name;
         }

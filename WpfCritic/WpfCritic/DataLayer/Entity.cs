@@ -5,16 +5,16 @@ using System.Data.SqlClient;
 
 namespace WpfCritic.DataLayer
 {
-    [ConnectionString("MaxCritic")]
+    [ConnectionName("MaxCritic")]
     public class Entity<T> where T : Entity<T>
     {
-        private SqlDataAdapter _dataAdapter;
-        private DataSet _dataSet = new DataSet();
-        private string _connectionString;
+        private static SqlDataAdapter _dataAdapter;
+        private static DataTable _dataTable = new DataTable();
+        private static string _connectionString;
 
-        private string _idColumnName;
-        private string _connectionName;
-        private string _tableName;
+        private static string _idColumnName;
+        private static string _connectionName;
+        private static string _tableName;
 
         private DataRow _row;
         public virtual DataRow Row
@@ -36,14 +36,10 @@ namespace WpfCritic.DataLayer
 
         public Guid Id { get; private set; }
 
-        public Entity(DataRow row = null)
+        static Entity()
         {
-            if (row != null)
-                Row = row;
-            else Id = Guid.NewGuid();
-
             _idColumnName = ((IdColumnNameAttribute)typeof(T).GetCustomAttributes(typeof(IdColumnNameAttribute), false)[0]).Name;
-            _connectionName = ((ConnectionStringAttribute)this.GetType().GetCustomAttributes(typeof(ConnectionStringAttribute), false)[0]).Name;
+            _connectionName = ((ConnectionNameAttribute)typeof(Entity<T>).GetCustomAttributes(typeof(ConnectionNameAttribute), false)[0]).Name;
             _tableName = ((TableNameAttribute)typeof(T).GetCustomAttributes(typeof(TableNameAttribute), false)[0]).Name;
 
             _connectionString = ConfigurationManager.ConnectionStrings[_connectionName].ConnectionString;
@@ -57,8 +53,18 @@ namespace WpfCritic.DataLayer
             _dataAdapter.DeleteCommand = commandBuilder.GetDeleteCommand();
 
             _dataAdapter.SelectCommand.CommandText = "SELECT TOP(10) * FROM " + _tableName;
-            _dataAdapter.Fill(_dataSet);
+            _dataTable.TableName = _tableName;
+            _dataAdapter.Fill(_dataTable);
         }
+
+        public Entity(DataRow row = null)
+        {
+            if (row != null)
+                Row = row;
+            else Id = Guid.NewGuid();
+        }
+
+
 
     }
 }
