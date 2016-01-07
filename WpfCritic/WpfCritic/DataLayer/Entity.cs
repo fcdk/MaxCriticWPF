@@ -17,7 +17,7 @@ namespace WpfCritic.DataLayer
         private static string _tableName;
 
         private DataRow _row;
-        public virtual DataRow Row
+        protected DataRow Row
         {
             get { return _row; }
             set
