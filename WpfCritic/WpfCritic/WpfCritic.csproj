@@ -107,6 +107,7 @@
     <Compile Include="DataLayer\GameManager.cs" />
     <Compile Include="DataLayer\Entertainment.cs" />
     <Compile Include="DataLayer\IdColumnNameAttribute.cs" />
+    <Compile Include="DataLayer\NameColumnNameAttribute.cs" />
     <Compile Include="DataLayer\TableNameAttribute.cs" />
     <Compile Include="ViewModel\AddGameWindowVM.cs" />
     <Compile Include="ViewModel\AllGamesWindowVM.cs" />

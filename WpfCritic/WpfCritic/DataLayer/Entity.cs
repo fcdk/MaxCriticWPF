@@ -16,6 +16,7 @@ namespace WpfCritic.DataLayer
         private static string _idColumnName;
         private static string _connectionName;
         private static string _tableName;
+        private static string _nameColumnName;
 
         private DataRow _row;
         protected DataRow Row
@@ -42,6 +43,7 @@ namespace WpfCritic.DataLayer
             _idColumnName = ((IdColumnNameAttribute)typeof(T).GetCustomAttributes(typeof(IdColumnNameAttribute), false)[0]).Name;
             _connectionName = ((ConnectionNameAttribute)typeof(Entity<T>).GetCustomAttributes(typeof(ConnectionNameAttribute), false)[0]).Name;
             _tableName = ((TableNameAttribute)typeof(T).GetCustomAttributes(typeof(TableNameAttribute), false)[0]).Name;
+            _nameColumnName = ((NameColumnNameAttribute)typeof(T).GetCustomAttributes(typeof(NameColumnNameAttribute), false)[0]).Name;
 
             _connectionString = ConfigurationManager.ConnectionStrings[_connectionName].ConnectionString;
             SqlConnection connection = new SqlConnection(_connectionString);
@@ -99,15 +101,13 @@ namespace WpfCritic.DataLayer
                 _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE " + _idColumnName + "=@id;";
 
                 if (!_dataAdapter.SelectCommand.Parameters.Contains("@id")) // тут возможна ошибка!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                {
                     _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@id", id));
-                }
                 else
                     _dataAdapter.SelectCommand.Parameters["@id"].Value = id;
 
                 if (_dataAdapter.Fill(_dataTable) == 1)
                     return (T)Activator.CreateInstance(typeof(T), _dataTable.Select(_idColumnName + " = '" + id.ToString() + "'")[0]);
-                else return null;
+                return null;
             }
         } 
 
@@ -116,16 +116,43 @@ namespace WpfCritic.DataLayer
             List<T> result = new List<T>();
             _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + ((query == "") ? ";" : " WHERE " + query + ";");
             _dataTable.Clear();
-            _dataAdapter.Fill(_dataTable);
-            foreach (DataRow dr in _dataTable.Rows)
+            if (_dataAdapter.Fill(_dataTable) > 0)
             {
-                result.Add((T)Activator.CreateInstance(typeof(T), dr));
+                foreach (DataRow dr in _dataTable.Rows)
+                {
+                    result.Add((T)Activator.CreateInstance(typeof(T), dr));
+                }
+                return result.ToArray();
             }
-            return result.ToArray();
+            return null;
         }
 
-        public static T[] GetAll()
+        public static T[] GetAllItems()
         { return GetByQuery(""); }
+
+        public static T[] GetByName(string partOfName)
+        {
+            if (_nameColumnName == null)
+                return null;
+            List<T> result = new List<T>();
+            _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE " + _nameColumnName + " LIKE '%' + @partOfName+ '%'";
+
+            if (!_dataAdapter.SelectCommand.Parameters.Contains("@partOfName")) // тут возможна ошибка!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@partOfName", partOfName));
+            else
+                _dataAdapter.SelectCommand.Parameters["@partOfName"].Value = partOfName;
+
+            _dataTable.Clear();
+            if (_dataAdapter.Fill(_dataTable) > 0)
+            {
+                foreach (DataRow dr in _dataTable.Rows)
+                {
+                    result.Add((T)Activator.CreateInstance(typeof(T), dr));
+                }
+                return result.ToArray();
+            }
+            return null;
+        }
 
     }
 }
