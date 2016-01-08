@@ -2,6 +2,7 @@
 using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace WpfCritic.DataLayer
 {
@@ -109,6 +110,22 @@ namespace WpfCritic.DataLayer
                 else return null;
             }
         } 
+
+        protected static T[] GetByQuery(string query)
+        {
+            List<T> result = new List<T>();
+            _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + ((query == "") ? ";" : " WHERE " + query + ";");
+            _dataTable.Clear();
+            _dataAdapter.Fill(_dataTable);
+            foreach (DataRow dr in _dataTable.Rows)
+            {
+                result.Add((T)Activator.CreateInstance(typeof(T), dr));
+            }
+            return result.ToArray();
+        }
+
+        public static T[] GetAll()
+        { return GetByQuery(""); }
 
     }
 }
