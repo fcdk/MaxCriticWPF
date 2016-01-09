@@ -10,7 +10,7 @@ namespace WpfCritic.ViewModel
 {
     public class EditGameUserControlVM : ViewModelBase
     {
-        private GameVM _game;
+        private EntertainmentVM _game;
 
         //сделать тут кеширование данных!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         /*private string _name;
@@ -21,7 +21,7 @@ private DateTime _releaseDate;
 private string _company;
 private string _poster;*/
 
-        public void SetGame(GameVM game)
+        public void SetGame(EntertainmentVM game)
         {
             _game = game;
             RefreshProperties();
@@ -31,7 +31,6 @@ private string _poster;*/
         {
             OnPropertyChanged("Name");
             OnPropertyChanged("OfficialSite");
-            OnPropertyChanged("Developer");
             OnPropertyChanged("Trailer");
             OnPropertyChanged("ReleaseDate");
             OnPropertyChanged("Company");
@@ -50,18 +49,6 @@ private string _poster;*/
             }
         }
 
-        public string Developer
-        {
-            get { return _game == null ? string.Empty : _game.Developer; }
-            set
-            {
-                if (_game == null)
-                    return;
-                _game.Developer = value;
-                OnPropertyChanged("Developer");
-            }
-        }
-
         public string OfficialSite
         {
             get { return _game == null ? string.Empty : _game.OfficialSite; }
@@ -76,12 +63,12 @@ private string _poster;*/
 
         public string Trailer
         {
-            get { return _game == null ? string.Empty : _game.Trailer; }
+            get { return _game == null ? string.Empty : _game.TrailerLink; }
             set
             {
                 if (_game == null)
                     return;
-                _game.Trailer = value;
+                _game.TrailerLink = value;
                 OnPropertyChanged("Trailer");
             }
         }
@@ -110,9 +97,9 @@ private string _poster;*/
             }
         }
 
-        public string Poster
+        public byte[] Poster
         {
-            get { return _game == null ? string.Empty : _game.Poster; }
+            get { return _game == null ? null : _game.Poster; }
             set
             {
                 if (_game == null)
@@ -134,8 +121,8 @@ private string _poster;*/
         {
             OpenFileDialog posterBrowse = new OpenFileDialog();
             posterBrowse.Filter = "Файлы рисунков|*.png;*.jpg;*.bmp;*.tif;*.gif";
-            if (posterBrowse.ShowDialog() == true)
-                Poster = posterBrowse.FileName;
+            //if (posterBrowse.ShowDialog() == true)
+                //Poster = posterBrowse.FileName;
         }
     }
 }

@@ -25,20 +25,19 @@ namespace WpfCritic.ViewModel
 
         public ObservableCollection<EntertainmentVM> GameCollection
         {
-            get { return _gameCollection; }
+            get { return _entertainmentCollection; }
         }
 
         public EntertainmentVM SelectedGame
         {
-            get { return _selectedGame; }
+            get { return _selectedEntertainment; }
             set
             {
-                _selectedGame = value;
-                _editGameViewModel.SetGame(_selectedGame);
+                _selectedEntertainment = value;
+                _editGameViewModel.SetGame(_selectedEntertainment);
 
                 OnPropertyChanged("SelectedGame");
                 OnPropertyChanged("Name");
-                OnPropertyChanged("Developer");
                 OnPropertyChanged("OfficialSite");
                 OnPropertyChanged("Trailer");
                 OnPropertyChanged("ReleaseDate");
@@ -49,96 +48,81 @@ namespace WpfCritic.ViewModel
 
         public string Name
         {
-            get { return _selectedGame == null ? string.Empty : _selectedGame.Name; }
+            get { return _selectedEntertainment == null ? string.Empty : _selectedEntertainment.Name; }
             set
             {
-                if (_selectedGame == null)
+                if (_selectedEntertainment == null)
                     return;
-                _selectedGame.Name = value;
+                _selectedEntertainment.Name = value;
                 OnPropertyChanged("Name");
-            }
-        }
-
-        public string Developer
-        {
-            get { return _selectedGame == null ? string.Empty : _selectedGame.Developer; }
-            set
-            {
-                if (_selectedGame == null)
-                    return;
-                _selectedGame.Developer = value;
-                OnPropertyChanged("Developer");
             }
         }
 
         public string OfficialSite
         {
-            get { return _selectedGame == null ? string.Empty : _selectedGame.OfficialSite; }
+            get { return _selectedEntertainment == null ? string.Empty : _selectedEntertainment.OfficialSite; }
             set
             {
-                if (_selectedGame == null)
+                if (_selectedEntertainment == null)
                     return;
-                _selectedGame.OfficialSite = value;
+                _selectedEntertainment.OfficialSite = value;
                 OnPropertyChanged("OfficialSite");
             }
         }
 
         public string Trailer
         {
-            get { return _selectedGame == null ? string.Empty : _selectedGame.Trailer; }
+            get { return _selectedEntertainment == null ? string.Empty : _selectedEntertainment.TrailerLink; }
             set
             {
-                if (_selectedGame == null)
+                if (_selectedEntertainment == null)
                     return;
-                _selectedGame.Trailer = value;
+                _selectedEntertainment.TrailerLink = value;
                 OnPropertyChanged("Trailer");
             }
         }
 
         public DateTime? ReleaseDate
         {
-            get { return _selectedGame == null ? default(DateTime?) : _selectedGame.ReleaseDate; }
+            get { return _selectedEntertainment == null ? default(DateTime?) : _selectedEntertainment.ReleaseDate; }
             set
             {
-                if (_selectedGame == null)
+                if (_selectedEntertainment == null)
                     return;
-                _selectedGame.ReleaseDate = (DateTime)value;
+                _selectedEntertainment.ReleaseDate = (DateTime)value;
                 OnPropertyChanged("ReleaseDate");
             }
         }
 
         public string Company
         {
-            get { return _selectedGame == null ? string.Empty : _selectedGame.Company; }
+            get { return _selectedEntertainment == null ? string.Empty : _selectedEntertainment.Company; }
             set
             {
-                if (_selectedGame == null)
+                if (_selectedEntertainment == null)
                     return;
-                _selectedGame.Company = value;
+                _selectedEntertainment.Company = value;
                 OnPropertyChanged("Company");
             }
         }
 
-        public string Poster
+        public byte[] Poster
         {
-            get { return _selectedGame == null ? string.Empty : _selectedGame.Poster; }
+            get { return _selectedEntertainment == null ? null : _selectedEntertainment.Poster; }
             set
             {
-                if (_selectedGame == null)
+                if (_selectedEntertainment == null)
                     return;
-                _selectedGame.Poster = value;
+                _selectedEntertainment.Poster = value;
                 OnPropertyChanged("Poster");
             }
         }
 
         public void LoadData()
         {
-            GameManager gameManager = new GameManager();
-            Game[] gameList = gameManager.GetGames();
-            foreach (var game in gameList)
+            foreach (var entert in Entertainment.GetRandomFirstTen())
             {
-                EntertainmentVM EntertainmentVM = game.ToEntertainmentVM();
-                _gameCollection.Add(EntertainmentVM);
+                _entertainmentCollection.Add(new EntertainmentVM(entert));
             }
 
             Logger.Info("AllGamesWindowVM.LoadData", "Коллекция фильмов заполнена");
@@ -148,17 +132,17 @@ namespace WpfCritic.ViewModel
         {
             EntertainmentVM newItem = item as EntertainmentVM;
             if (newItem != null)
-                _gameCollection.Add(newItem);
+                _entertainmentCollection.Add(newItem);
         }
 
         internal void GamesListBoxMouseDoubleClick()
         {
-            if (_selectedGame == null)
+            if (_selectedEntertainment == null)
                 return;
             else
             {
                 GameDetailsWindow mG = new GameDetailsWindow();
-                mG.ViewModel.SetGame(_selectedGame);
+                //mG.ViewModel.SetGame(_selectedEntertainment);
                 mG.ShowDialog();
             }
         }
@@ -179,9 +163,9 @@ namespace WpfCritic.ViewModel
         {
             GameManager gameManager = new GameManager();
             List<Game> games = new List<Game>();
-            foreach (var game in _gameCollection)
-                games.Add(game.ToGameDL(gameManager));
-            gameManager.Save(games.ToArray());
+            //foreach (var game in _entertainmentCollection)
+                //games.Add(game.ToGameDL(gameManager));
+            //gameManager.Save(games.ToArray());
         }
 
     }
