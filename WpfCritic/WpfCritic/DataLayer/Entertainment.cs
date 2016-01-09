@@ -8,9 +8,9 @@ namespace WpfCritic.DataLayer
     [NameColumnName("Name")]
     public class Entertainment : Entity<Entertainment>
     {
-        public Type EntertainmentType
+        public Entertainment.Type EntertainmentType
         {
-            get { return (Type)Enum.Parse(typeof(Type), Row["EntertainmentType"].ToString()); }
+            get { return (Entertainment.Type)Enum.Parse(typeof(Entertainment.Type), Row["EntertainmentType"].ToString()); }
             set { Row["EntertainmentType"] = value.ToString(); }
         }
         public string Name
@@ -90,7 +90,7 @@ namespace WpfCritic.DataLayer
         }
 
         public Entertainment(DataRow row) : base(row) { }
-        public Entertainment(Type entertainmentType, string name, DateTime releaseDate, string company, byte[] poster,
+        public Entertainment(Entertainment.Type entertainmentType, string name, DateTime releaseDate, string company, byte[] poster,
         string summary, string buyLink, string mainLanguage, string rating, string ratingComment, int movieRuntimeMinute,
         string officialSite, string movieCountries, byte tVSeason, decimal budget, string trailerLink) : base()
         {

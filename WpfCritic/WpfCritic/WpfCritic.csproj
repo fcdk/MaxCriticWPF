@@ -111,7 +111,7 @@
     <Compile Include="DataLayer\TableNameAttribute.cs" />
     <Compile Include="ViewModel\AddGameWindowVM.cs" />
     <Compile Include="ViewModel\AllGamesWindowVM.cs" />
-    <Compile Include="ViewModel\Data\GameVM.cs" />
+    <Compile Include="ViewModel\Data\EntertainmentVM.cs" />
     <Compile Include="ViewModel\Data\ReviewMovieVM.cs" />
     <Compile Include="ViewModel\EditGameUserControlVM.cs" />
     <Compile Include="ViewModel\EditMovieUserControlVM.cs" />

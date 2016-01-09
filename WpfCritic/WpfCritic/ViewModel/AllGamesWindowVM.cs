@@ -14,8 +14,8 @@ namespace WpfCritic.ViewModel
 {
     public class AllGamesWindowVM : ViewModelBase, ICollectionsEntity
     {
-        private ObservableCollection<GameVM> _gameCollection = new ObservableCollection<GameVM>();
-        private GameVM _selectedGame;
+        private ObservableCollection<EntertainmentVM> _entertainmentCollection = new ObservableCollection<EntertainmentVM>();
+        private EntertainmentVM _selectedEntertainment;
         private EditGameUserControlVM _editGameViewModel = new EditGameUserControlVM();
 
         public EditGameUserControlVM EditGameViewModel
@@ -23,12 +23,12 @@ namespace WpfCritic.ViewModel
             get { return _editGameViewModel; }
         }
 
-        public ObservableCollection<GameVM> GameCollection
+        public ObservableCollection<EntertainmentVM> GameCollection
         {
             get { return _gameCollection; }
         }
 
-        public GameVM SelectedGame
+        public EntertainmentVM SelectedGame
         {
             get { return _selectedGame; }
             set
@@ -133,17 +133,12 @@ namespace WpfCritic.ViewModel
 
         public void LoadData()
         {
-            /*Game g1 = new Game("Fallout 4", "https://www.fallout4.com/", "Bethesda Game Studios", @"C:\Users\max\Documents\Visual Studio 2015\Projects\Critic\WpfCritic\WpfCritic\Assets\fallout4.mp4", new DateTime(2015, 11, 10), "Bethesda Softworks", @"\Assets\fallout4.png");
-            _gameCollection.Add(new GameVM(g1));
-            Game g2 = new Game("Call of Duty: Black Ops III", "https://www.callofduty.com/blackops3", "Treyarch", @"C:\Users\max\Documents\Visual Studio 2015\Projects\Critic\WpfCritic\WpfCritic\Assets\django.mp4", new DateTime(2015, 11, 6), "Activision", @"\Assets\codblackops3.jpg");
-            _gameCollection.Add(new GameVM(g2));*/
-
             GameManager gameManager = new GameManager();
             Game[] gameList = gameManager.GetGames();
             foreach (var game in gameList)
             {
-                GameVM gameVM = game.ToGameVM();
-                _gameCollection.Add(gameVM);
+                EntertainmentVM EntertainmentVM = game.ToEntertainmentVM();
+                _gameCollection.Add(EntertainmentVM);
             }
 
             Logger.Info("AllGamesWindowVM.LoadData", "Коллекция фильмов заполнена");
@@ -151,7 +146,7 @@ namespace WpfCritic.ViewModel
 
         public void Add(object item)
         {
-            GameVM newItem = item as GameVM;
+            EntertainmentVM newItem = item as EntertainmentVM;
             if (newItem != null)
                 _gameCollection.Add(newItem);
         }
