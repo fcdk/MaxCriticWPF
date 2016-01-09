@@ -100,7 +100,7 @@ namespace WpfCritic.DataLayer
             {
                 _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE " + _idColumnName + "=@id;";
 
-                if (!_dataAdapter.SelectCommand.Parameters.Contains("@id")) // тут возможна ошибка!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                if (!_dataAdapter.SelectCommand.Parameters.Contains("@id"))
                     _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@id", id));
                 else
                     _dataAdapter.SelectCommand.Parameters["@id"].Value = id;
@@ -137,7 +137,7 @@ namespace WpfCritic.DataLayer
             List<T> result = new List<T>();
             _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE " + _nameColumnName + " LIKE '%' + @partOfName+ '%'";
 
-            if (!_dataAdapter.SelectCommand.Parameters.Contains("@partOfName")) // тут возможна ошибка!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if (!_dataAdapter.SelectCommand.Parameters.Contains("@partOfName"))
                 _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@partOfName", partOfName));
             else
                 _dataAdapter.SelectCommand.Parameters["@partOfName"].Value = partOfName;
