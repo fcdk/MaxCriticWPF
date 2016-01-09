@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 
 namespace WpfCritic.DataLayer
 {
@@ -7,10 +8,10 @@ namespace WpfCritic.DataLayer
     [NameColumnName("Name")]
     public class Entertainment : Entity<Entertainment>
     {
-        public string EntertainmentType
+        public Type EntertainmentType
         {
-            get { return Row["EntertainmentType"].ToString(); }
-            set { Row["EntertainmentType"] = value; }
+            get { return (Type)Enum.Parse(typeof(Type), Row["EntertainmentType"].ToString()); }
+            set { Row["EntertainmentType"] = value.ToString(); }
         }
         public string Name
         {
@@ -87,6 +88,31 @@ namespace WpfCritic.DataLayer
             get { return Row["TrailerLink"].ToString(); }
             set { Row["TrailerLink"] = value; }
         }
+
+        public Entertainment(DataRow row) : base(row) { }
+        public Entertainment(Type entertainmentType, string name, DateTime releaseDate, string company, byte[] poster,
+        string summary, string buyLink, string mainLanguage, string rating, string ratingComment, int movieRuntimeMinute,
+        string officialSite, string movieCountries, byte tVSeason, decimal budget, string trailerLink) : base()
+        {
+            EntertainmentType = entertainmentType;
+            Name = name;
+            ReleaseDate = releaseDate;
+            Company = company;
+            Poster = poster;
+            Summary = summary;
+            BuyLink = buyLink;
+            MainLanguage = mainLanguage;
+            Rating = rating;
+            RatingComment = ratingComment;
+            MovieRuntimeMinute = movieRuntimeMinute;
+            OfficialSite = officialSite;
+            MovieCountries = movieCountries;
+            TVSeason = tVSeason;
+            Budget = budget;
+            TrailerLink = trailerLink;
+        }
+
+        public enum Type { Movie, Game, TVSeries, Album }
 
     }
 }
