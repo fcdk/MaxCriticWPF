@@ -45,7 +45,11 @@ namespace WpfCritic.DataLayer
             _tableName = ((TableNameAttribute)typeof(T).GetCustomAttributes(typeof(TableNameAttribute), false)[0]).Name;
             _nameColumnName = ((NameColumnNameAttribute)typeof(T).GetCustomAttributes(typeof(NameColumnNameAttribute), false)[0]).Name;
 
-            _connectionString = ConfigurationManager.ConnectionStrings[_connectionName].ConnectionString;
+            try
+            {
+                _connectionString = ConfigurationManager.ConnectionStrings[_connectionName].ConnectionString;
+            }
+            catch { _connectionString = @"Data Source=MAX\SQLEXPRESS;Initial Catalog=maxcritic;Integrated Security=True"; }
             SqlConnection connection = new SqlConnection(_connectionString);
 
             string selectSQL = "SELECT * FROM " + _tableName + ";";

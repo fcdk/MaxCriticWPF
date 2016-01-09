@@ -161,8 +161,8 @@ namespace WpfCritic.ViewModel
 
         internal void AllGamesWindowClosing()
         {
-            GameManager gameManager = new GameManager();
-            List<Game> games = new List<Game>();
+            //GameManager gameManager = new GameManager();
+            //List<Game> games = new List<Game>();
             //foreach (var game in _entertainmentCollection)
                 //games.Add(game.ToGameDL(gameManager));
             //gameManager.Save(games.ToArray());

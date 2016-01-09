@@ -37,7 +37,7 @@ namespace WpfCritic.View
 
         private void moviesShowButton_Click(object sender, RoutedEventArgs e)
         {
-            ((MenuWindowVM)DataContext).MoviesShowButtonClick();
+            //фильмы добавить
             this.Close();
         }
 

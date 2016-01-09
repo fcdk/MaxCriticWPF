@@ -11,11 +11,11 @@ namespace WpfCritic.ViewModel
 {
     public class GameDetailsWindowVM : ViewModelBase
     {
-        private GameVM _game;
-        public GameVM Game
+        private EntertainmentVM _game;
+        public EntertainmentVM Game
         { get { return _game; } }
 
-        public void SetGame(GameVM game)
+        public void SetGame(EntertainmentVM game)
         {
             _game = game;
             RefreshProperties();
@@ -24,7 +24,6 @@ namespace WpfCritic.ViewModel
         private void RefreshProperties()
         {
             OnPropertyChanged("Name");
-            OnPropertyChanged("Developer");
             OnPropertyChanged("OfficialSite");
             OnPropertyChanged("Trailer");
             OnPropertyChanged("ReleaseDate");
@@ -44,18 +43,6 @@ namespace WpfCritic.ViewModel
             }
         }
 
-        public string Developer
-        {
-            get { return _game == null ? string.Empty : _game.Developer; }
-            set
-            {
-                if (_game == null)
-                    return;
-                _game.Developer = value;
-                OnPropertyChanged("Developer");
-            }
-        }
-
         public string OfficialSite
         {
             get { return _game == null ? string.Empty : _game.OfficialSite; }
@@ -70,12 +57,12 @@ namespace WpfCritic.ViewModel
 
         public string Trailer
         {
-            get { return _game == null ? string.Empty : _game.Trailer; }
+            get { return _game == null ? string.Empty : _game.TrailerLink; }
             set
             {
                 if (_game == null)
                     return;
-                _game.Trailer = value;
+                _game.TrailerLink = value;
                 OnPropertyChanged("Trailer");
             }
         }
@@ -104,9 +91,9 @@ namespace WpfCritic.ViewModel
             }
         }
 
-        public string Poster
+        public byte[] Poster
         {
-            get { return _game == null ? string.Empty : _game.Poster; }
+            get { return _game == null ? null : _game.Poster; }
             set
             {
                 if (_game == null)

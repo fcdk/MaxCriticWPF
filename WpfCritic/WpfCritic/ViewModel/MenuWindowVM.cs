@@ -9,12 +9,6 @@ namespace WpfCritic.ViewModel
 {
     public class MenuWindowVM : ViewModelBase
     {
-        internal void MoviesShowButtonClick()
-        {
-            AllMoviesWindow allMovies = new AllMoviesWindow();
-            allMovies.Show();
-        }
-
         internal void GamesShowButtonClick()
         {
             AllGamesWindow allGames = new AllGamesWindow();

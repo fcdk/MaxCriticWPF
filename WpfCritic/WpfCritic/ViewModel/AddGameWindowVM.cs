@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WpfCritic.DataLayer;
 using WpfCritic.ViewModel.Data;
 
 namespace WpfCritic.ViewModel
 {
     public class AddGameWindowVM : ViewModelBase
     {
-        private GameVM _newGame = new GameVM(new Game());
+        private EntertainmentVM _newGame = new EntertainmentVM(new Entertainment());
         ICollectionsEntity _collectionEntity;
 
         private EditGameUserControlVM _editGameViewModel = new EditGameUserControlVM();

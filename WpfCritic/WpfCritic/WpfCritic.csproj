@@ -80,10 +80,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AddMovieWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\AllGamesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -92,19 +88,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EditMovieUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\AllMoviesWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="Core\Logger.cs" />
     <Compile Include="DataLayer\ConnectionNameAttribute.cs" />
     <Compile Include="DataLayer\Entity.cs" />
-    <Compile Include="DataLayer\Game.cs" />
-    <Compile Include="DataLayer\GameManager.cs" />
     <Compile Include="DataLayer\Entertainment.cs" />
     <Compile Include="DataLayer\IdColumnNameAttribute.cs" />
     <Compile Include="DataLayer\NameColumnNameAttribute.cs" />
@@ -113,20 +99,12 @@
     <Compile Include="ViewModel\AllGamesWindowVM.cs" />
     <Compile Include="ViewModel\Data\EntertainmentVM.cs" />
     <Compile Include="ViewModel\EditGameUserControlVM.cs" />
-    <Compile Include="ViewModel\EditMovieUserControlVM.cs" />
-    <Compile Include="ViewModel\AddMovieWindowVM.cs" />
-    <Compile Include="ViewModel\AllMoviesWindowVM.cs" />
     <Compile Include="ViewModel\GameDetailsWindowVM.cs" />
     <Compile Include="ViewModel\ICollectionsEntity.cs" />
     <Compile Include="ViewModel\MenuWindowVM.cs" />
-    <Compile Include="ViewModel\MovieDetailsWindowVM.cs" />
-    <Compile Include="ViewModel\ReviewMovieWindowVM.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddGameWindow.xaml.cs">
       <DependentUpon>AddGameWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\AddMovieWindow.xaml.cs">
-      <DependentUpon>AddMovieWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -138,26 +116,11 @@
     <Compile Include="View\EditGameUserControl.xaml.cs">
       <DependentUpon>EditGameUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\EditMovieUserControl.xaml.cs">
-      <DependentUpon>EditMovieUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\AllMoviesWindow.xaml.cs">
-      <DependentUpon>AllMoviesWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Page Include="View\GameDetailsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MenuWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\MovieDetailsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\NewReviewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,12 +131,6 @@
     </Compile>
     <Compile Include="View\MenuWindow.xaml.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\MovieDetailsWindow.xaml.cs">
-      <DependentUpon>MovieDetailsWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\NewReviewWindow.xaml.cs">
-      <DependentUpon>NewReviewWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
