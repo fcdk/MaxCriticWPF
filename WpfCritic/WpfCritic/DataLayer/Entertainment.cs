@@ -58,9 +58,9 @@ namespace WpfCritic.DataLayer
             get { return Row["RatingComment"].ToString(); }
             set { Row["RatingComment"] = value; }
         }
-        public int MovieRuntimeMinute
+        public int? MovieRuntimeMinute
         {
-            get { return (int)Row["MovieRuntimeMinute"]; }
+            get { return Row["MovieRuntimeMinute"].Equals(DBNull.Value) ? default(int?) : (int)Row["MovieRuntimeMinute"]; }
             set { Row["MovieRuntimeMinute"] = value; }
         }
         public string OfficialSite
@@ -73,14 +73,14 @@ namespace WpfCritic.DataLayer
             get { return Row["MovieCountries"].ToString(); }
             set { Row["MovieCountries"] = value; }
         }
-        public byte TVSeason
+        public byte? TVSeason
         {
-            get { return (byte)Row["TVSeason"]; }
+            get { return Row["TVSeason"].Equals(DBNull.Value) ? default(byte?) : (byte)Row["TVSeason"]; }
             set { Row["TVSeason"] = value; }
         }
-        public decimal Budget
+        public decimal? Budget
         {
-            get { return (decimal)Row["Budget"]; }
+            get { return Row["Budget"].Equals(DBNull.Value) ? default(decimal?) : (decimal)Row["Budget"]; }
             set { Row["Budget"] = value; }
         }
         public string TrailerLink

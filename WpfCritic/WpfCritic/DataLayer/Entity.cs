@@ -3,7 +3,6 @@ using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Collections.Generic;
-using System.Windows;
 
 namespace WpfCritic.DataLayer
 {

@@ -67,7 +67,7 @@ namespace WpfCritic.ViewModel.Data
             set { _entertainment.RatingComment = value; OnPropertyChanged("RatingComment"); }
         }
 
-        public int MovieRuntimeMinute
+        public int? MovieRuntimeMinute
         {
             get { return _entertainment.MovieRuntimeMinute; }
             set { _entertainment.MovieRuntimeMinute = value; OnPropertyChanged("MovieRuntimeMinute"); }
@@ -85,13 +85,13 @@ namespace WpfCritic.ViewModel.Data
             set { _entertainment.MovieCountries = value; OnPropertyChanged("MovieCountries"); }
         }
 
-        public byte TVSeason
+        public byte? TVSeason
         {
             get { return _entertainment.TVSeason; }
             set { _entertainment.TVSeason = value; OnPropertyChanged("TVSeason"); }
         }
 
-        public decimal Budget
+        public decimal? Budget
         {
             get { return _entertainment.Budget; }
             set { _entertainment.Budget = value; OnPropertyChanged("Budget"); }
