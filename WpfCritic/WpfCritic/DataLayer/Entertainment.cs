@@ -3,6 +3,8 @@
 namespace WpfCritic.DataLayer
 {
     [TableName("Entertainment")]
+    [IdColumnName("EntertainmentId")]
+    [NameColumnName("Name")]
     public class Entertainment : Entity<Entertainment>
     {
         public DateTime ReleaseDate { get; set; }
