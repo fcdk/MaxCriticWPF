@@ -3,6 +3,7 @@ using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace WpfCritic.DataLayer
 {
@@ -45,11 +46,7 @@ namespace WpfCritic.DataLayer
             _tableName = ((TableNameAttribute)typeof(T).GetCustomAttributes(typeof(TableNameAttribute), false)[0]).Name;
             _nameColumnName = ((NameColumnNameAttribute)typeof(T).GetCustomAttributes(typeof(NameColumnNameAttribute), false)[0]).Name;
 
-            try
-            {
-                _connectionString = ConfigurationManager.ConnectionStrings[_connectionName].ConnectionString;
-            }
-            catch { _connectionString = @"Data Source=MAX\SQLEXPRESS;Initial Catalog=maxcritic;Integrated Security=True"; }
+            _connectionString = ConfigurationManager.ConnectionStrings[_connectionName].ConnectionString;
             SqlConnection connection = new SqlConnection(_connectionString);
 
             string selectSQL = "SELECT * FROM " + _tableName + ";";

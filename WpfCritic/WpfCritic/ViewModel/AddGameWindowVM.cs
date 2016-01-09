@@ -5,7 +5,7 @@ namespace WpfCritic.ViewModel
 {
     public class AddGameWindowVM : ViewModelBase
     {
-        private EntertainmentVM _newGame = new EntertainmentVM(new Entertainment());
+        //private EntertainmentVM _newGame = new EntertainmentVM(new Entertainment());
         ICollectionsEntity _collectionEntity;
 
         private EditGameUserControlVM _editGameViewModel = new EditGameUserControlVM();
@@ -17,12 +17,12 @@ namespace WpfCritic.ViewModel
         public AddGameWindowVM(ICollectionsEntity collectionEntity)
         {
             _collectionEntity = collectionEntity;
-            _editGameViewModel.SetGame(_newGame);
+            //_editGameViewModel.SetGame(_newGame);
         }
 
         internal void OkButtonClick()
         {
-            _collectionEntity.Add(_newGame);
+            //_collectionEntity.Add(_newGame);
         }
 
     }

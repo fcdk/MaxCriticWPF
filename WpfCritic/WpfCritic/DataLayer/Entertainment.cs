@@ -112,8 +112,6 @@ namespace WpfCritic.DataLayer
             TrailerLink = trailerLink;
         }
 
-        public Entertainment() : base() { }
-
         public enum Type { Movie, Game, TVSeries, Album }
 
     }
