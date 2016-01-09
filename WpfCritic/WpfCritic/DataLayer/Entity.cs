@@ -16,7 +16,7 @@ namespace WpfCritic.DataLayer
         private static string _idColumnName;
         private static string _connectionName;
         private static string _tableName;
-        private static string _nameColumnName;
+        protected static string _nameColumnName;
 
         private DataRow _row;
         protected DataRow Row
