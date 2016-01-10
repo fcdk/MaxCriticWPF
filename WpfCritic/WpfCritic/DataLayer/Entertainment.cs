@@ -91,8 +91,8 @@ namespace WpfCritic.DataLayer
 
         public Entertainment(DataRow row) : base(row) { }
         public Entertainment(Entertainment.Type entertainmentType, string name, DateTime releaseDate, string company, byte[] poster,
-        string summary, string buyLink, string mainLanguage, string rating, string ratingComment, int movieRuntimeMinute,
-        string officialSite, string movieCountries, byte tVSeason, decimal budget, string trailerLink) : base()
+        string summary, string buyLink, string mainLanguage, string rating, string ratingComment, int? movieRuntimeMinute,
+        string officialSite, string movieCountries, byte? tVSeason, decimal? budget, string trailerLink) : base()
         {
             EntertainmentType = entertainmentType;
             Name = name;

@@ -93,9 +93,12 @@
     <Compile Include="DataLayer\ConnectionNameAttribute.cs" />
     <Compile Include="DataLayer\Entity.cs" />
     <Compile Include="DataLayer\Entertainment.cs" />
+    <Compile Include="DataLayer\Genre.cs" />
+    <Compile Include="DataLayer\GenreInEntertainment.cs" />
     <Compile Include="DataLayer\IdColumnNameAttribute.cs" />
     <Compile Include="DataLayer\NameColumnNameAttribute.cs" />
     <Compile Include="DataLayer\Performer.cs" />
+    <Compile Include="DataLayer\PerformerInEntertainment.cs" />
     <Compile Include="DataLayer\TableNameAttribute.cs" />
     <Compile Include="ViewModel\AddGameWindowVM.cs" />
     <Compile Include="ViewModel\AllGamesWindowVM.cs" />
