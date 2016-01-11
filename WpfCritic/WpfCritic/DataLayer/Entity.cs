@@ -159,7 +159,7 @@ namespace WpfCritic.DataLayer
             List<T> result = new List<T>();
 
             _dataAdapter.SelectCommand.CommandText = "SELECT TOP(10) * FROM " + _tableName + ";";
-            _dataTable.Clear();
+            //_dataTable.Clear();
             if (_dataAdapter.Fill(_dataTable) > 0)
             {
                 foreach (DataRow dr in _dataTable.Rows)

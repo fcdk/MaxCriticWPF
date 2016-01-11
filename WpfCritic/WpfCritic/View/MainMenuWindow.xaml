@@ -5,32 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCritic.View"
         mc:Ignorable="d"
-        Title="MaxCritic" Height="595.197" Width="448.32">
-    <Grid Background="AliceBlue">
-        <Grid Background="#FFD1D8FB">
+        Title="MaxCritic" Height="617.197" Width="448.32">
+    <Grid Background="#FFD1D8FB">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" >
-                <TextBlock Text="никнейм типа тут будет и ава" />
-            </StackPanel>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Label Content="MaxCritic" Foreground="#FF00167C" FontWeight="Bold" FontSize="21.333" FontFamily="Ravie"  />
+            <TextBlock Text="никнейм типа тут будет и ава" />
+        </StackPanel>
 
-            <TabControl Grid.Row="1" HorizontalAlignment="Left" >
-                <TabItem Header="Фільми">
-                    <TabItem.Content>
-                        <local:EntertainmentUserControl Grid.Row="3" x:Name="MovieControl" DataContext="{Binding EditGameViewModel}" />
-                    </TabItem.Content>
-                </TabItem>
-                <TabItem Header="Ігри">
-                    <TabItem.Content>
-                        <local:EntertainmentUserControl Grid.Row="3" x:Name="GameControl" DataContext="{Binding EditGameViewModel}" />
-                    </TabItem.Content>
-                </TabItem>
-            </TabControl>
+        <TabControl Grid.Row="1">
+            <TabItem Header="Фільми">
+                <TabItem.Content>
+                    <local:EntertainmentUserControl x:Name="MovieTabItem" DataContext="{Binding MovieViewModel}" />
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Header="Ігри">
+                <TabItem.Content>
+                    <local:EntertainmentUserControl x:Name="GameTabItem" DataContext="{Binding GameViewModel}" />
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Header="Серіали">
+                <TabItem.Content>
+                    <local:EntertainmentUserControl x:Name="TVTabItem" DataContext="{Binding TVViewModel}" />
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Header="Музика">
+                <TabItem.Content>
+                    <local:EntertainmentUserControl x:Name="AlbumTabItem" DataContext="{Binding AlbumViewModel}" />
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
 
-        </Grid>
     </Grid>
 </Window>

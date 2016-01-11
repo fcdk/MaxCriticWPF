@@ -6,9 +6,6 @@ using WpfCritic.ViewModel;
 
 namespace WpfCritic.View
 {
-    /// <summary>
-    /// Логика взаимодействия для GameDetailsWindow.xaml
-    /// </summary>
     public partial class GameDetailsWindow : Window
     {
         private GameDetailsWindowVM _viewModel = new GameDetailsWindowVM();

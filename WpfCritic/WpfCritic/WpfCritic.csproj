@@ -109,11 +109,12 @@
     <Compile Include="DataLayer\TableNameAttribute.cs" />
     <Compile Include="DataLayer\UserCritic.cs" />
     <Compile Include="ViewModel\AddGameWindowVM.cs" />
-    <Compile Include="ViewModel\EnterteinmentUserControlVM.cs" />
+    <Compile Include="ViewModel\EntertainmentUserControlVM.cs" />
     <Compile Include="ViewModel\Data\EntertainmentVM.cs" />
     <Compile Include="ViewModel\EditGameUserControlVM.cs" />
     <Compile Include="ViewModel\GameDetailsWindowVM.cs" />
     <Compile Include="ViewModel\ICollectionsEntity.cs" />
+    <Compile Include="ViewModel\MainMenuWindowVM.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddGameWindow.xaml.cs">
       <DependentUpon>AddGameWindow.xaml</DependentUpon>

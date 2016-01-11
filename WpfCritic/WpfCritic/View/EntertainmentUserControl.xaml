@@ -21,17 +21,17 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="1" Name="GameLabel" Content="Игры" Foreground="#FF00167C" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="16" />
-            <ListBox Grid.Row="2" Opacity="0.8" x:Name="GamesListBox" MouseDoubleClick="GamesListBox_MouseDoubleClick"
-            	ItemsSource="{Binding GameCollection}" SelectedItem="{Binding SelectedGame}" />
-            <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Name="addButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Добавить" Click="addButton_Click" />
+            <Label Grid.Row="0" Name="GameLabel" Content="Игры" Foreground="#FF00167C" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="16" />
+            <ListBox Grid.Row="1" Opacity="0.8" x:Name="EntertainmentsListBox" MouseDoubleClick="EntertainmentsListBox_MouseDoubleClick"
+            	ItemsSource="{Binding EntertainmentCollection}" SelectedItem="{Binding SelectedEntertainment}" />
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Name="addButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Додати" Click="addButton_Click" />
             </StackPanel>
+            
         </Grid>
     </Grid>
 </UserControl>

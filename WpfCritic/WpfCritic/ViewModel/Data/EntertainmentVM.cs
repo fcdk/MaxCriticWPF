@@ -103,9 +103,9 @@ namespace WpfCritic.ViewModel.Data
             set { _entertainment.TrailerLink = value; OnPropertyChanged("TrailerLink"); }
         }
 
-        public EntertainmentVM(Entertainment game)
+        public EntertainmentVM(Entertainment entertainment)
         {
-            _entertainment = game;
+            _entertainment = entertainment;
         }
 
         public EntertainmentVM(Entertainment.Type entertainmentType, string name, DateTime releaseDate, string company, byte[] poster,
@@ -118,6 +118,8 @@ namespace WpfCritic.ViewModel.Data
 
         public override string ToString()
         {
+            if (EntertainmentType == Entertainment.Type.Album)
+                return null; // заглушка, тут надо брать авторов альбома!!!
             return Name + " (" + ReleaseDate.Year + ")";
         }
 
