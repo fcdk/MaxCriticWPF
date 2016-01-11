@@ -80,7 +80,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AllGamesWindow.xaml">
+    <Page Include="View\EntertainmentUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainMenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -105,12 +109,11 @@
     <Compile Include="DataLayer\TableNameAttribute.cs" />
     <Compile Include="DataLayer\UserCritic.cs" />
     <Compile Include="ViewModel\AddGameWindowVM.cs" />
-    <Compile Include="ViewModel\AllGamesWindowVM.cs" />
+    <Compile Include="ViewModel\EnterteinmentUserControlVM.cs" />
     <Compile Include="ViewModel\Data\EntertainmentVM.cs" />
     <Compile Include="ViewModel\EditGameUserControlVM.cs" />
     <Compile Include="ViewModel\GameDetailsWindowVM.cs" />
     <Compile Include="ViewModel\ICollectionsEntity.cs" />
-    <Compile Include="ViewModel\MenuWindowVM.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddGameWindow.xaml.cs">
       <DependentUpon>AddGameWindow.xaml</DependentUpon>
@@ -119,8 +122,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\AllGamesWindow.xaml.cs">
-      <DependentUpon>AllGamesWindow.xaml</DependentUpon>
+    <Compile Include="View\EntertainmentUserControl.xaml.cs">
+      <DependentUpon>EntertainmentUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainMenuWindow.xaml.cs">
+      <DependentUpon>MainMenuWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditGameUserControl.xaml.cs">
       <DependentUpon>EditGameUserControl.xaml</DependentUpon>
@@ -129,17 +135,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MenuWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="View\GameDetailsWindow.xaml.cs">
       <DependentUpon>GameDetailsWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\MenuWindow.xaml.cs">
-      <DependentUpon>MenuWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

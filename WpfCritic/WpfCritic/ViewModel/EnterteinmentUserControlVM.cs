@@ -7,7 +7,7 @@ using WpfCritic.ViewModel.Data;
 
 namespace WpfCritic.ViewModel
 {
-    public class AllGamesWindowVM : ViewModelBase, ICollectionsEntity
+    public class EnterteinmentUserControlVM : ViewModelBase, ICollectionsEntity
     {
         private ObservableCollection<EntertainmentVM> _entertainmentCollection = new ObservableCollection<EntertainmentVM>();
         private EntertainmentVM _selectedEntertainment;
