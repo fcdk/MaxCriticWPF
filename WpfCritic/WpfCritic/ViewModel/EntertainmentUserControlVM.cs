@@ -9,6 +9,7 @@ namespace WpfCritic.ViewModel
     {
         private ObservableCollection<EntertainmentVM> _entertainmentCollection = new ObservableCollection<EntertainmentVM>();
         private EntertainmentVM _selectedEntertainment;
+        private Entertainment.Type _entertainmentType;
 
         public ObservableCollection<EntertainmentVM> EntertainmentCollection
         {
@@ -21,6 +22,21 @@ namespace WpfCritic.ViewModel
             {
                 _selectedEntertainment = value;
                 OnPropertyChanged("SelectedEntertainment");
+            }
+        }
+        public string EntertainmentType
+        {
+            get
+            {
+                if (_entertainmentType == Entertainment.Type.Album)
+                    return "Музика";
+                if (_entertainmentType == Entertainment.Type.Game)
+                    return "Ігри";
+                if (_entertainmentType == Entertainment.Type.Movie)
+                    return "Фільми";
+                if (_entertainmentType == Entertainment.Type.TVSeries)
+                    return "Серіали";
+                return null;
             }
         }
 
@@ -60,6 +76,7 @@ namespace WpfCritic.ViewModel
 
         public EntertainmentUserControlVM(Entertainment.Type type)
         {
+            _entertainmentType = type;
             Entertainment[] entertainments = Entertainment.GetRandomFirstTen(type);
             if (entertainments != null)
                 foreach (var entert in entertainments)

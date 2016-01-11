@@ -10,7 +10,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
@@ -18,7 +18,7 @@
             <TextBlock Text="никнейм типа тут будет и ава" />
         </StackPanel>
 
-        <TabControl Grid.Row="1">
+        <TabControl Grid.Row="1" Background="AliceBlue">
             <TabItem Header="Фільми">
                 <TabItem.Content>
                     <local:EntertainmentUserControl x:Name="MovieTabItem" DataContext="{Binding MovieViewModel}" />
