@@ -9,13 +9,13 @@ namespace WpfCritic.DataLayer
     [ConnectionName("MaxCritic")]
     public class Entity<T> where T : Entity<T>
     {
-        private static SqlDataAdapter _dataAdapter;
-        private static DataTable _dataTable = new DataTable();
+        protected static SqlDataAdapter _dataAdapter;
+        protected static DataTable _dataTable = new DataTable();
         private static string _connectionString;
 
-        private static string _idColumnName;
+        protected static string _idColumnName;
         private static string _connectionName;
-        private static string _tableName;
+        protected static string _tableName;
         protected static string _nameColumnName;
 
         private DataRow _row;
@@ -55,9 +55,7 @@ namespace WpfCritic.DataLayer
             _dataAdapter.InsertCommand = commandBuilder.GetInsertCommand();
             _dataAdapter.DeleteCommand = commandBuilder.GetDeleteCommand();
 
-            _dataAdapter.SelectCommand.CommandText = "SELECT TOP(1) * FROM " + _tableName + ";";
             _dataTable.TableName = _tableName;
-            _dataAdapter.Fill(_dataTable);
         }
 
         public Entity(DataRow row = null)
@@ -159,7 +157,7 @@ namespace WpfCritic.DataLayer
             List<T> result = new List<T>();
 
             _dataAdapter.SelectCommand.CommandText = "SELECT TOP(10) * FROM " + _tableName + ";";
-            //_dataTable.Clear();
+            _dataTable.Clear();
             if (_dataAdapter.Fill(_dataTable) > 0)
             {
                 foreach (DataRow dr in _dataTable.Rows)

@@ -24,14 +24,6 @@ namespace WpfCritic.ViewModel
             }
         }
 
-        private void LoadData()
-        {
-            foreach (var entert in Entertainment.GetRandomFirstTen())
-            {
-                _entertainmentCollection.Add(new EntertainmentVM(entert));
-            }
-        }
-
         public void Add(object item)
         {
             EntertainmentVM newItem = item as EntertainmentVM;
@@ -68,7 +60,12 @@ namespace WpfCritic.ViewModel
 
         public EntertainmentUserControlVM(Entertainment.Type type)
         {
-            LoadData();
+            Entertainment[] entertainments = Entertainment.GetRandomFirstTen(type);
+            if (entertainments != null)
+                foreach (var entert in entertainments)
+                {
+                    _entertainmentCollection.Add(new EntertainmentVM(entert));
+                }
         }
 
     }

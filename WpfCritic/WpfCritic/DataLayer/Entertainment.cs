@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace WpfCritic.DataLayer
 {
@@ -110,6 +112,28 @@ namespace WpfCritic.DataLayer
             TVSeason = tVSeason;
             Budget = budget;
             TrailerLink = trailerLink;
+        }
+
+        public static Entertainment[] GetRandomFirstTen(Entertainment.Type type)
+        {
+            List<Entertainment> result = new List<Entertainment>();
+
+            _dataAdapter.SelectCommand.CommandText = "SELECT TOP(10) * FROM " + _tableName + " WHERE EntertainmentType=@type;";
+
+            if (!_dataAdapter.SelectCommand.Parameters.Contains("@type"))
+                _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@type", type.ToString()));
+            else
+                _dataAdapter.SelectCommand.Parameters["@type"].Value = type.ToString();
+
+            if (_dataAdapter.Fill(_dataTable) > 0)
+            {
+                foreach (DataRow dr in _dataTable.Rows)
+                {
+                    result.Add(new Entertainment(dr));
+                }
+                return result.ToArray();
+            }
+            return null;
         }
 
         public enum Type { Movie, Game, TVSeries, Album }
