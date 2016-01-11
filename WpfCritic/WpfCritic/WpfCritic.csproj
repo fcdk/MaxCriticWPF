@@ -99,7 +99,11 @@
     <Compile Include="DataLayer\NameColumnNameAttribute.cs" />
     <Compile Include="DataLayer\Performer.cs" />
     <Compile Include="DataLayer\PerformerInEntertainment.cs" />
+    <Compile Include="DataLayer\Review.cs" />
+    <Compile Include="DataLayer\Song.cs" />
+    <Compile Include="DataLayer\SongInEntertainment.cs" />
     <Compile Include="DataLayer\TableNameAttribute.cs" />
+    <Compile Include="DataLayer\UserCritic.cs" />
     <Compile Include="ViewModel\AddGameWindowVM.cs" />
     <Compile Include="ViewModel\AllGamesWindowVM.cs" />
     <Compile Include="ViewModel\Data\EntertainmentVM.cs" />
@@ -175,17 +179,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\django.png" />
-    <Resource Include="Assets\kill_bill_2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\fallout4.mp4" />
-    <Resource Include="Assets\fallout4.png" />
-    <Resource Include="Assets\codblackops3.jpg" />
-    <Content Include="Assets\django.mp4" />
-    <Resource Include="Assets\button_play.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

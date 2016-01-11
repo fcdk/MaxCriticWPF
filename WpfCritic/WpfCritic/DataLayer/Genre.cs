@@ -21,7 +21,7 @@ namespace WpfCritic.DataLayer
         public Entertainment.Type GenreType
         {
             get { return (Entertainment.Type)Enum.Parse(typeof(Entertainment.Type), Row["GenreType"].ToString()); }
-            set { Row["GenreType"] = value.ToString(); }
+            set { Row["GenreType"] = value; }
         }
         public string Summary
         {

@@ -21,7 +21,7 @@ namespace WpfCritic.DataLayer
         public Performer.Type PerformerType
         {
             get { return (Performer.Type)Enum.Parse(typeof(Performer.Type), Row["PerformerType"].ToString()); }
-            set { Row["PerformerType"] = value.ToString(); }
+            set { Row["PerformerType"] = value; }
         }
         public DateTime? DateOfBirth
         {

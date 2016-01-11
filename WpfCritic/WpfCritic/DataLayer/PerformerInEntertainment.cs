@@ -18,14 +18,14 @@ namespace WpfCritic.DataLayer
             get { return (Guid)Row["EntertainmentId"]; }
             private set { Row["EntertainmentId"] = value; }
         }
-        public Role PerformerRole
+        public PerformerInEntertainment.Role PerformerRole
         {
-            get { return (Role)Enum.Parse(typeof(Role), Row["PerformerRole"].ToString()); }
-            set { Row["PerformerRole"] = value.ToString(); }
+            get { return (PerformerInEntertainment.Role)Enum.Parse(typeof(PerformerInEntertainment.Role), Row["PerformerRole"].ToString()); }
+            set { Row["PerformerRole"] = value; }
         }
         
         public PerformerInEntertainment(DataRow row) : base(row) { }
-        public PerformerInEntertainment(Performer performer, Entertainment entertainment, Role performerRole) : base()
+        public PerformerInEntertainment(Performer performer, Entertainment entertainment, PerformerInEntertainment.Role performerRole) : base()
         {
             PerformerId = performer.Id;
             EntertainmentId = entertainment.Id;
