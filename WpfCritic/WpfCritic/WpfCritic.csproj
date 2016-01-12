@@ -112,7 +112,7 @@
     <Compile Include="ViewModel\EntertainmentUserControlVM.cs" />
     <Compile Include="ViewModel\Data\EntertainmentVM.cs" />
     <Compile Include="ViewModel\EditGameUserControlVM.cs" />
-    <Compile Include="ViewModel\GameDetailsWindowVM.cs" />
+    <Compile Include="ViewModel\EntertainmentDetailsWindowVM.cs" />
     <Compile Include="ViewModel\ICollectionsEntity.cs" />
     <Compile Include="ViewModel\MainMenuWindowVM.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
@@ -132,14 +132,14 @@
     <Compile Include="View\EditGameUserControl.xaml.cs">
       <DependentUpon>EditGameUserControl.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\GameDetailsWindow.xaml">
+    <Page Include="View\EntertainmentDetailsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="View\GameDetailsWindow.xaml.cs">
-      <DependentUpon>GameDetailsWindow.xaml</DependentUpon>
+    <Compile Include="View\EntertainmentDetailsWindow.xaml.cs">
+      <DependentUpon>EntertainmentDetailsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

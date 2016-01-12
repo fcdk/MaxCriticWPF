@@ -44,7 +44,7 @@ namespace WpfCritic.ViewModel
 
         public string PartOfNameForSearch
         {
-            get { return _partOfNameForSearch; }
+            get { return _partOfNameForSearch == null ? string.Empty : _partOfNameForSearch; }
             set
             {
                 _partOfNameForSearch = value;
@@ -77,9 +77,8 @@ namespace WpfCritic.ViewModel
                 return;
             else
             {
-                GameDetailsWindow mG = new GameDetailsWindow();
-                mG.ViewModel.SetGame(_selectedEntertainment);
-                mG.ShowDialog();
+                EntertainmentDetailsWindow entertainmentDetailsWindow = new EntertainmentDetailsWindow(_selectedEntertainment);
+                entertainmentDetailsWindow.ShowDialog();
             }
         }
 
@@ -87,15 +86,6 @@ namespace WpfCritic.ViewModel
         {
             AddGameWindow addGame = new AddGameWindow(new AddGameWindowVM(this));
             addGame.ShowDialog(); 
-        }
-
-        internal void AllGamesWindowClosing()
-        {
-            //GameManager gameManager = new GameManager();
-            //List<Game> games = new List<Game>();
-            //foreach (var game in _entertainmentCollection)
-                //games.Add(game.ToGameDL(gameManager));
-            //gameManager.Save(games.ToArray());
         }
 
         public EntertainmentUserControlVM()

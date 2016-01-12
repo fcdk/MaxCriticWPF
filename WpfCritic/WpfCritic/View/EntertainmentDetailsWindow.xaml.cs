@@ -3,24 +3,17 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using WpfCritic.Core;
 using WpfCritic.ViewModel;
+using WpfCritic.ViewModel.Data;
 
 namespace WpfCritic.View
 {
-    public partial class GameDetailsWindow : Window
+    public partial class EntertainmentDetailsWindow : Window
     {
-        private EntertainmentDetailsWindowVM _viewModel = new EntertainmentDetailsWindowVM();
-        public EntertainmentDetailsWindowVM ViewModel
-        {
-            get { return _viewModel; }
-        }
-
-        public GameDetailsWindow()
+        public EntertainmentDetailsWindow(EntertainmentVM _entertainment)
         {
             InitializeComponent();
 
-            DataContext = _viewModel;
-
-            Logger.Info("GameDetailsWindow", "Окно с подробной информацией об игре создано");
+            DataContext = new EntertainmentDetailsWindowVM(_entertainment);
         }
 
         private void playCenterButton_Click(object sender, RoutedEventArgs e)
@@ -58,11 +51,6 @@ namespace WpfCritic.View
         private void Ellipse_MouseLeave(object sender, MouseEventArgs e)
         {
             ((EntertainmentDetailsWindowVM)DataContext).EllipseMouseLeave(sender);
-        }
-
-        private void addReview_Click(object sender, RoutedEventArgs e)
-        {
-            ((EntertainmentDetailsWindowVM)DataContext).AddReviewClick();
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)

@@ -1,15 +1,16 @@
-﻿<Window x:Class="WpfCritic.View.GameDetailsWindow"
+﻿<Window x:Class="WpfCritic.View.EntertainmentDetailsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCritic.View"
         mc:Ignorable="d"
-        Title="Деталі контента" Height="471.872" Width="795.745">
+        Title="Деталі контента" Height="471.872" Width="863.745">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Background="AliceBlue">
             <Grid Margin="4,8,4,8">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
@@ -29,30 +30,57 @@
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Name="name" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="21.333" FontWeight="Bold" Foreground="#FF00167C" Text="{Binding Game}" />
-                        <Label Grid.Column="0" Grid.Row="1" Content="Developer:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
-                        <TextBlock Grid.Column="1" Grid.Row="1" Name="developer" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding Developer}" />
-                        <Label Grid.Column="0" Grid.Row="2" Content="Official site:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
-                        <TextBlock Grid.Column="1" Grid.Row="2" Name="officialSite" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding OfficialSite}" />
-                        <Label Grid.Column="0" Grid.Row="3" Content="Company:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
-                        <TextBlock Grid.Column="1" Grid.Row="3" Name="company" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding Company}" />
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="21.333" FontWeight="Bold" Foreground="#FF00167C" Text="{Binding Entertainment}" />
+                        <Label Grid.Column="0" Grid.Row="1" Content="Дата релізу:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
+                        <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding ReleaseDate}" />
+                        <Label Grid.Column="0" Grid.Row="2" Content="Компанія-правовласник:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
+                        <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding Company}" />
+                        <Label Grid.Column="0" Grid.Row="3" Content="Головна мова:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
+                        <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding MainLanguage}" />
+                        <Label Grid.Column="0" Grid.Row="4" Content="Віковий ценз:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
+                        <TextBlock Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding Rating}" />
+                        <Label Grid.Column="0" Grid.Row="5" Content="Коментар до вікового цензу:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
+                        <TextBlock Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding RatingComment}" />
+                        <Label Grid.Column="0" Grid.Row="6" Content="Тривалість (хв):" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
+                        <TextBlock Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding MovieRuntimeMinute}" />
+                        <Label Grid.Column="0" Grid.Row="7" Content="Офіційний сайт:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
+                        <TextBlock Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding OfficialSite}" />
+                        <Label Grid.Column="0" Grid.Row="8" Content="Країни:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
+                        <TextBlock Grid.Column="1" Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding MovieCountries}" />
+                        <Label Grid.Column="0" Grid.Row="9" Content="Сезон:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
+                        <TextBlock Grid.Column="1" Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding TVSeason}" />
+                        <Label Grid.Column="0" Grid.Row="10" Content="Бюджет:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
+                        <TextBlock Grid.Column="1" Grid.Row="10" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding Budget}" />
                     </Grid>
                 </Grid>
-                <Grid Grid.Row="1" Margin="0,2,0,0" Background="#FF00167C" >
+                <StackPanel Grid.Row="1">
+                    <TextBlock HorizontalAlignment="Center" FontFamily="Rockwell Extra Bold" FontSize="16">
+                        <Hyperlink NavigateUri="{Binding BuyLink}">Придбати зараз!</Hyperlink>
+                    </TextBlock>
+                    
+                </StackPanel>
+                <Grid Grid.Row="2" Margin="0,2,0,0" Background="#FF00167C" >
                     <Label Content="TRAILER" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="21.333" Foreground="White" />
                 </Grid>
-                <Grid Grid.Row="2" Width="600" Height ="500">
+                <Grid Grid.Row="3" Width="600" Height ="500">
                     <MediaElement Name="trailer" Width="600" Height ="500" LoadedBehavior="Manual" UnloadedBehavior="Manual" Source="{Binding Trailer}" />
                     <Button Name="playCenterButton" Height="130" Width="180" VerticalAlignment="Center" HorizontalAlignment="Center" Canvas.ZIndex="1" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="playCenterButton_Click">
                         <Image Name="playCenterImg" Source="C:\Users\max\Documents\Visual Studio 2015\Projects\WpfCritic\WpfCritic\Assets\button_play.png" />
                     </Button>
                 </Grid>
-                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <Button Name="playDownButton" Margin="0,0,2,0" MinWidth="50" Content="PLAY" Height="50" Width="100" Click="playDownButton_Click" FontFamily="Impact" FontSize="16" >
                         <Button.Template>
                             <ControlTemplate  TargetType="Button">
@@ -84,8 +112,7 @@
                         </Button.Template>
                     </Button>
                 </StackPanel>
-                <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Name="addReview" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Add review" Click="addReview_Click" />
+                <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Name="cancelButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Cancel" Click="cancelButton_Click" />
                 </StackPanel>
             </Grid>

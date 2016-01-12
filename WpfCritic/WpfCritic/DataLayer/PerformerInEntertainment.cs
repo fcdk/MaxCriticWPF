@@ -33,6 +33,6 @@ namespace WpfCritic.DataLayer
         }
 
         public enum Role { MovieDirector, MoviePlotWriter, MoviePrincipalCast, MovieCast, MovieProducer, MovieProduction,
-        GameCast, GameDeveloperCompany, TVCast, TVNetwork, AlbumSinger, AlbumBand, AlbumRecordLabel }
+        GameCast, GameDeveloperCompany, GamePlatform, TVCast, TVNetwork, AlbumSinger, AlbumBand, AlbumRecordLabel }
     }
 }

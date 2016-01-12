@@ -23,11 +23,6 @@ namespace WpfCritic.View
             ((EntertainmentUserControlVM)DataContext).AddButtonClick();
         }
 
-        private void AllGamesWindow_Closing(object sender, CancelEventArgs e)
-        {
-            ((EntertainmentUserControlVM)DataContext).AllGamesWindowClosing();
-        }
-
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             ((EntertainmentUserControlVM)DataContext).SearchButtonClick();

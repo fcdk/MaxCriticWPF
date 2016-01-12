@@ -7,96 +7,76 @@ namespace WpfCritic.ViewModel
 {
     public class EntertainmentDetailsWindowVM : ViewModelBase
     {
-        private EntertainmentVM _game;
-        public EntertainmentVM Game
-        { get { return _game; } }
+        private EntertainmentVM _entertainment;
 
-        public void SetGame(EntertainmentVM game)
+        public DateTime ReleaseDate
         {
-            _game = game;
-            RefreshProperties();
-        }
-
-        private void RefreshProperties()
-        {
-            OnPropertyChanged("Name");
-            OnPropertyChanged("OfficialSite");
-            OnPropertyChanged("Trailer");
-            OnPropertyChanged("ReleaseDate");
-            OnPropertyChanged("Company");
-            OnPropertyChanged("Poster");
-        }
-
-        public string Name
-        {
-            get { return _game == null ? string.Empty : _game.Name; }
-            set
-            {
-                if (_game == null)
-                    return;
-                _game.Name = value;
-                OnPropertyChanged("Name");
-            }
-        }
-
-        public string OfficialSite
-        {
-            get { return _game == null ? string.Empty : _game.OfficialSite; }
-            set
-            {
-                if (_game == null)
-                    return;
-                _game.OfficialSite = value;
-                OnPropertyChanged("OfficialSite");
-            }
-        }
-
-        public string Trailer
-        {
-            get { return _game == null ? string.Empty : _game.TrailerLink; }
-            set
-            {
-                if (_game == null)
-                    return;
-                _game.TrailerLink = value;
-                OnPropertyChanged("Trailer");
-            }
-        }
-
-        public DateTime? ReleaseDate
-        {
-            get { return _game == null ? default(DateTime?) : _game.ReleaseDate; }
-            set
-            {
-                if (_game == null)
-                    return;
-                _game.ReleaseDate = (DateTime)value;
-                OnPropertyChanged("ReleaseDate");
-            }
+            get { return _entertainment.ReleaseDate; }
         }
 
         public string Company
         {
-            get { return _game == null ? string.Empty : _game.Company; }
-            set
-            {
-                if (_game == null)
-                    return;
-                _game.Company = value;
-                OnPropertyChanged("Company");
-            }
+            get { return _entertainment.Company; }
         }
 
         public byte[] Poster
         {
-            get { return _game == null ? null : _game.Poster; }
-            set
-            {
-                if (_game == null)
-                    return;
-                _game.Poster = value;
-                OnPropertyChanged("Poster");
-            }
+            get { return _entertainment.Poster; }
+        }
+
+        public string Summary
+        {
+            get { return _entertainment.Summary; }
+        }
+
+        public string BuyLink
+        {
+            get { return _entertainment.BuyLink; }
+        }
+
+        public string MainLanguage
+        {
+            get { return _entertainment.MainLanguage; }
+        }
+
+        public string Rating
+        {
+            get { return _entertainment.Rating; }
+        }
+
+        public string RatingComment
+        {
+            get { return _entertainment.RatingComment;  }
+        }
+
+        public int? MovieRuntimeMinute
+        {
+            get { return _entertainment.MovieRuntimeMinute; }
+        }
+
+        public string OfficialSite
+        {
+            get { return _entertainment.OfficialSite; }
+        }
+
+        public string MovieCountries
+        {
+            get { return _entertainment.MovieCountries; }
+        }
+
+        public byte? TVSeason
+        {
+            get { return _entertainment.TVSeason; }
+        }
+
+        public decimal? Budget
+        {
+            get { return _entertainment.Budget; }
+        }
+
+        public string TrailerLink
+        {
+            get { return _entertainment.TrailerLink; }
         }
 
         internal void EllipseMouseLeave(object sender)
@@ -104,14 +84,15 @@ namespace WpfCritic.ViewModel
             ((Ellipse)sender).Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00167C"));
         }
 
-        internal void AddReviewClick()
-        {
-            //надо сделать добавление ревью
-        }
-
         internal void EllipseMouseEnter(object sender)
         {
             ((Ellipse)sender).Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF0074FF"));
         }
+
+        public EntertainmentDetailsWindowVM(EntertainmentVM entertainment)
+        {
+            _entertainment = entertainment;
+        }
+
     }
 }
