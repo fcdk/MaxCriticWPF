@@ -13,6 +13,11 @@ namespace WpfCritic.ViewModel.Data
             set { _entertainment.EntertainmentType = value; OnPropertyChanged("EntertainmentType"); }
         }
 
+        public string EntertainmentTypeUkr
+        {
+            get { return EntertainmentTypeToUkrString(EntertainmentType); }
+        }
+
         public string Name
         {
             get { return _entertainment.Name; }
@@ -121,6 +126,40 @@ namespace WpfCritic.ViewModel.Data
             if (EntertainmentType == Entertainment.Type.Album)
                 return null; // заглушка, тут надо брать авторов альбома!!!
             return Name + " (" + ReleaseDate.Year + ")";
+        }
+
+        public static string EntertainmentTypeToUkrString(Entertainment.Type type)
+        {
+            switch (type)
+            {
+                case Entertainment.Type.Movie:
+                    return "Фільм";
+                case Entertainment.Type.Game:
+                    return "Гра";
+                case Entertainment.Type.TVSeries:
+                    return "Серіал";
+                case Entertainment.Type.Album:
+                    return "Музика";
+                default:
+                    return "";
+            }
+        }
+
+        public static Entertainment.Type? EntertainmentTypeUkrStringToEngEnum(string type)
+        {
+            switch (type)
+            {
+                case "Фільм":
+                    return Entertainment.Type.Movie;
+                case "Гра":
+                    return Entertainment.Type.Game;
+                case "Серіал":
+                    return Entertainment.Type.TVSeries;
+                case "Музика":
+                    return Entertainment.Type.Album;
+                default:
+                    return null;
+            }
         }
 
     }

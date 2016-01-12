@@ -136,6 +136,35 @@ namespace WpfCritic.DataLayer
             return null;
         }
 
+        // по дефолту, если type=null, то запускаем поиск по всем типам
+        public static Entertainment[] GetByName(string partOfName, Entertainment.Type? type = null)
+        {
+            if (type == null)
+                return Entity<Entertainment>.GetByName(partOfName);
+            List<Entertainment> result = new List<Entertainment>();
+            _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE " + _nameColumnName + " LIKE '%' + @partOfName + '%' AND EntertainmentType=@type";
+
+            if (!_dataAdapter.SelectCommand.Parameters.Contains("@partOfName"))
+                _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@partOfName", partOfName));
+            else
+                _dataAdapter.SelectCommand.Parameters["@partOfName"].Value = partOfName;
+            if (!_dataAdapter.SelectCommand.Parameters.Contains("@type"))
+                _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@type", type.ToString()));
+            else
+                _dataAdapter.SelectCommand.Parameters["@type"].Value = type.ToString();
+
+            _dataTable.Clear();
+            if (_dataAdapter.Fill(_dataTable) > 0)
+            {
+                foreach (DataRow dr in _dataTable.Rows)
+                {
+                    result.Add(new Entertainment(dr));
+                }
+                return result.ToArray();
+            }
+            return null;
+        }
+
         public enum Type { Movie, Game, TVSeries, Album }
 
     }

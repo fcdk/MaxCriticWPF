@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using WpfCritic.DataLayer;
 using WpfCritic.View;
 using WpfCritic.ViewModel.Data;
@@ -9,7 +11,9 @@ namespace WpfCritic.ViewModel
     {
         private ObservableCollection<EntertainmentVM> _entertainmentCollection = new ObservableCollection<EntertainmentVM>();
         private EntertainmentVM _selectedEntertainment;
-        private Entertainment.Type _entertainmentType;
+        private string[] _entertainmentTypes = new string[] { "Усі", "Фільм", "Гра", "Серіал", "Музика" };
+        private string _selectedType = "Усі";
+        private string _partOfNameForSearch;
 
         public ObservableCollection<EntertainmentVM> EntertainmentCollection
         {
@@ -24,19 +28,27 @@ namespace WpfCritic.ViewModel
                 OnPropertyChanged("SelectedEntertainment");
             }
         }
-        public string EntertainmentType
+        public string[] EntertainmentTypes
         {
-            get
+            get { return _entertainmentTypes; }
+        }
+        public string SelectedType
+        {
+            get { return _selectedType; }
+            set
             {
-                if (_entertainmentType == Entertainment.Type.Album)
-                    return "Музика";
-                if (_entertainmentType == Entertainment.Type.Game)
-                    return "Ігри";
-                if (_entertainmentType == Entertainment.Type.Movie)
-                    return "Фільми";
-                if (_entertainmentType == Entertainment.Type.TVSeries)
-                    return "Серіали";
-                return null;
+                _selectedType = value;
+                OnPropertyChanged("SelectedType");
+            }
+        }
+
+        public string PartOfNameForSearch
+        {
+            get { return _partOfNameForSearch; }
+            set
+            {
+                _partOfNameForSearch = value;
+                OnPropertyChanged("PartOfNameForSearch"); 
             }
         }
 
@@ -45,6 +57,18 @@ namespace WpfCritic.ViewModel
             EntertainmentVM newItem = item as EntertainmentVM;
             if (newItem != null)
                 _entertainmentCollection.Add(newItem);
+        }
+
+        internal void SearchButtonClick()
+        {
+            _entertainmentCollection.Clear();
+
+            Entertainment[] entertainments = Entertainment.GetByName(PartOfNameForSearch, EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(SelectedType));
+            if (entertainments != null)
+                foreach (var entert in entertainments)
+                {
+                    _entertainmentCollection.Add(new EntertainmentVM(entert));
+                }
         }
 
         internal void EntertainmentsListBoxMouseDoubleClick()
@@ -74,10 +98,9 @@ namespace WpfCritic.ViewModel
             //gameManager.Save(games.ToArray());
         }
 
-        public EntertainmentUserControlVM(Entertainment.Type type)
+        public EntertainmentUserControlVM()
         {
-            _entertainmentType = type;
-            Entertainment[] entertainments = Entertainment.GetRandomFirstTen(type);
+            Entertainment[] entertainments = Entertainment.GetRandomFirstTen();
             if (entertainments != null)
                 foreach (var entert in entertainments)
                 {

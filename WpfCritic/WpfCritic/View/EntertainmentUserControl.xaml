@@ -5,15 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfCritic.View"
              xmlns:localdata="clr-namespace:WpfCritic.ViewModel.Data"
-             mc:Ignorable="d" d:DesignWidth="433.083" Height="517.669">
+             mc:Ignorable="d" Height="517.669">
     <Grid Background="AliceBlue">
 
         <Grid.Resources>
             <DataTemplate DataType="{x:Type localdata:EntertainmentVM}">
-                <StackPanel>
-                    <TextBlock Text="{Binding Path=Name}" FontWeight="Bold" FontSize="13.333" Background="{x:Null}" Foreground="#FF0056D3" />
-                    <TextBlock Text="{Binding Path=ReleaseDate.Year, StringFormat='({0})'}" />
-                </StackPanel>
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Margin="4,0,0,0" Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name}" FontWeight="Bold" FontSize="13.333" Background="{x:Null}" Foreground="#FF0056D3" />
+                    <TextBlock Margin="4,0,0,0" Grid.Row="1" Grid.Column="1" Text="{Binding Path=ReleaseDate.Year, StringFormat='({0})'}" />
+                    <TextBlock Margin="2,4,2,4" Grid.Column="0" Grid.RowSpan="2" Text="{Binding Path=EntertainmentTypeUkr}" FontWeight="Bold" TextDecorations="Underline" FontSize="14.667" Foreground="#FF11007C" />
+                    
+                </Grid>
             </DataTemplate>
         </Grid.Resources>
 
@@ -21,17 +34,24 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Content="{Binding EntertainmentType}" Foreground="#FF00167C" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="16" />
-            <ListBox Grid.Row="1" Opacity="0.8" x:Name="EntertainmentsListBox" MouseDoubleClick="EntertainmentsListBox_MouseDoubleClick"
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="2,4,2,4">
+                <Label Content="Введіть назву:" FontSize="13.333" />
+                <TextBox Text="{Binding PartOfNameForSearch}" Width="194" FontSize="13.333" />
+                <ComboBox Name="EntertainmentTypeComboBox" ItemsSource="{Binding EntertainmentTypes}" SelectedItem="{Binding SelectedType}" Margin="4, 0, 0, 0" Padding="4,2,4,2" FontSize="13.333" Width="75" />
+                <Button Name="SearchButton" Content="Знайти" Margin="4, 0, 0, 0" Padding="4,2,4,2" Click="SearchButton_Click" />
+            </StackPanel>
+            <ListBox Grid.Row="2" Opacity="0.8" x:Name="EntertainmentsListBox" MouseDoubleClick="EntertainmentsListBox_MouseDoubleClick"
             	ItemsSource="{Binding EntertainmentCollection}" SelectedItem="{Binding SelectedEntertainment}" />
-            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Name="addButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Додати" Click="addButton_Click" />
             </StackPanel>
-            
+
         </Grid>
     </Grid>
 </UserControl>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCritic.View"
         mc:Ignorable="d"
-        Title="MaxCritic" Height="617.197" Width="448.32">
+        Title="MaxCritic" Height="617.197" Width="483.32" MinHeight="617.197" MinWidth="483.32">
     <Grid Background="#FFD1D8FB">
 
         <Grid.RowDefinitions>
@@ -13,30 +13,15 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Label Content="MaxCritic" Foreground="#FF00167C" FontWeight="Bold" FontSize="21.333" FontFamily="Ravie"  />
-            <TextBlock Text="никнейм типа тут будет и ава" />
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Label Content="MaxCritic" Foreground="#FF00167C" FontWeight="Bold" FontSize="21.333" FontFamily="Ravie"/>
+            <TextBlock Text="никнейм типа тут будет и ава"/>
         </StackPanel>
 
         <TabControl Grid.Row="1" Background="AliceBlue">
-            <TabItem Header="Фільми">
+            <TabItem Header="Контент">
                 <TabItem.Content>
-                    <local:EntertainmentUserControl x:Name="MovieTabItem" DataContext="{Binding MovieViewModel}" />
-                </TabItem.Content>
-            </TabItem>
-            <TabItem Header="Ігри">
-                <TabItem.Content>
-                    <local:EntertainmentUserControl x:Name="GameTabItem" DataContext="{Binding GameViewModel}" />
-                </TabItem.Content>
-            </TabItem>
-            <TabItem Header="Серіали">
-                <TabItem.Content>
-                    <local:EntertainmentUserControl x:Name="TVTabItem" DataContext="{Binding TVViewModel}" />
-                </TabItem.Content>
-            </TabItem>
-            <TabItem Header="Музика">
-                <TabItem.Content>
-                    <local:EntertainmentUserControl x:Name="AlbumTabItem" DataContext="{Binding AlbumViewModel}" />
+                    <local:EntertainmentUserControl x:Name="EntertainmentTabItem" DataContext="{Binding EntertainmentViewModel}" />
                 </TabItem.Content>
             </TabItem>
         </TabControl>

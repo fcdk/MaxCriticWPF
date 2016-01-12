@@ -27,5 +27,10 @@ namespace WpfCritic.View
         {
             ((EntertainmentUserControlVM)DataContext).AllGamesWindowClosing();
         }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((EntertainmentUserControlVM)DataContext).SearchButtonClick();
+        }
     }
 }
