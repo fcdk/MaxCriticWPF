@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Windows;
 using System.Windows.Media;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfCritic.ViewModel.Data;
 
@@ -9,9 +12,14 @@ namespace WpfCritic.ViewModel
     {
         private EntertainmentVM _entertainment;
 
-        public DateTime ReleaseDate
+        public EntertainmentVM Entertainment
         {
-            get { return _entertainment.ReleaseDate; }
+            get { return _entertainment; }
+        }
+
+        public string ReleaseDate
+        {
+            get { return _entertainment.ReleaseDate.ToShortDateString(); }
         }
 
         public string Company
@@ -79,14 +87,103 @@ namespace WpfCritic.ViewModel
             get { return _entertainment.TrailerLink; }
         }
 
-        internal void EllipseMouseLeave(object sender)
+        public Visibility BuyLinkVisibility
         {
-            ((Ellipse)sender).Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00167C"));
+            get
+            {
+                if (_entertainment.BuyLink == String.Empty)
+                    return Visibility.Collapsed;
+                return Visibility.Visible;
+            }
         }
 
-        internal void EllipseMouseEnter(object sender)
+        public Visibility RatingVisibility
         {
-            ((Ellipse)sender).Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF0074FF"));
+            get
+            {
+                if (_entertainment.Rating == String.Empty)
+                    return Visibility.Collapsed;
+                return Visibility.Visible;
+            }
+        }
+
+        public Visibility RatingCommentVisibility
+        {
+            get
+            {
+                if (_entertainment.RatingComment == String.Empty)
+                    return Visibility.Collapsed;
+                return Visibility.Visible;
+            }
+        }
+
+        public Visibility MovieRuntimeMinuteVisibility
+        {
+            get
+            {
+                if (_entertainment.MovieRuntimeMinute == null)
+                    return Visibility.Collapsed;
+                return Visibility.Visible;
+            }
+        }
+
+        public Visibility OfficialSiteVisibility
+        {
+            get
+            {
+                if (_entertainment.OfficialSite == String.Empty)
+                    return Visibility.Collapsed;
+                return Visibility.Visible;
+            }
+        }
+
+        public Visibility MovieCountriesVisibility
+        {
+            get
+            {
+                if (_entertainment.MovieCountries == String.Empty)
+                    return Visibility.Collapsed;
+                return Visibility.Visible;
+            }
+        }
+
+        public Visibility TVSeasonVisibility
+        {
+            get
+            {
+                if (_entertainment.TVSeason == null)
+                    return Visibility.Collapsed;
+                return Visibility.Visible;
+            }
+        }
+
+        public Visibility BudgetVisibility
+        {
+            get
+            {
+                if (_entertainment.Budget == null)
+                    return Visibility.Collapsed;
+                return Visibility.Visible;
+            }
+        }
+
+        public Visibility TrailerVisibility
+        {
+            get
+            {
+                if (_entertainment.TrailerLink == String.Empty)
+                    return Visibility.Collapsed;
+                return Visibility.Visible;
+            }
+        }
+
+        internal void RequestNavigate(RequestNavigateEventArgs e)
+        {
+            if (e.Uri.ToString() != String.Empty)
+            {
+                Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+                e.Handled = true;
+            }
         }
 
         public EntertainmentDetailsWindowVM(EntertainmentVM entertainment)
