@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfCritic.View;
 using WpfCritic.ViewModel.Data;
 
 namespace WpfCritic.ViewModel
@@ -184,6 +185,11 @@ namespace WpfCritic.ViewModel
                 Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
                 e.Handled = true;
             }
+        }
+
+        internal void WindowClosing(object sender)
+        {
+            ((EntertainmentDetailsWindow)sender).YoutubeVideo.Source = new Uri("about:blank");
         }
 
         public EntertainmentDetailsWindowVM(EntertainmentVM entertainment)

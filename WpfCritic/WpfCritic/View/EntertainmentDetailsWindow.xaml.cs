@@ -26,5 +26,10 @@ namespace WpfCritic.View
         {
             ((EntertainmentDetailsWindowVM)DataContext).RequestNavigate(e);
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ((EntertainmentDetailsWindowVM)DataContext).WindowClosing(sender);
+        }
     }
 }
