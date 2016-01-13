@@ -7,6 +7,11 @@ namespace WpfCritic.ViewModel.Data
     {
         private Entertainment _entertainment;
 
+        public Entertainment EntertainmentDL
+        {
+            get { return _entertainment; }
+        }
+
         public Entertainment.Type EntertainmentType
         {
             get { return _entertainment.EntertainmentType; }

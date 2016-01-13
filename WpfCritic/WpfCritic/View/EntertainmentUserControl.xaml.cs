@@ -27,5 +27,10 @@ namespace WpfCritic.View
         {
             ((EntertainmentUserControlVM)DataContext).SearchButtonClick();
         }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((EntertainmentUserControlVM)DataContext).deleteButtonClick();
+        }
     }
 }

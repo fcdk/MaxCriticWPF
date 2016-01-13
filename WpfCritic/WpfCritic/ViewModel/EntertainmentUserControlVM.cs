@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using WpfCritic.DataLayer;
 using WpfCritic.View;
 using WpfCritic.ViewModel.Data;
@@ -28,6 +26,7 @@ namespace WpfCritic.ViewModel
                 OnPropertyChanged("SelectedEntertainment");
             }
         }
+
         public string[] EntertainmentTypes
         {
             get { return _entertainmentTypes; }
@@ -84,8 +83,14 @@ namespace WpfCritic.ViewModel
 
         internal void AddButtonClick()
         {
-            AddGameWindow addGame = new AddGameWindow(new AddGameWindowVM(this));
+            EditOrAddEntertainmentWindow addGame = new EditOrAddEntertainmentWindow(new EditOrAddEntertainmentWindowVM(this));
             addGame.ShowDialog(); 
+        }
+
+        internal void deleteButtonClick()
+        {
+            SelectedEntertainment.EntertainmentDL.Delete();
+            _entertainmentCollection.Remove(SelectedEntertainment);
         }
 
         public EntertainmentUserControlVM()
