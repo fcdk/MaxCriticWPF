@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using WpfCritic.DataLayer;
 using WpfCritic.View;
 using WpfCritic.ViewModel.Data;
@@ -83,11 +84,22 @@ namespace WpfCritic.ViewModel
 
         internal void AddButtonClick()
         {
-            EditOrAddEntertainmentWindow addGame = new EditOrAddEntertainmentWindow(new EditOrAddEntertainmentWindowVM(this));
-            addGame.ShowDialog(); 
+            EditOrAddEntertainmentWindow addOrEditEntertainment = new EditOrAddEntertainmentWindow(new EditOrAddEntertainmentWindowVM(this));
+            addOrEditEntertainment.ShowDialog(); 
         }
 
-        internal void deleteButtonClick()
+        internal void EditButtonClick()
+        {
+            EditOrAddEntertainmentWindow addOrEditEntertainment = new EditOrAddEntertainmentWindow(new EditOrAddEntertainmentWindowVM(this, SelectedEntertainment));
+            addOrEditEntertainment.ShowDialog();
+        }
+
+        public bool EditButtonEnabled
+        {
+            get { return SelectedEntertainment != null; }
+        }
+
+        internal void DeleteButtonClick()
         {
             SelectedEntertainment.EntertainmentDL.Delete();
             _entertainmentCollection.Remove(SelectedEntertainment);

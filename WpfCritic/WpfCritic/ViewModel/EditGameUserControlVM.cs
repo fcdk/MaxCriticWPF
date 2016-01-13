@@ -10,12 +10,12 @@ namespace WpfCritic.ViewModel
 
         //сделать тут кеширование данных!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         /*private string _name;
-private string _developer;
-private string _officialSite;
-private string _trailer;
-private DateTime _releaseDate;
-private string _company;
-private string _poster;*/
+        private string _developer;
+        private string _officialSite;
+        private string _trailer;
+        private DateTime _releaseDate;
+        private string _company;
+        private string _poster;*/
 
         public void SetGame(EntertainmentVM game)
         {

@@ -18,19 +18,25 @@ namespace WpfCritic.View
             ((EntertainmentUserControlVM)DataContext).EntertainmentsListBoxMouseDoubleClick();
         }
 
-        private void addButton_Click(object sender, RoutedEventArgs e)
-        {
-            ((EntertainmentUserControlVM)DataContext).AddButtonClick();
-        }
-
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             ((EntertainmentUserControlVM)DataContext).SearchButtonClick();
         }
 
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((EntertainmentUserControlVM)DataContext).AddButtonClick();
+        }
+
+        private void editButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((EntertainmentUserControlVM)DataContext).EditButtonClick();
+        }
+
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            ((EntertainmentUserControlVM)DataContext).deleteButtonClick();
+            ((EntertainmentUserControlVM)DataContext).DeleteButtonClick();
         }
+
     }
 }

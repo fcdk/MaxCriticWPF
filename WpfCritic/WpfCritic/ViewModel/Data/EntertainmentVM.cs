@@ -119,8 +119,8 @@ namespace WpfCritic.ViewModel.Data
         }
 
         public EntertainmentVM(Entertainment.Type entertainmentType, string name, DateTime releaseDate, string company, byte[] poster,
-        string summary, string buyLink, string mainLanguage, string rating, string ratingComment, int movieRuntimeMinute,
-        string officialSite, string movieCountries, byte tVSeason, decimal budget, string trailerLink)
+        string summary, string buyLink, string mainLanguage, string rating, string ratingComment, int? movieRuntimeMinute,
+        string officialSite, string movieCountries, byte? tVSeason, decimal? budget, string trailerLink)
         {
             _entertainment = new Entertainment(entertainmentType, name, releaseDate, company, poster, summary, buyLink, mainLanguage,
             rating, ratingComment, movieRuntimeMinute, officialSite, movieCountries, tVSeason, budget, trailerLink);
