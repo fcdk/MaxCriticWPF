@@ -10,7 +10,7 @@
         <Grid Background="AliceBlue">
             <Grid Margin="4,8,4,8">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />

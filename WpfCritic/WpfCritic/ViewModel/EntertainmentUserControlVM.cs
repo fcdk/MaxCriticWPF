@@ -26,7 +26,9 @@ namespace WpfCritic.ViewModel
             {
                 _selectedEntertainment = value;
                 OnPropertyChanged("SelectedEntertainment");
-                EditButtonEnabled = true;
+                if (_selectedEntertainment != null)
+                    EditButtonEnabled = true;
+                else EditButtonEnabled = false;
             }
         }
 
