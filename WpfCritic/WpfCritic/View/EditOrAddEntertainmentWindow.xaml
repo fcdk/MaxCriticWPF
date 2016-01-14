@@ -5,18 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCritic.View"
         mc:Ignorable="d"
-        Title="Контент" Height="330.83" Width="443.17">
+        Title="Контент" Height="683.83" Width="713.17">
     <Grid Background="AliceBlue">
         <Grid Margin="4,8,4,8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="Додавання нового контенту" Foreground="#FF00167C" FontFamily="Impact" FontSize="21.333" HorizontalAlignment="Center" VerticalAlignment="Center"  />
-            <Label Grid.Row="1" Content="Редагування контенту" Foreground="#FF00167C" FontFamily="Impact" FontSize="21.333" HorizontalAlignment="Center" VerticalAlignment="Center"  />
-            <Grid Grid.Row="2">
+            <Label Grid.Row="0" Content="{Binding HeaderText}"  Foreground="#FF00167C" FontFamily="Impact" FontSize="21.333" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="*" />
@@ -30,25 +28,53 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <Label Name="nameLabel" Grid.Row="0" Grid.Column="0" Content="Назва:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBox Name="nameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Name}" />
-                <Label Name="posterLabel" Grid.Row="1" Grid.Column="0" Content="Обложка:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBox Name="posterTextBox" Grid.Row="1" Grid.Column="1" Text="{Binding Poster}"/>
-                <Button Name="posterBrowseButton" Grid.Row="1" Grid.Column="2" Content="Обзор" Click="posterBrowseButton_Click" />
-                <Label Name="releaseDateLabel" Grid.Row="2" Grid.Column="0" Content="Дата релиза:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <DatePicker Name="releaseDateDatePicker" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" SelectedDate="{Binding ReleaseDate}" />
-                <Label Name="companyLabel" Grid.Row="3" Grid.Column="0" Content="Компания:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBox Name="companyTextBox" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Company}" />
-                <Label Name="developerLabel" Grid.Row="4" Grid.Column="0" Content="Разработчик:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBox Name="developerTextBox" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Developer}" />
-                <Label Name="officialSiteLabel" Grid.Row="5" Grid.Column="0" Content="Официальный сайт:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBox Name="officialSiteTextBox" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding OfficialSite}" />
-                <Label Name="trailerLabel" Grid.Row="6" Grid.Column="0" Content="Трейлер:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBox Name="trailerTextBox" Grid.Row="6" Grid.Column="1" Text="{Binding Trailer}" />
-                <Button Name="trailerBrowseButton" Grid.Row="6" Grid.Column="2" Content="Обзор" Click="trailerBrowseButton_Click" />
+                <Label Grid.Row="0" Grid.Column="0" Content="Тип контенту:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding EntertainmentTypes}" SelectedItem="{Binding EntertainmentTypeUkr}" />
+                <Label Grid.Row="1" Grid.Column="0" Content="Назва:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Name}" />
+                <Label Grid.Row="2" Grid.Column="0" Content="Постер:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Poster}"/>
+                <Button Grid.Row="2" Grid.Column="2" Content="Обзор" Click="posterBrowseButton_Click" />
+                <Label Grid.Row="3" Grid.Column="0" Content="Дата релізу:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <DatePicker Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" SelectedDate="{Binding ReleaseDate}" />
+                <Label Grid.Row="4" Grid.Column="0" Content="Компанія:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Company}" />
+                <Label Grid.Row="5" Grid.Column="0" Content="Лінк на купівлю:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding BuyLink}" />
+                <Label Grid.Row="6" Grid.Column="0" Content="Основна мова:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding MainLanguage}" />
+                <Label Grid.Row="7" Grid.Column="0" Content="Віковий ценз:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Rating}" />
+                <Label Grid.Row="8" Grid.Column="0" Content="Коментар до вікового цензу:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="8" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding RatingComment}" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                <Label Grid.Row="10" Grid.Column="0" Content="Короткий опис:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="10" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Summary}" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                <Label Grid.Row="12" Grid.Column="0" Content="Тривалість фільму:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding MovieRuntimeMinute}" />
+                <Label Grid.Row="13" Grid.Column="0" Content="Офіційний сайт:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding OfficialSite}" />
+                <Label Grid.Row="14" Grid.Column="0" Content="Країни:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding MovieCountries}" />
+                <Label Grid.Row="15" Grid.Column="0" Content="Сезон:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="15" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding TVSeason}" />
+                <Label Grid.Row="16" Grid.Column="0" Content="Бюджет:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Budget}" />
+                <Label Grid.Row="17" Grid.Column="0" Content="Посилання на трейлер:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="17" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding TrailerLink}" />
             </Grid>
-            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Name="okButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="OK" Click="okButton_Click" />
                 <Button Name="cancelButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Відмінити" Click="cancelButton_Click" />
             </StackPanel>

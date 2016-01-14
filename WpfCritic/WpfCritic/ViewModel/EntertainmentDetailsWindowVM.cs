@@ -182,8 +182,12 @@ namespace WpfCritic.ViewModel
         {
             if (e.Uri.ToString() != String.Empty)
             {
-                Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
-                e.Handled = true;
+                try
+                {
+                    Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+                    e.Handled = true;
+                }
+                catch { MessageBox.Show("Невірне посилання!"); }
             }
         }
 

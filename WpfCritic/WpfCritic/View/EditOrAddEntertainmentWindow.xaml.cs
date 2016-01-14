@@ -12,11 +12,6 @@ namespace WpfCritic.View
             DataContext = viewModel;
         }
 
-        private void trailerBrowseButton_Click(object sender, RoutedEventArgs e)
-        {
-            ((EditOrAddEntertainmentWindowVM)DataContext).TrailerBrowseButtonClick();
-        }
-
         private void posterBrowseButton_Click(object sender, RoutedEventArgs e)
         {
             ((EditOrAddEntertainmentWindowVM)DataContext).PosterBrowseButtonClick();

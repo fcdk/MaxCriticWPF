@@ -13,6 +13,7 @@ namespace WpfCritic.ViewModel
         private string[] _entertainmentTypes = new string[] { "Усі", "Фільм", "Гра", "Серіал", "Музика" };
         private string _selectedType = "Усі";
         private string _partOfNameForSearch;
+        private bool _editButtonEnabled;
 
         public ObservableCollection<EntertainmentVM> EntertainmentCollection
         {
@@ -25,6 +26,7 @@ namespace WpfCritic.ViewModel
             {
                 _selectedEntertainment = value;
                 OnPropertyChanged("SelectedEntertainment");
+                EditButtonEnabled = true;
             }
         }
 
@@ -49,6 +51,16 @@ namespace WpfCritic.ViewModel
             {
                 _partOfNameForSearch = value;
                 OnPropertyChanged("PartOfNameForSearch"); 
+            }
+        }
+
+        public bool EditButtonEnabled
+        {
+            get { return _editButtonEnabled; }
+            set
+            {
+                _editButtonEnabled = value;
+                OnPropertyChanged("EditButtonEnabled");
             }
         }
 
@@ -92,11 +104,6 @@ namespace WpfCritic.ViewModel
         {
             EditOrAddEntertainmentWindow addOrEditEntertainment = new EditOrAddEntertainmentWindow(new EditOrAddEntertainmentWindowVM(this, SelectedEntertainment));
             addOrEditEntertainment.ShowDialog();
-        }
-
-        public bool EditButtonEnabled
-        {
-            get { return SelectedEntertainment != null; }
         }
 
         internal void DeleteButtonClick()

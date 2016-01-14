@@ -14,7 +14,8 @@ namespace WpfCritic.View
 
             DataContext = new EntertainmentDetailsWindowVM(_entertainment);
 
-            YoutubeVideo.Source = new Uri(_entertainment.TrailerLink.Replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/"));
+            if (_entertainment.TrailerLink != String.Empty)
+                YoutubeVideo.Source = new Uri(_entertainment.TrailerLink.Replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/"));
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)

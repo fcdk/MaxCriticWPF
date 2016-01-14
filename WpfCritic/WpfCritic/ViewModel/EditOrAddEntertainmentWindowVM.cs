@@ -1,5 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.IO;
+using System.Windows;
 using WpfCritic.DataLayer;
 using WpfCritic.ViewModel.Data;
 
@@ -17,7 +19,7 @@ namespace WpfCritic.ViewModel
         private string _name;
         private DateTime? _releaseDate;
         private string _company;
-        private byte[] _poster;
+        private string _poster;
         private string _summary;
         private string _buyLink;
         private string _mainLanguage;
@@ -29,6 +31,11 @@ namespace WpfCritic.ViewModel
         private byte? _tVSeason;
         private decimal? _budget;
         public string _trailerLink = "https://www.youtube.com/watch?v=";
+
+        public string[] EntertainmentTypes
+        {
+            get { return _entertainmentTypes; }
+        }
 
         public string EntertainmentTypeUkr
         {
@@ -54,7 +61,7 @@ namespace WpfCritic.ViewModel
             set { _company = value; OnPropertyChanged("Company"); }
         }
 
-        public byte[] Poster
+        public string Poster
         {
             get { return _poster; }
             set { _poster = value; OnPropertyChanged("Poster"); }
@@ -126,6 +133,16 @@ namespace WpfCritic.ViewModel
             set { _trailerLink = value; OnPropertyChanged("TrailerLink"); }
         }
 
+        public string HeaderText
+        {
+            get
+            {
+                if (_enterteinment == null)
+                    return "Додавання нового контенту";
+                return "Редагування контенту";
+            }
+        }
+
         public EditOrAddEntertainmentWindowVM(ICollectionsEntity collectionEntity, EntertainmentVM enterteinment = null)
         {
             _collectionEntity = collectionEntity;
@@ -137,7 +154,6 @@ namespace WpfCritic.ViewModel
                 Name = _enterteinment.Name;
                 ReleaseDate = _enterteinment.ReleaseDate;
                 Company = _enterteinment.Company;
-                Poster = _enterteinment.Poster;
                 Summary = _enterteinment.Summary;
                 BuyLink = _enterteinment.BuyLink;
                 MainLanguage = _enterteinment.MainLanguage;
@@ -152,20 +168,12 @@ namespace WpfCritic.ViewModel
             }
         }
 
-        internal void TrailerBrowseButtonClick()
-        {
-            OpenFileDialog trailerBrowse = new OpenFileDialog();
-            trailerBrowse.Filter = "Файлы видео|*.mp4;*.avi;*.mkv;*.wmv";
-            //if (trailerBrowse.ShowDialog() == true)
-                //Trailer = trailerBrowse.FileName;
-        }
-
         internal void PosterBrowseButtonClick()
         {
             OpenFileDialog posterBrowse = new OpenFileDialog();
             posterBrowse.Filter = "Файлы рисунков|*.png;*.jpg;*.bmp;*.tif;*.gif";
-            //if (posterBrowse.ShowDialog() == true)
-            //Poster = posterBrowse.FileName;
+            if (posterBrowse.ShowDialog() == true)
+                Poster = posterBrowse.FileName;
         }
 
         internal void OkButtonClick()
@@ -173,7 +181,7 @@ namespace WpfCritic.ViewModel
             if (_enterteinment == null)
             {
                 EntertainmentVM entertainment = new EntertainmentVM((Entertainment.Type)EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr),
-                Name, (DateTime)ReleaseDate, Company, Poster, Summary, BuyLink, MainLanguage, Rating, RatingComment, MovieRuntimeMinute,
+                Name, (DateTime)ReleaseDate, Company, File.ReadAllBytes(Poster), Summary, BuyLink, MainLanguage, Rating, RatingComment, MovieRuntimeMinute,
                 OfficialSite, MovieCountries, TVSeason, Budget, TrailerLink);
                 entertainment.EntertainmentDL.Save();
                 _collectionEntity.Add(entertainment);
@@ -184,7 +192,8 @@ namespace WpfCritic.ViewModel
                 _enterteinment.Name = Name;
                 _enterteinment.ReleaseDate = (DateTime)ReleaseDate;
                 _enterteinment.Company = Company;
-                _enterteinment.Poster = Poster;
+                if (Poster != null)
+                    _enterteinment.Poster = File.ReadAllBytes(Poster);
                 _enterteinment.Summary = Summary;
                 _enterteinment.BuyLink = BuyLink;
                 _enterteinment.MainLanguage = MainLanguage;

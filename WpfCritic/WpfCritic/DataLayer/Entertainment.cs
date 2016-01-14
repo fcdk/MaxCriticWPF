@@ -63,7 +63,12 @@ namespace WpfCritic.DataLayer
         public int? MovieRuntimeMinute
         {
             get { return Row["MovieRuntimeMinute"].Equals(DBNull.Value) ? default(int?) : (int)Row["MovieRuntimeMinute"]; }
-            set { Row["MovieRuntimeMinute"] = value; }
+            set
+            {
+                if (value != null)
+                    Row["MovieRuntimeMinute"] = value;
+                else Row["MovieRuntimeMinute"] = DBNull.Value;
+            }
         }
         public string OfficialSite
         {
@@ -78,12 +83,22 @@ namespace WpfCritic.DataLayer
         public byte? TVSeason
         {
             get { return Row["TVSeason"].Equals(DBNull.Value) ? default(byte?) : (byte)Row["TVSeason"]; }
-            set { Row["TVSeason"] = value; }
+            set
+            {
+                if (value != null)
+                    Row["TVSeason"] = value;
+                else Row["TVSeason"] = DBNull.Value;
+            }
         }
         public decimal? Budget
         {
             get { return Row["Budget"].Equals(DBNull.Value) ? default(decimal?) : (decimal)Row["Budget"]; }
-            set { Row["Budget"] = value; }
+            set
+            {
+                if (value != null)
+                    Row["Budget"] = value;
+                else Row["Budget"] = DBNull.Value;
+            }
         }
         public string TrailerLink
         {
