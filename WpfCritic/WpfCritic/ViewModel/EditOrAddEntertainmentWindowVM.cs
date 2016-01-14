@@ -14,8 +14,10 @@ namespace WpfCritic.ViewModel
 
         private string[] _entertainmentTypes = new string[] { "Фільм", "Гра", "Серіал", "Музика" };
 
+        private bool _isError;
+
         //кеширование свойств Entertainment
-        private string _entertainmentTypeUkr;
+        private string _entertainmentTypeUkr = "Фільм";
         private string _name;
         private DateTime? _releaseDate;
         private string _company;
@@ -143,6 +145,54 @@ namespace WpfCritic.ViewModel
             }
         }
 
+        public Visibility MovieRuntimeMinuteVisibility
+        {
+            get
+            {
+                if (EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr) == Entertainment.Type.Movie)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+
+        public Visibility TVSeasonVisibility
+        {
+            get
+            {
+                if (EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr) == Entertainment.Type.TVSeries)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+
+        public Visibility TrailerLinkVisibility
+        {
+            get
+            {
+                if (EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr) != Entertainment.Type.Album)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+
+        public Visibility NameErrorVisibility
+        {
+            get
+            {
+                if (Name != null)
+                {
+                    return Visibility.Hidden;
+                }
+                _isError = true;
+                return Visibility.Visible;
+            }
+        }
+
+        public Visibility PosterErrorVisibility
+        {
+
+        }
+
         public EditOrAddEntertainmentWindowVM(ICollectionsEntity collectionEntity, EntertainmentVM enterteinment = null)
         {
             _collectionEntity = collectionEntity;
@@ -168,6 +218,13 @@ namespace WpfCritic.ViewModel
             }
         }
 
+        internal void entertainmentTypeUkrComboBoxSelectionChanged()
+        {
+            OnPropertyChanged("MovieRuntimeMinuteVisibility");
+            OnPropertyChanged("TVSeasonVisibility");
+            OnPropertyChanged("TrailerLinkVisibility");
+        }
+
         internal void PosterBrowseButtonClick()
         {
             OpenFileDialog posterBrowse = new OpenFileDialog();
@@ -176,7 +233,7 @@ namespace WpfCritic.ViewModel
                 Poster = posterBrowse.FileName;
         }
 
-        internal void OkButtonClick()
+        internal bool OkButtonClick()
         {
             if (_enterteinment == null)
             {
@@ -206,6 +263,7 @@ namespace WpfCritic.ViewModel
                 _enterteinment.Budget = Budget;
                 _enterteinment.TrailerLink = TrailerLink;
             }
+            return true;
         }
 
     }
