@@ -11,12 +11,22 @@ namespace WpfCritic.DataLayer
         public Guid? PerformerId
         {
             get { return Row["PerformerId"].Equals(DBNull.Value) ? default(Guid?) : (Guid)Row["PerformerId"]; }
-            set { Row["PerformerId"] = value; }
+            set
+            {
+                if (value != null)
+                    Row["PerformerId"] = value;
+                else Row["PerformerId"] = DBNull.Value;
+            }
         }
         public Guid? EntertainmentId
         {
             get { return Row["EntertainmentId"].Equals(DBNull.Value) ? default(Guid?) : (Guid)Row["EntertainmentId"]; }
-            set { Row["EntertainmentId"] = value; }
+            set
+            {
+                if (value != null)
+                    Row["EntertainmentId"] = value;
+                else Row["EntertainmentId"] = DBNull.Value;
+            }
         }
         public string Name
         {
@@ -26,7 +36,12 @@ namespace WpfCritic.DataLayer
         public string Nomination
         {
             get { return Row["Nomination"].ToString(); }
-            set { Row["Nomination"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["Nomination"] = value;
+                else Row["Nomination"] = DBNull.Value;
+            }
         }
         public DateTime Date
         {
@@ -36,7 +51,12 @@ namespace WpfCritic.DataLayer
         public byte[] Image
         {
             get { return Row["Image"].Equals(DBNull.Value) ? null : (byte[])Row["Image"]; }
-            set { Row["Image"] = value; }
+            set
+            {
+                if (value != null)
+                    Row["Image"] = value;
+                else Row["Image"] = DBNull.Value;
+            }
         }
 
         public Award(DataRow row) : base(row) { }

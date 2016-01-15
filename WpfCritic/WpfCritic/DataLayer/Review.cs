@@ -36,12 +36,22 @@ namespace WpfCritic.DataLayer
         public string Link
         {
             get { return Row["Link"].ToString(); }
-            set { Row["Link"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["Link"] = value;
+                else Row["Link"] = DBNull.Value;
+            }
         }
         public string Publication
         {
             get { return Row["Publication"].ToString(); }
-            set { Row["Publication"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["Publication"] = value;
+                else Row["Publication"] = DBNull.Value;
+            }
         }
         public int Helpful
         {

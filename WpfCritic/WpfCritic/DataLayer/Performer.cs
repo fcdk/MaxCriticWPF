@@ -16,7 +16,12 @@ namespace WpfCritic.DataLayer
         public string Surname
         {
             get { return Row["Surname"].ToString(); }
-            set { Row["Surname"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["Surname"] = value;
+                else Row["Surname"] = DBNull.Value;
+            }
         }
         public Performer.Type PerformerType
         {
@@ -26,17 +31,32 @@ namespace WpfCritic.DataLayer
         public DateTime? DateOfBirth
         {
             get { return Row["DateOfBirth"].Equals(DBNull.Value) ? default(DateTime?) : (DateTime)Row["DateOfBirth"]; }
-            set { Row["DateOfBirth"] = value; }
+            set
+            {
+                if (value != null)
+                    Row["DateOfBirth"] = value;
+                else Row["DateOfBirth"] = DBNull.Value;
+            }
         }
         public byte[] Image
         {
             get { return Row["Image"].Equals(DBNull.Value) ? null : (byte[])Row["Image"]; }
-            set { Row["Image"] = value; }
+            set
+            {
+                if (value != null)
+                    Row["Image"] = value;
+                else Row["Image"] = DBNull.Value;
+            }
         }
         public string Summary
         {
             get { return Row["Summary"].ToString(); }
-            set { Row["Summary"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["Summary"] = value;
+                else Row["Summary"] = DBNull.Value;
+            }
         }
 
         public Performer(DataRow row) : base(row)

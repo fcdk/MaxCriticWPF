@@ -11,7 +11,12 @@ namespace WpfCritic.DataLayer
         public Guid? ParentGenreId
         {
             get { return Row["ParentGenreId"].Equals(DBNull.Value) ? default(Guid?) : (Guid)Row["ParentGenreId"]; }
-            set { Row["ParentGenreId"] = value; }
+            set
+            {
+                if (value != null)
+                    Row["ParentGenreId"] = value;
+                else Row["ParentGenreId"] = DBNull.Value;
+            }
         }
         public string Name
         {
@@ -26,7 +31,12 @@ namespace WpfCritic.DataLayer
         public string Summary
         {
             get { return Row["Summary"].ToString(); }
-            set { Row["Summary"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["Summary"] = value;
+                else Row["Summary"] = DBNull.Value;
+            }
         }
 
         public Genre(DataRow row) : base(row) { }

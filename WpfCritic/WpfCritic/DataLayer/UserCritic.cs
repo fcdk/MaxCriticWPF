@@ -16,32 +16,62 @@ namespace WpfCritic.DataLayer
         public string Name
         {
             get { return Row["Name"].ToString(); }
-            set { Row["Name"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["Name"] = value;
+                else Row["Name"] = DBNull.Value;
+            }
         }
         public string Surname
         {
             get { return Row["Surname"].ToString(); }
-            set { Row["Surname"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["Surname"] = value;
+                else Row["Surname"] = DBNull.Value;
+            }
         }
         public DateTime? DateOfBirth
         {
             get { return Row["DateOfBirth"].Equals(DBNull.Value) ? default(DateTime?) : (DateTime)Row["DateOfBirth"]; }
-            set { Row["DateOfBirth"] = value; }
+            set
+            {
+                if (value != null)
+                    Row["DateOfBirth"] = value;
+                else Row["DateOfBirth"] = DBNull.Value;
+            }
         }
         public GenderType? Gender
         {
             get { return Row["Gender"].Equals(DBNull.Value) ? default(GenderType?) : (GenderType)Enum.Parse(typeof(GenderType), Row["Gender"].ToString()); }
-            set { Row["Gender"] = value; }
+            set
+            {
+                if (value != null)
+                    Row["Gender"] = value;
+                else Row["Gender"] = DBNull.Value;
+            }
         }
         public string Country
         {
             get { return Row["Country"].ToString(); }
-            set { Row["Surname"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["Country"] = value;
+                else Row["Country"] = DBNull.Value;
+            }
         }
         public string PublicationCompany
         {
             get { return Row["PublicationCompany"].ToString(); }
-            set { Row["PublicationCompany"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["PublicationCompany"] = value;
+                else Row["PublicationCompany"] = DBNull.Value;
+            }
         }
         public UserCritic.Role UserRole
         {
@@ -56,7 +86,12 @@ namespace WpfCritic.DataLayer
         public byte[] Image
         {
             get { return Row["Image"].Equals(DBNull.Value) ? null : (byte[])Row["Image"]; }
-            set { Row["Image"] = value; }
+            set
+            {
+                if (value != null)
+                    Row["Image"] = value;
+                else Row["Image"] = DBNull.Value;
+            }
         }
 
         public UserCritic(DataRow row) : base(row) { }

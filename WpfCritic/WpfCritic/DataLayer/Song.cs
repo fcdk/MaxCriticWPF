@@ -21,7 +21,12 @@ namespace WpfCritic.DataLayer
         public string Lyrics
         {
             get { return Row["Lyrics"].ToString(); }
-            set { Row["Lyrics"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["Lyrics"] = value;
+                else Row["Lyrics"] = DBNull.Value;
+            }
         }
 
         public Song(DataRow row) : base(row) { }
