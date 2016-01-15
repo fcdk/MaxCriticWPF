@@ -39,7 +39,7 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="{Binding EntertainmentType}" Foreground="#FF00167C" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="16" />
+            <Label Grid.Row="0" Content="Головний контент" Foreground="#FF00167C" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="16" />
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="2,4,2,4">
                 <Label Content="Введіть назву:" FontSize="13.333" />
                 <TextBox Text="{Binding PartOfNameForSearch}" Width="194" FontSize="13.333" />

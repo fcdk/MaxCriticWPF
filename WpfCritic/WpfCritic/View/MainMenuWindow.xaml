@@ -24,6 +24,11 @@
                     <local:EntertainmentUserControl x:Name="EntertainmentTabItem" DataContext="{Binding EntertainmentViewModel}" />
                 </TabItem.Content>
             </TabItem>
+            <TabItem Header="Пісні">
+                <TabItem.Content>
+                    <local:SongUserControl x:Name="SongTabItem" DataContext="{Binding SongViewModel}" />
+                </TabItem.Content>
+            </TabItem>
         </TabControl>
 
     </Grid>

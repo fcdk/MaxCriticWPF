@@ -5,16 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfCritic.View"
              xmlns:localdata="clr-namespace:WpfCritic.ViewModel.Data"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" Height="517.669">
     <Grid Background="AliceBlue">
         <Grid.Resources>
             <DataTemplate DataType="{x:Type localdata:SongVM}">
-                <StackPanel>
+                <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="4,0,0,0" Text="{Binding Path=Name}" FontWeight="Bold" FontSize="13.333" Background="{x:Null}" Foreground="#FF0056D3" />
-                    <TextBlock Margin="4,0,0,0" Text="{Binding Path=ReleaseDate.Year, StringFormat='({0})'}" />
+                    <TextBlock Margin="4,0,0,0" Text="{Binding Path=Duration, StringFormat='({0})'}" />
                 </StackPanel>
             </DataTemplate>
         </Grid.Resources>
+
+        <Grid Margin="4,8,4,8">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Content="Пісні" Foreground="#FF00167C" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="16" />
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="2,4,2,4">
+                <Label Content="Введіть назву:" FontSize="13.333" />
+                <TextBox Text="{Binding PartOfNameForSearch}" Width="194" FontSize="13.333" />
+                <Button Name="SearchButton" Content="Знайти" Margin="4, 0, 0, 0" Padding="4,2,4,2" Click="SearchButton_Click" />
+            </StackPanel>
+            <ListBox Grid.Row="2" Opacity="0.8" x:Name="SongsListBox" ItemsSource="{Binding SongCollection}" SelectedItem="{Binding SelectedSong}" />
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Name="addButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Додати" Click="addButton_Click" />
+                <Button IsEnabled="{Binding WhenSelectedButtonEnabled}" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Редагувати" Click="editButton_Click" />
+                <Button IsEnabled="{Binding WhenSelectedButtonEnabled}" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Видалити" Click="deleteButton_Click" />
+            </StackPanel>
+
+        </Grid>
+        
     </Grid>
 </UserControl>
