@@ -112,10 +112,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EditGameUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Compile Include="Core\Logger.cs" />
     <Compile Include="DataLayer\Award.cs" />
     <Compile Include="DataLayer\ConnectionNameAttribute.cs" />
@@ -135,7 +131,6 @@
     <Compile Include="ViewModel\EditOrAddEntertainmentWindowVM.cs" />
     <Compile Include="ViewModel\EntertainmentUserControlVM.cs" />
     <Compile Include="ViewModel\Data\EntertainmentVM.cs" />
-    <Compile Include="ViewModel\EditGameUserControlVM.cs" />
     <Compile Include="ViewModel\EntertainmentDetailsWindowVM.cs" />
     <Compile Include="ViewModel\ICollectionsEntity.cs" />
     <Compile Include="ViewModel\MainMenuWindowVM.cs" />
@@ -152,9 +147,6 @@
     </Compile>
     <Compile Include="View\MainMenuWindow.xaml.cs">
       <DependentUpon>MainMenuWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\EditGameUserControl.xaml.cs">
-      <DependentUpon>EditGameUserControl.xaml</DependentUpon>
     </Compile>
     <Page Include="View\EntertainmentDetailsWindow.xaml">
       <SubType>Designer</SubType>

@@ -384,13 +384,15 @@ namespace WpfCritic.ViewModel
                 _isError = true;
             }
             else MovieRuntimeMinuteErrorVisibility = Visibility.Collapsed;
-                        
-            if (TrailerLink.Replace("https://www.youtube.com/watch?v=","").Contains(" "))
-            {
-                TrailerLinkErrorVisibility = Visibility.Visible;
-                _isError = true;
-            }
-            else TrailerLinkErrorVisibility = Visibility.Collapsed;
+                     
+            if (TrailerLink != null)   
+                if (TrailerLink.Replace("https://www.youtube.com/watch?v=","").Contains(" ") &&
+                EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr) != Entertainment.Type.Album)
+                {
+                    TrailerLinkErrorVisibility = Visibility.Visible;
+                    _isError = true;
+                }
+                else TrailerLinkErrorVisibility = Visibility.Collapsed;
 
             if (TrailerLink == "https://www.youtube.com/watch?v=")
                 TrailerLink = null;
