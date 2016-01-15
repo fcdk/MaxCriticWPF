@@ -13,7 +13,7 @@ namespace WpfCritic.ViewModel
         private string[] _entertainmentTypes = new string[] { "Усі", "Фільм", "Гра", "Серіал", "Музика" };
         private string _selectedType = "Усі";
         private string _partOfNameForSearch;
-        private bool _editButtonEnabled;
+        private bool _whenSelectedButtonEnabled;
 
         public ObservableCollection<EntertainmentVM> EntertainmentCollection
         {
@@ -27,8 +27,8 @@ namespace WpfCritic.ViewModel
                 _selectedEntertainment = value;
                 OnPropertyChanged("SelectedEntertainment");
                 if (_selectedEntertainment != null)
-                    EditButtonEnabled = true;
-                else EditButtonEnabled = false;
+                    WhenSelectedButtonEnabled = true;
+                else WhenSelectedButtonEnabled = false;
             }
         }
 
@@ -56,13 +56,13 @@ namespace WpfCritic.ViewModel
             }
         }
 
-        public bool EditButtonEnabled
+        public bool WhenSelectedButtonEnabled
         {
-            get { return _editButtonEnabled; }
+            get { return _whenSelectedButtonEnabled; }
             set
             {
-                _editButtonEnabled = value;
-                OnPropertyChanged("EditButtonEnabled");
+                _whenSelectedButtonEnabled = value;
+                OnPropertyChanged("WhenSelectedButtonEnabled");
             }
         }
 

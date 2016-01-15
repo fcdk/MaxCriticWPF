@@ -43,7 +43,12 @@ namespace WpfCritic.DataLayer
         public string BuyLink
         {
             get { return Row["BuyLink"].ToString(); }
-            set { Row["BuyLink"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["BuyLink"] = value;
+                else Row["BuyLink"] = DBNull.Value;
+            }
         }
         public string MainLanguage
         {
@@ -53,12 +58,22 @@ namespace WpfCritic.DataLayer
         public string Rating
         {
             get { return Row["Rating"].ToString(); }
-            set { Row["Rating"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["Rating"] = value;
+                else Row["Rating"] = DBNull.Value;
+            }
         }
         public string RatingComment
         {
             get { return Row["RatingComment"].ToString(); }
-            set { Row["RatingComment"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["RatingComment"] = value;
+                else Row["RatingComment"] = DBNull.Value;
+            }
         }
         public int? MovieRuntimeMinute
         {
@@ -73,12 +88,22 @@ namespace WpfCritic.DataLayer
         public string OfficialSite
         {
             get { return Row["OfficialSite"].ToString(); }
-            set { Row["OfficialSite"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["OfficialSite"] = value;
+                else Row["OfficialSite"] = DBNull.Value;
+            }
         }
         public string MovieCountries
         {
             get { return Row["MovieCountries"].ToString(); }
-            set { Row["MovieCountries"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["MovieCountries"] = value;
+                else Row["MovieCountries"] = DBNull.Value;
+            }
         }
         public byte? TVSeason
         {
@@ -103,7 +128,12 @@ namespace WpfCritic.DataLayer
         public string TrailerLink
         {
             get { return Row["TrailerLink"].ToString(); }
-            set { Row["TrailerLink"] = value; }
+            set
+            {
+                if (value != String.Empty)
+                    Row["TrailerLink"] = value;
+                else Row["TrailerLink"] = DBNull.Value;
+            }
         }
 
         public Entertainment(DataRow row) : base(row) { }

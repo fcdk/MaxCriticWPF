@@ -1,9 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.IO;
-using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Input;
 using WpfCritic.DataLayer;
 using WpfCritic.ViewModel.Data;
 
@@ -24,6 +22,7 @@ namespace WpfCritic.ViewModel
         private Visibility _mainLanguageErrorVisibility;
         private Visibility _summaryErrorVisibility;
         private Visibility _movieRuntimeMinuteErrorVisibility;
+        private Visibility _trailerLinkErrorVisibility;
 
         //кеширование свойств Entertainment
         private string _entertainmentTypeUkr = "Фільм";
@@ -263,6 +262,16 @@ namespace WpfCritic.ViewModel
             }
         }
 
+        public Visibility TrailerLinkErrorVisibility
+        {
+            get { return _trailerLinkErrorVisibility; }
+            set
+            {
+                _trailerLinkErrorVisibility = value;
+                OnPropertyChanged("TrailerLinkErrorVisibility");
+            }
+        }
+        
         public EditOrAddEntertainmentWindowVM(ICollectionsEntity collectionEntity, EntertainmentVM enterteinment = null)
         {
             _collectionEntity = collectionEntity;
@@ -296,6 +305,9 @@ namespace WpfCritic.ViewModel
             if (EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr) != Entertainment.Type.Movie)
                 MovieRuntimeMinuteErrorVisibility = Visibility.Collapsed;
             else MovieRuntimeMinuteErrorVisibility = Visibility.Hidden;
+            if (EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr) == Entertainment.Type.Album)
+                TrailerLinkErrorVisibility = Visibility.Collapsed;
+            else TrailerLinkErrorVisibility = Visibility.Hidden;
         }
 
         internal void entertainmentTypeUkrComboBoxSelectionChanged()
@@ -306,6 +318,8 @@ namespace WpfCritic.ViewModel
             OnPropertyChanged("MovieCountriesVisibility");
             if (EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr) != Entertainment.Type.Movie)
                 MovieRuntimeMinuteErrorVisibility = Visibility.Collapsed;
+            if (EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr) == Entertainment.Type.Album)
+                TrailerLinkErrorVisibility = Visibility.Collapsed;
         }
 
         internal void PosterBrowseButtonClick()
@@ -362,7 +376,7 @@ namespace WpfCritic.ViewModel
                 _isError = true;
             }
             else SummaryErrorVisibility = Visibility.Hidden;
-
+                        
             if (EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr) == Entertainment.Type.Movie &&
             MovieRuntimeMinute == null)
             {
@@ -370,6 +384,13 @@ namespace WpfCritic.ViewModel
                 _isError = true;
             }
             else MovieRuntimeMinuteErrorVisibility = Visibility.Collapsed;
+                        
+            if (TrailerLink.Replace("https://www.youtube.com/watch?v=","").Contains(" "))
+            {
+                TrailerLinkErrorVisibility = Visibility.Visible;
+                _isError = true;
+            }
+            else TrailerLinkErrorVisibility = Visibility.Collapsed;
 
             if (TrailerLink == "https://www.youtube.com/watch?v=")
                 TrailerLink = null;
