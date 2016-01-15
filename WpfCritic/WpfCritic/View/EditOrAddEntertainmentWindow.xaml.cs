@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using WpfCritic.ViewModel;
 
 namespace WpfCritic.View
@@ -32,5 +33,6 @@ namespace WpfCritic.View
         {
             this.Close();
         }
+
     }
 }

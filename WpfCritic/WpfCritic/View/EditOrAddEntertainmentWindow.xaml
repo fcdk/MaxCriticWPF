@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCritic.View"
+        xmlns:wpfToolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
         Title="Контент" Height="683.83" Width="713.17">
     <Grid Background="AliceBlue">
@@ -48,72 +49,60 @@
                     <Ellipse Height="20" Width="20" Fill="#FFFD0000" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     <Label Content="!" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13.333" />
                 </Grid>
-                <TextBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Name}" />
+                <TextBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Name}" MaxLength="512" />
                 <Label Grid.Row="2" Grid.Column="0" Content="Постер:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Grid Grid.Row="2" Grid.Column="1" ToolTip="Постер не може бути порожнім!" Margin="2,0,2,0">
+                <Grid Grid.Row="2" Grid.Column="1" ToolTip="Постер не може бути порожнім при додаванні нового контенту!" Visibility="{Binding PosterErrorVisibility}" Margin="2,0,2,0">
                     <Ellipse Height="20" Width="20" Fill="#FFFD0000" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     <Label Content="!" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13.333" />
                 </Grid>
                 <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Poster}"/>
                 <Button Grid.Row="2" Grid.Column="3" Content="Обзор" Click="posterBrowseButton_Click" />
                 <Label Grid.Row="3" Grid.Column="0" Content="Дата релізу:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Grid Grid.Row="3" Grid.Column="1" ToolTip="Дата не може бути порожньою!" Margin="2,0,2,0">
+                <Grid Grid.Row="3" Grid.Column="1" ToolTip="Дата не може бути порожньою!" Visibility="{Binding ReleaseDateErrorVisibility}" Margin="2,0,2,0">
                     <Ellipse Height="20" Width="20" Fill="#FFFD0000" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     <Label Content="!" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13.333" />
                 </Grid>
                 <DatePicker Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" SelectedDate="{Binding ReleaseDate}" />
                 <Label Grid.Row="4" Grid.Column="0" Content="Компанія:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Grid Grid.Row="4" Grid.Column="1" ToolTip="Компанія не може бути порожньою!" Margin="2,0,2,0">
+                <Grid Grid.Row="4" Grid.Column="1" ToolTip="Компанія не може бути порожньою!" Visibility="{Binding CompanyErrorVisibility}" Margin="2,0,2,0">
                     <Ellipse Height="20" Width="20" Fill="#FFFD0000" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     <Label Content="!" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13.333" />
                 </Grid>
-                <TextBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Company}" />
+                <TextBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Company}" MaxLength="256" />
                 <Label Grid.Row="5" Grid.Column="0" Content="Лінк на купівлю:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
                 <TextBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding BuyLink}" />
                 <Label Grid.Row="6" Grid.Column="0" Content="Основна мова:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Grid Grid.Row="6" Grid.Column="1" ToolTip="Основна мова не може бути порожньою!" Margin="2,0,2,0">
+                <Grid Grid.Row="6" Grid.Column="1" ToolTip="Основна мова не може бути порожньою!" Visibility="{Binding MainLanguageErrorVisibility}" Margin="2,0,2,0">
                     <Ellipse Height="20" Width="20" Fill="#FFFD0000" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     <Label Content="!" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13.333" />
                 </Grid>
-                <TextBox Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding MainLanguage}" />
+                <TextBox Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding MainLanguage}" MaxLength="256" />
                 <Label Grid.Row="7" Grid.Column="0" Content="Віковий ценз:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBox Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Rating}" />
+                <TextBox Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Rating}" MaxLength="64" />
                 <Label Grid.Row="8" Grid.Column="0" Content="Коментар до вікового цензу:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
                 <TextBox Grid.Row="8" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding RatingComment}" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" />
                 <Label Grid.Row="10" Grid.Column="0" Content="Короткий опис:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Grid Grid.Row="10" Grid.Column="1" ToolTip="Короткий опис не може бути порожнім!" Margin="2,0,2,0">
+                <Grid Grid.Row="10" Grid.Column="1" ToolTip="Короткий опис не може бути порожнім!" Visibility="{Binding SummaryErrorVisibility}" Margin="2,0,2,0">
                     <Ellipse Height="20" Width="20" Fill="#FFFD0000" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     <Label Content="!" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13.333" />
                 </Grid>
                 <TextBox Grid.Row="10" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Summary}" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" />
                 <Label Grid.Row="12" Grid.Column="0" Content="Тривалість фільму (хв):" Visibility="{Binding MovieRuntimeMinuteVisibility}" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Grid Grid.Row="12" Grid.Column="1" ToolTip="Тривалість фільму повинна бути цілим числом!" Margin="2,0,2,0">
+                <Grid Grid.Row="12" Grid.Column="1" ToolTip="Тривалість фильму не може бути порожньою!" Visibility="{Binding MovieRuntimeMinuteErrorVisibility}" Margin="2,0,2,0">
                     <Ellipse Height="20" Width="20" Fill="#FFFD0000" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     <Label Content="!" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13.333" />
                 </Grid>
-                <TextBox Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding MovieRuntimeMinute}" Visibility="{Binding MovieRuntimeMinuteVisibility}" />
+                <wpfToolkit:IntegerUpDown Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="2" Value="{Binding MovieRuntimeMinute}" Visibility="{Binding MovieRuntimeMinuteVisibility}" Minimum="0" />
                 <Label Grid.Row="13" Grid.Column="0" Content="Офіційний сайт:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
                 <TextBox Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding OfficialSite}" />
-                <Label Grid.Row="14" Grid.Column="0" Content="Країни:" Visibility="{Binding MovieRuntimeMinuteVisibility}" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBox Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding MovieCountries}" Visibility="{Binding MovieRuntimeMinuteVisibility}" />
+                <Label Grid.Row="14" Grid.Column="0" Content="Країни:" Visibility="{Binding MovieCountriesVisibility}" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding MovieCountries}" Visibility="{Binding MovieCountriesVisibility}" />
                 <Label Grid.Row="15" Grid.Column="0" Content="Сезон:" Visibility="{Binding TVSeasonVisibility}" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Grid Grid.Row="15" Grid.Column="1" ToolTip="Сезон повинен бути цілим числом!" Margin="2,0,2,0">
-                    <Ellipse Height="20" Width="20" Fill="#FFFD0000" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    <Label Content="!" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13.333" />
-                </Grid>
-                <TextBox Grid.Row="15" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding TVSeason}" Visibility="{Binding TVSeasonVisibility}" />
-                <Label Grid.Row="16" Grid.Column="0" Content="Бюджет:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Grid Grid.Row="16" Grid.Column="1" ToolTip="Бюджет повинен бути числом!" Margin="2,0,2,0">
-                    <Ellipse Height="20" Width="20" Fill="#FFFD0000" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    <Label Content="!" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13.333" />
-                </Grid>
-                <TextBox Grid.Row="16" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Budget}" />
+                <wpfToolkit:ByteUpDown Grid.Row="15" Grid.Column="2" Grid.ColumnSpan="2" Value="{Binding TVSeason}" Visibility="{Binding TVSeasonVisibility}" />
+                <Label Grid.Row="16" Grid.Column="0" Content="Бюджет ($):" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <wpfToolkit:DecimalUpDown Grid.Row="16" Grid.Column="2" Grid.ColumnSpan="2" Value="{Binding Budget}" FormatString="F2" Increment="100000" Minimum=".01" />
                 <Label Grid.Row="17" Grid.Column="0" Content="Посилання на трейлер:" Visibility="{Binding TrailerLinkVisibility}" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Grid Grid.Row="17" Grid.Column="1" ToolTip="Посилання на трейлер повинно бути на youtube та починатись з https://www.youtube.com/watch?v=" Margin="2,0,2,0">
-                    <Ellipse Height="20" Width="20" Fill="#FFFD0000" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    <Label Content="!" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13.333" />
-                </Grid>
-                <TextBox Grid.Row="17" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding TrailerLink}" Visibility="{Binding TrailerLinkVisibility}" />
+                <wpfToolkit:MaskedTextBox Grid.Row="17" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding TrailerLink}" Mask="https\:\/\/www\.youtube\.com\/w\atch\?v\=&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;"  Visibility="{Binding TrailerLinkVisibility}" />
             </Grid>
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Name="okButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="OK" Click="okButton_Click" />

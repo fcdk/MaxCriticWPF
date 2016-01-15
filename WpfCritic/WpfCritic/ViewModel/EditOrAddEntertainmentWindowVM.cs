@@ -1,7 +1,9 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Input;
 using WpfCritic.DataLayer;
 using WpfCritic.ViewModel.Data;
 
@@ -15,6 +17,13 @@ namespace WpfCritic.ViewModel
         private string[] _entertainmentTypes = new string[] { "Фільм", "Гра", "Серіал", "Музика" };
 
         private bool _isError;
+        private Visibility _nameErrorVisibility;
+        private Visibility _posterErrorVisibility;
+        private Visibility _releaseDateErrorVisibility;
+        private Visibility _companyErrorVisibility;
+        private Visibility _mainLanguageErrorVisibility;
+        private Visibility _summaryErrorVisibility;
+        private Visibility _movieRuntimeMinuteErrorVisibility;
 
         //кеширование свойств Entertainment
         private string _entertainmentTypeUkr = "Фільм";
@@ -32,7 +41,7 @@ namespace WpfCritic.ViewModel
         private string _movieCountries;
         private byte? _tVSeason;
         private decimal? _budget;
-        public string _trailerLink = "https://www.youtube.com/watch?v=";
+        public string _trailerLink;
 
         public string[] EntertainmentTypes
         {
@@ -165,6 +174,16 @@ namespace WpfCritic.ViewModel
             }
         }
 
+        public Visibility MovieCountriesVisibility
+        {
+            get
+            {
+                if (EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr) == Entertainment.Type.Movie)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+
         public Visibility TrailerLinkVisibility
         {
             get
@@ -177,20 +196,71 @@ namespace WpfCritic.ViewModel
 
         public Visibility NameErrorVisibility
         {
-            get
+            get { return _nameErrorVisibility; }
+            set
             {
-                if (Name != null)
-                {
-                    return Visibility.Hidden;
-                }
-                _isError = true;
-                return Visibility.Visible;
+                _nameErrorVisibility = value;
+                OnPropertyChanged("NameErrorVisibility");
             }
         }
 
         public Visibility PosterErrorVisibility
         {
+            get { return _posterErrorVisibility; }
+            set
+            {
+                _posterErrorVisibility = value;
+                OnPropertyChanged("PosterErrorVisibility");
+            }
+        }
 
+        public Visibility ReleaseDateErrorVisibility
+        {
+            get { return _releaseDateErrorVisibility; }
+            set
+            {
+                _releaseDateErrorVisibility = value;
+                OnPropertyChanged("ReleaseDateErrorVisibility");
+            }
+        }
+
+        public Visibility CompanyErrorVisibility
+        {
+            get { return _companyErrorVisibility; }
+            set
+            {
+                _companyErrorVisibility = value;
+                OnPropertyChanged("CompanyErrorVisibility");
+            }
+        }
+        public Visibility MainLanguageErrorVisibility
+        {
+            get { return _mainLanguageErrorVisibility; }
+            set
+            {
+                _mainLanguageErrorVisibility = value;
+                OnPropertyChanged("MainLanguageErrorVisibility");
+            }
+        }
+
+        public Visibility SummaryErrorVisibility
+        {
+            get { return _summaryErrorVisibility; }
+            set
+            {
+                _summaryErrorVisibility = value;
+                OnPropertyChanged("SummaryErrorVisibility");
+            }
+        }
+
+        public Visibility MovieRuntimeMinuteErrorVisibility
+        {
+            get { return _movieRuntimeMinuteErrorVisibility; }
+            set
+            {
+                _movieRuntimeMinuteErrorVisibility = value;
+                OnPropertyChanged("MovieRuntimeMinuteErrorVisibility");
+            }
         }
 
         public EditOrAddEntertainmentWindowVM(ICollectionsEntity collectionEntity, EntertainmentVM enterteinment = null)
@@ -216,6 +286,16 @@ namespace WpfCritic.ViewModel
                 Budget = _enterteinment.Budget;
                 TrailerLink = _enterteinment.TrailerLink;
             }
+
+            NameErrorVisibility = Visibility.Hidden;
+            PosterErrorVisibility = Visibility.Hidden;
+            ReleaseDateErrorVisibility = Visibility.Hidden;
+            CompanyErrorVisibility = Visibility.Hidden;
+            MainLanguageErrorVisibility = Visibility.Hidden;
+            SummaryErrorVisibility = Visibility.Hidden;
+            if (EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr) != Entertainment.Type.Movie)
+                MovieRuntimeMinuteErrorVisibility = Visibility.Collapsed;
+            else MovieRuntimeMinuteErrorVisibility = Visibility.Hidden;
         }
 
         internal void entertainmentTypeUkrComboBoxSelectionChanged()
@@ -223,6 +303,9 @@ namespace WpfCritic.ViewModel
             OnPropertyChanged("MovieRuntimeMinuteVisibility");
             OnPropertyChanged("TVSeasonVisibility");
             OnPropertyChanged("TrailerLinkVisibility");
+            OnPropertyChanged("MovieCountriesVisibility");
+            if (EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr) != Entertainment.Type.Movie)
+                MovieRuntimeMinuteErrorVisibility = Visibility.Collapsed;
         }
 
         internal void PosterBrowseButtonClick()
@@ -235,6 +318,87 @@ namespace WpfCritic.ViewModel
 
         internal bool OkButtonClick()
         {
+            _isError = false;
+
+            if (Name == null || Name == String.Empty)
+            {
+                NameErrorVisibility = Visibility.Visible;
+                _isError = true;
+            }
+            else NameErrorVisibility = Visibility.Hidden;
+
+
+            if (_enterteinment == null && (Poster == null || Poster == String.Empty))
+            {
+                PosterErrorVisibility = Visibility.Visible;
+                _isError = true;
+            }
+            else PosterErrorVisibility = Visibility.Hidden;
+
+            if (ReleaseDate == null)
+            {
+                ReleaseDateErrorVisibility = Visibility.Visible;
+                _isError = true;
+            }
+            else ReleaseDateErrorVisibility = Visibility.Hidden;
+
+            if (Company == null || Company == String.Empty)
+            {
+                CompanyErrorVisibility = Visibility.Visible;
+                _isError = true;
+            }
+            else CompanyErrorVisibility = Visibility.Hidden;
+
+            if (MainLanguage == null || MainLanguage == String.Empty)
+            {
+                MainLanguageErrorVisibility = Visibility.Visible;
+                _isError = true;
+            }
+            else MainLanguageErrorVisibility = Visibility.Hidden;
+
+            if (Summary == null || Summary == String.Empty)
+            {
+                SummaryErrorVisibility = Visibility.Visible;
+                _isError = true;
+            }
+            else SummaryErrorVisibility = Visibility.Hidden;
+
+            if (EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr) == Entertainment.Type.Movie &&
+            MovieRuntimeMinute == null)
+            {
+                MovieRuntimeMinuteErrorVisibility = Visibility.Visible;
+                _isError = true;
+            }
+            else MovieRuntimeMinuteErrorVisibility = Visibility.Collapsed;
+
+            if (TrailerLink == "https://www.youtube.com/watch?v=")
+                TrailerLink = null;
+
+            if (_isError)
+                return false;
+
+            switch (EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr))
+            {
+                case Entertainment.Type.Album:
+                    MovieRuntimeMinute = null;
+                    MovieCountries = null;
+                    TVSeason = null;
+                    TrailerLink = null;
+                    break;
+                case Entertainment.Type.Game:
+                    MovieRuntimeMinute = null;
+                    MovieCountries = null;
+                    TVSeason = null;
+                    break;
+                case Entertainment.Type.Movie:
+                    TVSeason = null;
+                    break;
+                case Entertainment.Type.TVSeries:
+                    MovieRuntimeMinute = null;
+                    MovieCountries = null;
+                    break;
+            }
+
             if (_enterteinment == null)
             {
                 EntertainmentVM entertainment = new EntertainmentVM((Entertainment.Type)EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr),
@@ -262,6 +426,8 @@ namespace WpfCritic.ViewModel
                 _enterteinment.TVSeason = TVSeason;
                 _enterteinment.Budget = Budget;
                 _enterteinment.TrailerLink = TrailerLink;
+
+                _enterteinment.EntertainmentDL.Save();
             }
             return true;
         }

@@ -15,7 +15,12 @@ namespace WpfCritic.ViewModel.Data
         public Entertainment.Type EntertainmentType
         {
             get { return _entertainment.EntertainmentType; }
-            set { _entertainment.EntertainmentType = value; OnPropertyChanged("EntertainmentType"); }
+            set
+            {
+                _entertainment.EntertainmentType = value;
+                OnPropertyChanged("EntertainmentType");
+                OnPropertyChanged("EntertainmentTypeUkr");
+            }
         }
 
         public string EntertainmentTypeUkr
