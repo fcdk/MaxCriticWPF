@@ -101,11 +101,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\Data\SongVM.cs" />
+    <Compile Include="ViewModel\EditOrAddSongWindowVM.cs" />
     <Compile Include="ViewModel\SongUserControlVM.cs" />
+    <Compile Include="View\EditOrAddSongWindow.xaml.cs">
+      <DependentUpon>EditOrAddSongWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SongUserControl.xaml.cs">
       <DependentUpon>SongUserControl.xaml</DependentUpon>
     </Compile>
     <Page Include="View\EditOrAddEntertainmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditOrAddSongWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

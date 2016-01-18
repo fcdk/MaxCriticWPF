@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using WpfCritic.DataLayer;
+using WpfCritic.View;
 using WpfCritic.ViewModel.Data;
 
 namespace WpfCritic.ViewModel
@@ -69,16 +70,14 @@ namespace WpfCritic.ViewModel
 
         internal void AddButtonClick()
         {
-            //добавление новой песни
-            //EditOrAddEntertainmentWindow addOrEditEntertainment = new EditOrAddEntertainmentWindow(new EditOrAddEntertainmentWindowVM(this));
-            //addOrEditEntertainment.ShowDialog();
+            EditOrAddSongWindow addOrEditSong = new EditOrAddSongWindow(new EditOrAddSongWindowVM(this));
+            addOrEditSong.ShowDialog();
         }
 
         internal void EditButtonClick()
         {
-            //редактирование песни
-            //EditOrAddEntertainmentWindow addOrEditEntertainment = new EditOrAddEntertainmentWindow(new EditOrAddEntertainmentWindowVM(this, SelectedEntertainment));
-            //addOrEditEntertainment.ShowDialog();
+            EditOrAddSongWindow addOrEditSong = new EditOrAddSongWindow(new EditOrAddSongWindowVM(this, SelectedSong));
+            addOrEditSong.ShowDialog();
         }
 
         internal void DeleteButtonClick()
