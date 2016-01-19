@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Windows;
 using WpfCritic.DataLayer;
 using WpfCritic.View;
 using WpfCritic.ViewModel.Data;
@@ -25,9 +27,8 @@ namespace WpfCritic.ViewModel
             {
                 _selectedEntertainment = value;
                 OnPropertyChanged("SelectedEntertainment");
-                if (_selectedEntertainment != null)
-                    WhenSelectedButtonEnabled = true;
-                else WhenSelectedButtonEnabled = false;
+                OnPropertyChanged("WhenSelectedButtonEnabled");
+                OnPropertyChanged("SongButtonVisibility");
             }
         }
 
@@ -35,6 +36,7 @@ namespace WpfCritic.ViewModel
         {
             get { return _entertainmentTypes; }
         }
+
         public string SelectedType
         {
             get { return _selectedType; }
@@ -57,11 +59,17 @@ namespace WpfCritic.ViewModel
 
         public bool WhenSelectedButtonEnabled
         {
-            get { return _whenSelectedButtonEnabled; }
-            set
+            get { return SelectedEntertainment != null; }
+        }
+
+        public Visibility SongButtonVisibility
+        {
+            get
             {
-                _whenSelectedButtonEnabled = value;
-                OnPropertyChanged("WhenSelectedButtonEnabled");
+                if (SelectedEntertainment != null)
+                    if (SelectedEntertainment.EntertainmentType == Entertainment.Type.Album)
+                        return Visibility.Visible;
+                return Visibility.Collapsed;
             }
         }
 
@@ -94,16 +102,22 @@ namespace WpfCritic.ViewModel
                 entertainmentDetailsWindow.ShowDialog();
             }
         }
+        
+        internal void SongButtonClick()
+        {
+            EditOrAddSongInEntertainmentWindow editOrAddSongInEntertainment = new EditOrAddSongInEntertainmentWindow(SelectedEntertainment);
+            editOrAddSongInEntertainment.ShowDialog();
+        }
 
         internal void AddButtonClick()
         {
-            EditOrAddEntertainmentWindow addOrEditEntertainment = new EditOrAddEntertainmentWindow(new EditOrAddEntertainmentWindowVM(this));
+            EditOrAddEntertainmentWindow addOrEditEntertainment = new EditOrAddEntertainmentWindow(this);
             addOrEditEntertainment.ShowDialog(); 
         }
 
         internal void EditButtonClick()
         {
-            EditOrAddEntertainmentWindow addOrEditEntertainment = new EditOrAddEntertainmentWindow(new EditOrAddEntertainmentWindowVM(this, SelectedEntertainment));
+            EditOrAddEntertainmentWindow addOrEditEntertainment = new EditOrAddEntertainmentWindow(this, SelectedEntertainment);
             addOrEditEntertainment.ShowDialog();
         }
 

@@ -10,7 +10,6 @@ namespace WpfCritic.ViewModel
         private ObservableCollection<SongVM> _songCollection = new ObservableCollection<SongVM>();
         private SongVM _selectedSong;
         private string _partOfNameForSearch;
-        private bool _whenSelectedButtonEnabled;
 
         public ObservableCollection<SongVM> SongCollection
         {
@@ -23,9 +22,7 @@ namespace WpfCritic.ViewModel
             {
                 _selectedSong = value;
                 OnPropertyChanged("SelectedSong");
-                if (_selectedSong != null)
-                    WhenSelectedButtonEnabled = true;
-                else WhenSelectedButtonEnabled = false;
+                OnPropertyChanged("WhenSelectedButtonEnabled");
             }
         }
 
@@ -41,12 +38,7 @@ namespace WpfCritic.ViewModel
 
         public bool WhenSelectedButtonEnabled
         {
-            get { return _whenSelectedButtonEnabled; }
-            set
-            {
-                _whenSelectedButtonEnabled = value;
-                OnPropertyChanged("WhenSelectedButtonEnabled");
-            }
+            get { return SelectedSong != null; }
         }
 
         public void Add(object item)
@@ -70,13 +62,13 @@ namespace WpfCritic.ViewModel
 
         internal void AddButtonClick()
         {
-            EditOrAddSongWindow addOrEditSong = new EditOrAddSongWindow(new EditOrAddSongWindowVM(this));
+            EditOrAddSongWindow addOrEditSong = new EditOrAddSongWindow(this);
             addOrEditSong.ShowDialog();
         }
 
         internal void EditButtonClick()
         {
-            EditOrAddSongWindow addOrEditSong = new EditOrAddSongWindow(new EditOrAddSongWindowVM(this, SelectedSong));
+            EditOrAddSongWindow addOrEditSong = new EditOrAddSongWindow(this, SelectedSong);
             addOrEditSong.ShowDialog();
         }
 

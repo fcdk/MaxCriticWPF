@@ -37,5 +37,9 @@ namespace WpfCritic.View
             ((EntertainmentUserControlVM)DataContext).DeleteButtonClick();
         }
 
+        private void songButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((EntertainmentUserControlVM)DataContext).SongButtonClick();
+        }
     }
 }

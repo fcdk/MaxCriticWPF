@@ -1,15 +1,16 @@
 ﻿using System.Windows;
 using WpfCritic.ViewModel;
+using WpfCritic.ViewModel.Data;
 
 namespace WpfCritic.View
 {
     public partial class EditOrAddSongWindow : Window
     {
-        public EditOrAddSongWindow(EditOrAddSongWindowVM viewModel)
+        public EditOrAddSongWindow(ICollectionsEntity entity, SongVM song = null)
         {
             InitializeComponent();
 
-            DataContext = viewModel;
+            DataContext = new EditOrAddSongWindowVM(entity, song);
         }
 
         private void okButton_Click(object sender, RoutedEventArgs e)

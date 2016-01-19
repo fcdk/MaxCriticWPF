@@ -1,16 +1,16 @@
 ﻿using System.Windows;
-using System.Windows.Input;
 using WpfCritic.ViewModel;
+using WpfCritic.ViewModel.Data;
 
 namespace WpfCritic.View
 {
     public partial class EditOrAddEntertainmentWindow : Window
     {
-        public EditOrAddEntertainmentWindow(EditOrAddEntertainmentWindowVM viewModel)
+        public EditOrAddEntertainmentWindow(ICollectionsEntity entity, EntertainmentVM entertainment = null)
         {
             InitializeComponent();
 
-            DataContext = viewModel;
+            DataContext = new EditOrAddEntertainmentWindowVM(entity, entertainment);
         }
 
         private void entertainmentTypeUkrComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
