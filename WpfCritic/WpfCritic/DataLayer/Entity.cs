@@ -47,7 +47,7 @@ namespace WpfCritic.DataLayer
 
             _connectionString = ConfigurationManager.ConnectionStrings[_connectionName].ConnectionString;
             SqlConnection connection = new SqlConnection(_connectionString);
-
+                       
             string selectSQL = "SELECT * FROM " + _tableName + ";";
             _dataAdapter = new SqlDataAdapter(selectSQL, connection);
             SqlCommandBuilder commandBuilder = new SqlCommandBuilder(_dataAdapter);
@@ -56,6 +56,8 @@ namespace WpfCritic.DataLayer
             _dataAdapter.DeleteCommand = commandBuilder.GetDeleteCommand();
 
             _dataTable.TableName = _tableName;
+
+            _dataTable.PrimaryKey = new DataColumn[] { _dataTable.Columns[_idColumnName] }; 
         }
 
         public Entity(DataRow row = null)

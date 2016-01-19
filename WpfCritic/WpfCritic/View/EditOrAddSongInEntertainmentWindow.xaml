@@ -41,7 +41,7 @@
 
                 <Label Grid.Row="0" Content="Пісні в альбомі" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF00167C" FontFamily="Impact" FontSize="16" />
                 <ListBox Grid.Row="1" x:Name="SongsListBox" ItemsSource="{Binding AddedSongCollection}" SelectedItem="{Binding AddedSelectedSong}" Margin="4,2,4,2" Opacity="0.8"  />
-                <Button Grid.Row="2" Name="deleteButton" Margin="4,0,4,4" Padding="4,2,4,2" Width="70" Content="Видалити" HorizontalAlignment="Right" Click="deleteButton_Click" />
+                <Button Grid.Row="2" Name="deleteButton" IsEnabled="{Binding WhenSelectedButtonEnabled}" Margin="4,0,4,4" Padding="4,2,4,2" Width="70" Content="Видалити" HorizontalAlignment="Right" Click="deleteButton_Click" />
             </Grid>
             <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Name="okButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="OK" Click="okButton_Click" />

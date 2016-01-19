@@ -29,6 +29,11 @@ namespace WpfCritic.DataLayer
             }
         }
 
+        public Song[] GetSongsByEntertainment(Entertainment entertainment)
+        {
+
+        }
+
         public Song(DataRow row) : base(row) { }
         public Song(string name, TimeSpan duration, string lyrics) : base()
         {

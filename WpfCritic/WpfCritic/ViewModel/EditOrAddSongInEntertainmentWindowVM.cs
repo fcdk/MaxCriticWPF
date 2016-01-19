@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using WpfCritic.DataLayer;
 using WpfCritic.ViewModel.Data;
 
 namespace WpfCritic.ViewModel
@@ -39,7 +40,7 @@ namespace WpfCritic.ViewModel
 
         public bool WhenSelectedButtonEnabled
         {
-            get { return SelectedSong != null; }
+            get { return AddedSelectedSong != null; }
         }
 
         internal void AddButtonClick()
@@ -65,6 +66,8 @@ namespace WpfCritic.ViewModel
         public EditOrAddSongInEntertainmentWindowVM(EntertainmentVM entertainment)
         {
             _album = entertainment;
+
+            Song.
         }
 
     }
