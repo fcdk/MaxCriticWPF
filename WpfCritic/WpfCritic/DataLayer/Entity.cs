@@ -167,14 +167,16 @@ namespace WpfCritic.DataLayer
             _dataAdapter.SelectCommand.CommandText = "SELECT TOP(10) * FROM " + _tableName + ";";
 
             DataTable dataTable = new DataTable();
+            dataTable.TableName = "looool";
 
             if (_dataAdapter.Fill(dataTable) > 0)
             {
-                foreach(DataRow dr in dataTable.Rows)
-                {
-                    result.Add((T)Activator.CreateInstance(typeof(T), dr));
-                }
                 _dataTable.Merge(dataTable);
+
+                foreach (DataRow dr in dataTable.Rows)
+                {
+                    result.Add((T)Activator.CreateInstance(typeof(T), _dataTable.Select(_idColumnName + "='" + dr[_idColumnName].ToString() + "'")[0]));
+                }
                 return result.ToArray();
             }
             return null;
