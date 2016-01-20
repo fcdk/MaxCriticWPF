@@ -170,15 +170,19 @@ namespace WpfCritic.DataLayer
             else
                 _dataAdapter.SelectCommand.Parameters["@type"].Value = type.ToString();
 
-            if (_dataAdapter.Fill(_dataTable) > 0)
+            _dataAdapter.Fill(_dataTable);
+            DataRow[] selectedRow = _dataTable.Select("EntertainmentType = '" + type.ToString() + "'");
+            if(selectedRow == null)
+                return null;
+            int selectedRowCount = selectedRow.Length;
+            if (selectedRowCount > 10)
+                selectedRowCount = 10;
+
+            foreach (DataRow dr in selectedRow)
             {
-                foreach (DataRow dr in _dataTable.Rows)
-                {
-                    result.Add(new Entertainment(dr));
-                }
-                return result.ToArray();
+                result.Add(new Entertainment(dr));
             }
-            return null;
+            return result.ToArray();
         }
 
         // по дефолту, если type=null, то запускаем поиск по всем типам
@@ -198,10 +202,12 @@ namespace WpfCritic.DataLayer
             else
                 _dataAdapter.SelectCommand.Parameters["@type"].Value = type.ToString();
 
-            _dataTable.Clear();
-            if (_dataAdapter.Fill(_dataTable) > 0)
+            _dataAdapter.Fill(_dataTable);
+            DataRow[] selectedRow = _dataTable.Select(_nameColumnName + " LIKE '%" + partOfName + "%' AND EntertainmentType = '" + type.ToString() + "'");
+
+            if (selectedRow != null)
             {
-                foreach (DataRow dr in _dataTable.Rows)
+                foreach (DataRow dr in selectedRow)
                 {
                     result.Add(new Entertainment(dr));
                 }

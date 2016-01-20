@@ -30,6 +30,7 @@ namespace WpfCritic.DataLayer
         }
 
         private bool _isNew;
+
         public bool IsNew { get { return _isNew; } }
 
         public Guid Id
@@ -47,7 +48,7 @@ namespace WpfCritic.DataLayer
 
             _connectionString = ConfigurationManager.ConnectionStrings[_connectionName].ConnectionString;
             SqlConnection connection = new SqlConnection(_connectionString);
-                       
+
             string selectSQL = "SELECT * FROM " + _tableName + ";";
             _dataAdapter = new SqlDataAdapter(selectSQL, connection);
             SqlCommandBuilder commandBuilder = new SqlCommandBuilder(_dataAdapter);
@@ -55,9 +56,11 @@ namespace WpfCritic.DataLayer
             _dataAdapter.InsertCommand = commandBuilder.GetInsertCommand();
             _dataAdapter.DeleteCommand = commandBuilder.GetDeleteCommand();
 
-            _dataTable.TableName = _tableName;
+            _dataAdapter.SelectCommand.CommandText = "SELECT TOP(10) * FROM " + _tableName + ";";
+            _dataAdapter.Fill(_dataTable);
 
-            _dataTable.PrimaryKey = new DataColumn[] { _dataTable.Columns[_idColumnName] }; 
+            _dataTable.TableName = _tableName;
+            _dataTable.PrimaryKey = new DataColumn[] { _dataTable.Columns[_idColumnName] };
         }
 
         public Entity(DataRow row = null)
@@ -73,6 +76,7 @@ namespace WpfCritic.DataLayer
                 Id = Guid.NewGuid();
                 _isNew = true;
             }
+
         }
 
         public void Save()
@@ -115,10 +119,11 @@ namespace WpfCritic.DataLayer
         {
             List<T> result = new List<T>();
             _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + ((query == "") ? ";" : " WHERE " + query + ";");
-            _dataTable.Clear();
-            if (_dataAdapter.Fill(_dataTable) > 0)
+            _dataAdapter.Fill(_dataTable);
+            DataRow[] selectedRows = _dataTable.Select(query);
+            if (selectedRows != null)
             {
-                foreach (DataRow dr in _dataTable.Rows)
+                foreach (DataRow dr in selectedRows)
                 {
                     result.Add((T)Activator.CreateInstance(typeof(T), dr));
                 }
@@ -142,10 +147,11 @@ namespace WpfCritic.DataLayer
             else
                 _dataAdapter.SelectCommand.Parameters["@partOfName"].Value = partOfName;
 
-            _dataTable.Clear();
-            if (_dataAdapter.Fill(_dataTable) > 0)
+            _dataAdapter.Fill(_dataTable);
+            DataRow[] selectedRows = _dataTable.Select(_nameColumnName + " LIKE '%" + partOfName + "%'");
+            if (selectedRows != null)
             {
-                foreach (DataRow dr in _dataTable.Rows)
+                foreach (DataRow dr in selectedRows)
                 {
                     result.Add((T)Activator.CreateInstance(typeof(T), dr));
                 }
@@ -159,13 +165,16 @@ namespace WpfCritic.DataLayer
             List<T> result = new List<T>();
 
             _dataAdapter.SelectCommand.CommandText = "SELECT TOP(10) * FROM " + _tableName + ";";
-            _dataTable.Clear();
-            if (_dataAdapter.Fill(_dataTable) > 0)
+
+            DataTable dataTable = new DataTable();
+
+            if (_dataAdapter.Fill(dataTable) > 0)
             {
-                foreach (DataRow dr in _dataTable.Rows)
+                foreach(DataRow dr in dataTable.Rows)
                 {
                     result.Add((T)Activator.CreateInstance(typeof(T), dr));
                 }
+                _dataTable.Merge(dataTable);
                 return result.ToArray();
             }
             return null;

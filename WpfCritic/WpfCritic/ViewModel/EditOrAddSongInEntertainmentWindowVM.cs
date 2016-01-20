@@ -67,7 +67,7 @@ namespace WpfCritic.ViewModel
         {
             _album = entertainment;
 
-            Song.
+            //Song.
         }
 
     }

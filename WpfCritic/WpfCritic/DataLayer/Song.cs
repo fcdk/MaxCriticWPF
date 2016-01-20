@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace WpfCritic.DataLayer
 {
@@ -29,10 +31,21 @@ namespace WpfCritic.DataLayer
             }
         }
 
-        public Song[] GetSongsByEntertainment(Entertainment entertainment)
-        {
+        //public Song[] GetSongsByEntertainment(Entertainment entertainment)
+        //{
+        //    List<Song> result = new List<Song>();
 
-        }
+        //    _dataAdapter.SelectCommand.CommandText = "SELECT SongId, Name, Duration, Lyrics FROM " + _tableName + ", " + SongInEntertainment._tableName + " WHERE EntertainmentId=@id;";
+
+        //    if (!_dataAdapter.SelectCommand.Parameters.Contains("@id"))
+        //        _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@id", entertainment.Id.ToString()));
+        //    else
+        //        _dataAdapter.SelectCommand.Parameters["@id"].Value = entertainment.Id.ToString();
+
+        //    _dataAdapter.Fill(_dataTable);
+
+
+        //}
 
         public Song(DataRow row) : base(row) { }
         public Song(string name, TimeSpan duration, string lyrics) : base()
