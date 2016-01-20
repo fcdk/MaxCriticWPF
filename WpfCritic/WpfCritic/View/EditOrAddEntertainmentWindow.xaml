@@ -7,7 +7,7 @@
         xmlns:wpfToolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Контент" Height="683.83" Width="713.17">
+        Title="Контент" Height="683.83" Width="713.17" MinHeight="683.83" MinWidth="713.17">
     <Grid Background="AliceBlue">
         <Grid Margin="4,8,4,8">
             <Grid.RowDefinitions>

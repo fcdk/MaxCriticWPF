@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace WpfCritic.DataLayer
 {
@@ -17,6 +19,30 @@ namespace WpfCritic.DataLayer
         {
             get { return (Guid)Row["EntertainmentId"]; }
             private set { Row["EntertainmentId"] = value; }
+        }
+
+        public static SongInEntertainment[] GetSongInEntertainmentByEntertainment(Entertainment entertainment)
+        {
+            List<SongInEntertainment> result = new List<SongInEntertainment>();
+
+            _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE EntertainmentId=@id";
+
+            if (!_dataAdapter.SelectCommand.Parameters.Contains("@id"))
+                _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@id", entertainment.Id));
+            else
+                _dataAdapter.SelectCommand.Parameters["@id"].Value = entertainment.Id;
+
+            _dataAdapter.Fill(_dataTable);
+            DataRow[] selectedRows = _dataTable.Select("EntertainmentId = " + entertainment.Id.ToString());
+            if (selectedRows != null)
+            {
+                foreach (DataRow dr in selectedRows)
+                {
+                    result.Add(new SongInEntertainment(dr));
+                }
+                return result.ToArray();
+            }
+            return null;
         }
 
         public SongInEntertainment(DataRow row) : base(row) { }

@@ -134,7 +134,7 @@ namespace WpfCritic.ViewModel.Data
         public override string ToString()
         {
             if (EntertainmentType == Entertainment.Type.Album)
-                return null; // заглушка, тут надо брать авторов альбома!!!
+                return Name + " (" + ReleaseDate.Year + ")"; // заглушка, тут надо брать ещё авторов альбома!!!
             return Name + " (" + ReleaseDate.Year + ")";
         }
 

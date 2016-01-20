@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfCritic.View"
         xmlns:localdata="clr-namespace:WpfCritic.ViewModel.Data"
         mc:Ignorable="d"
-        Title="Пісні в контенті" Height="602.256" Width="773.685" MinHeight="602.256" MinWidth="773.685">
+        Title="Пісні в контенті" Height="618.756" Width="791.685" MinHeight="618.756" MinWidth="791.685">
     <Grid Background="AliceBlue">
         <Grid Margin="4,8,4,8">
             <Grid.RowDefinitions>
@@ -20,7 +20,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Path=Album, StringFormat='Пісні в альбомі {0}'}" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Path=Album, StringFormat='Пісні в альбомі {0}'}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF00167C" FontFamily="Impact" FontSize="21.333" />
             <local:SongUserControl Grid.Row="1" Grid.Column="0" x:Name="Songs" DataContext="{Binding SongViewModel}" />
             <Button Name="addButton" Grid.Row="1" Grid.Column="1" IsEnabled="{Binding SongViewModel.WhenSelectedButtonEnabled}" Padding="4,2,4,2" Width="50" Height="30" Content=">>>" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="18.667" Click="addButton_Click" />
             <Grid Grid.Row="1" Grid.Column="2">

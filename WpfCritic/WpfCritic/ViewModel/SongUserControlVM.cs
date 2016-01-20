@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows;
 using WpfCritic.DataLayer;
 using WpfCritic.View;
 using WpfCritic.ViewModel.Data;
@@ -10,6 +11,9 @@ namespace WpfCritic.ViewModel
         private ObservableCollection<SongVM> _songCollection = new ObservableCollection<SongVM>();
         private SongVM _selectedSong;
         private string _partOfNameForSearch;
+        private Visibility _addButtonVisibility;
+        private Visibility _editButtonVisibility;
+        private Visibility _deleteButtonVisibility;
 
         public ObservableCollection<SongVM> SongCollection
         {
@@ -39,6 +43,36 @@ namespace WpfCritic.ViewModel
         public bool WhenSelectedButtonEnabled
         {
             get { return SelectedSong != null; }
+        }
+
+        public Visibility AddButtonVisibility
+        {
+            get{ return _addButtonVisibility; }
+            set
+            {
+                _addButtonVisibility = value;
+                OnPropertyChanged("AddButtonVisibility");
+            }
+        }
+
+        public Visibility EditButtonVisibility
+        {
+            get { return _editButtonVisibility; }
+            set
+            {
+                _editButtonVisibility = value;
+                OnPropertyChanged("EditButtonVisibility");
+            }
+        }
+
+        public Visibility DeleteButtonVisibility
+        {
+            get { return _deleteButtonVisibility; }
+            set
+            {
+                _deleteButtonVisibility = value;
+                OnPropertyChanged("DeleteButtonVisibility");
+            }
         }
 
         public void Add(object item)
@@ -80,11 +114,14 @@ namespace WpfCritic.ViewModel
 
         public SongUserControlVM()
         {
+            AddButtonVisibility = Visibility.Visible;
+            EditButtonVisibility = Visibility.Visible;
+            DeleteButtonVisibility = Visibility.Visible;
+
             Song[] songs = Song.GetRandomFirstTen();
             if (songs != null)
                 foreach (var song in songs)
                     _songCollection.Add(new SongVM(song));
-                
         }
 
     }

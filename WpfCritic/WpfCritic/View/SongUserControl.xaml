@@ -33,9 +33,9 @@
             </StackPanel>
             <ListBox Grid.Row="2" Opacity="0.8" x:Name="SongsListBox" ItemsSource="{Binding SongCollection}" SelectedItem="{Binding SelectedSong}" />
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Name="addButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Додати" Click="addButton_Click" />
-                <Button IsEnabled="{Binding WhenSelectedButtonEnabled}" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Редагувати" Click="editButton_Click" />
-                <Button IsEnabled="{Binding WhenSelectedButtonEnabled}" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Видалити" Click="deleteButton_Click" />
+                <Button Name="addButton" Visibility="{Binding AddButtonVisibility}" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Додати" Click="addButton_Click" />
+                <Button Name="editButton" IsEnabled="{Binding WhenSelectedButtonEnabled}" Visibility="{Binding EditButtonVisibility}" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Редагувати" Click="editButton_Click" />
+                <Button Name="deleteButton" IsEnabled="{Binding WhenSelectedButtonEnabled}" Visibility="{Binding DeleteButtonVisibility}" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Видалити" Click="deleteButton_Click" />
             </StackPanel>
 
         </Grid>
