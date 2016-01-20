@@ -25,7 +25,7 @@ namespace WpfCritic.View
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            ((EditOrAddSongInEntertainmentWindowVM)DataContext).CancelButtonClick();
+            this.Close();
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)

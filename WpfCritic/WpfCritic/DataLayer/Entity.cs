@@ -76,7 +76,6 @@ namespace WpfCritic.DataLayer
                 Id = Guid.NewGuid();
                 _isNew = true;
             }
-
         }
 
         public void Save()
@@ -166,20 +165,17 @@ namespace WpfCritic.DataLayer
 
             _dataAdapter.SelectCommand.CommandText = "SELECT TOP(10) * FROM " + _tableName + ";";
 
-            DataTable dataTable = new DataTable();
-            dataTable.TableName = "looool";
-
-            if (_dataAdapter.Fill(dataTable) > 0)
+            _dataAdapter.Fill(_dataTable);
+            int rowsCount = _dataTable.Rows.Count;
+            if(rowsCount == 0)
+                return null;
+            if (rowsCount > 10)
+                rowsCount = 10;
+            for (int i = 0; i < rowsCount; i++)
             {
-                _dataTable.Merge(dataTable);
-
-                foreach (DataRow dr in dataTable.Rows)
-                {
-                    result.Add((T)Activator.CreateInstance(typeof(T), _dataTable.Select(_idColumnName + "='" + dr[_idColumnName].ToString() + "'")[0]));
-                }
-                return result.ToArray();
+                result.Add((T)Activator.CreateInstance(typeof(T), _dataTable.Rows[i]));
             }
-            return null;
+            return result.ToArray(); 
         }
 
     }

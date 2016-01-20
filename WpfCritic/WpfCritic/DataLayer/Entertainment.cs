@@ -178,9 +178,9 @@ namespace WpfCritic.DataLayer
             if (selectedRowCount > 10)
                 selectedRowCount = 10;
 
-            foreach (DataRow dr in selectedRow)
+            for (int i = 0; i < selectedRowCount; i++)
             {
-                result.Add(new Entertainment(dr));
+                result.Add(new Entertainment(selectedRow[i]));
             }
             return result.ToArray();
         }

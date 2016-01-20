@@ -83,9 +83,8 @@ namespace WpfCritic.ViewModel
             Song[] songs = Song.GetRandomFirstTen();
             if (songs != null)
                 foreach (var song in songs)
-                {
                     _songCollection.Add(new SongVM(song));
-                }
+                
         }
 
     }

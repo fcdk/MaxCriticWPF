@@ -31,21 +31,32 @@ namespace WpfCritic.DataLayer
             }
         }
 
-        //public Song[] GetSongsByEntertainment(Entertainment entertainment)
-        //{
-        //    List<Song> result = new List<Song>();
+        public static Song[] GetSongsByAlbum(Entertainment album)
+        {
+            if (album.EntertainmentType != Entertainment.Type.Album)
+                return null;
 
-        //    _dataAdapter.SelectCommand.CommandText = "SELECT SongId, Name, Duration, Lyrics FROM " + _tableName + ", " + SongInEntertainment._tableName + " WHERE EntertainmentId=@id;";
+            List<Song> result = new List<Song>();
 
-        //    if (!_dataAdapter.SelectCommand.Parameters.Contains("@id"))
-        //        _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@id", entertainment.Id.ToString()));
-        //    else
-        //        _dataAdapter.SelectCommand.Parameters["@id"].Value = entertainment.Id.ToString();
+            _dataAdapter.SelectCommand.CommandText = "SELECT " + _tableName + ".SongId, Name, Duration, Lyrics FROM " + _tableName + ", " + SongInEntertainment._tableName + " WHERE EntertainmentId=@id;";
 
-        //    _dataAdapter.Fill(_dataTable);
+            if (!_dataAdapter.SelectCommand.Parameters.Contains("@id"))
+                _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@id", album.Id.ToString()));
+            else
+                _dataAdapter.SelectCommand.Parameters["@id"].Value = album.Id.ToString();
 
-
-        //}
+            DataTable dataTable = new DataTable();
+            if (_dataAdapter.Fill(dataTable) > 0)
+            {
+                _dataTable.Merge(dataTable);
+                foreach (DataRow dr in dataTable.Rows)
+                {
+                    result.Add(new Song(_dataTable.Rows.Find(dr[_idColumnName])));
+                }
+                return result.ToArray();
+            }
+            return null;
+        }
 
         public Song(DataRow row) : base(row) { }
         public Song(string name, TimeSpan duration, string lyrics) : base()

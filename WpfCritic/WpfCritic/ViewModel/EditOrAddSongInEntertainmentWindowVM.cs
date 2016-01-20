@@ -53,11 +53,6 @@ namespace WpfCritic.ViewModel
             throw new NotImplementedException();
         }
 
-        internal void CancelButtonClick()
-        {
-            throw new NotImplementedException();
-        }
-
         internal void DeleteButtonClick()
         {
             throw new NotImplementedException();
@@ -67,7 +62,10 @@ namespace WpfCritic.ViewModel
         {
             _album = entertainment;
 
-            //Song.
+            Song[] songs = Song.GetSongsByAlbum(_album.EntertainmentDL);
+            if (songs != null)
+                foreach (var song in songs)
+                    _addedSongCollection.Add(new SongVM(song));
         }
 
     }
