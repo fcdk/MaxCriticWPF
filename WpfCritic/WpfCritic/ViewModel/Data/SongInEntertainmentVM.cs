@@ -1,35 +1,36 @@
-﻿using WpfCritic.DataLayer;
+﻿using System;
+using WpfCritic.DataLayer;
 
 namespace WpfCritic.ViewModel.Data
 {
     public class SongInEntertainmentVM : ViewModelBase
     {
         private SongInEntertainment _songInEntertainment;
-        private SongVM _song;
-        private EntertainmentVM _entertainment;
 
         public SongInEntertainment SongInEntertainmentDL
         {
             get { return _songInEntertainment; }
         }
 
-        public SongVM Song
+        public Guid SongId
         {
-            get { return _song; }
-            set { _song = value; OnPropertyChanged("Song"); }
+            get { return _songInEntertainment.SongId; }
+            set { _songInEntertainment.SongId = value; OnPropertyChanged("SongId"); }
+        }
+        public Guid EntertainmentId
+        {
+            get { return _songInEntertainment.EntertainmentId; }
+            set { _songInEntertainment.EntertainmentId = value; OnPropertyChanged("EntertainmentId"); }
         }
 
-        public EntertainmentVM Entertainment
+        public SongInEntertainmentVM(SongInEntertainment songInEntertainment)
         {
-            get { return _entertainment; }
-            set { _entertainment = value; OnPropertyChanged("Entertainment"); }
+            _songInEntertainment = songInEntertainment;
         }
 
         public SongInEntertainmentVM(SongVM song, EntertainmentVM entertainment)
         {
-            Song = song;
-            Entertainment = entertainment;
-            _songInEntertainment = new SongInEntertainment(Song.SongDL, Entertainment.EntertainmentDL);
+            _songInEntertainment = new SongInEntertainment(song.SongDL, entertainment.EntertainmentDL);
         }
 
     }

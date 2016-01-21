@@ -11,7 +11,7 @@ namespace WpfCritic.DataLayer
         public Guid UserId
         {
             get { return (Guid)Row["UserId"]; }
-            private set { Row["UserId"] = value; }
+            set { Row["UserId"] = value; }
         }
         public Guid EntertainmentId
         {

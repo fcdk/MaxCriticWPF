@@ -11,12 +11,12 @@ namespace WpfCritic.DataLayer
         public Guid PerformerId
         {
             get { return (Guid)Row["PerformerId"]; }
-            private set { Row["PerformerId"] = value; }
+            set { Row["PerformerId"] = value; }
         }
         public Guid EntertainmentId
         {
             get { return (Guid)Row["EntertainmentId"]; }
-            private set { Row["EntertainmentId"] = value; }
+            set { Row["EntertainmentId"] = value; }
         }
         public PerformerInEntertainment.Role PerformerRole
         {
