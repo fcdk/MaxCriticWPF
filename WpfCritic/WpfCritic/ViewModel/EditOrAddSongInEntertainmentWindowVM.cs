@@ -14,6 +14,7 @@ namespace WpfCritic.ViewModel
         private ObservableCollection<SongVM> _addedSongCollection = new ObservableCollection<SongVM>();
         private SongVM _addedSelectedSong;
         List<SongInEntertainmentVM> _songInEntertainmentCollection = new List<SongInEntertainmentVM>();
+        List<SongVM> _deletedSongCollection = new List<SongVM>();
 
         public SongUserControlVM SongViewModel
         {
@@ -48,17 +49,58 @@ namespace WpfCritic.ViewModel
 
         internal void AddButtonClick()
         {
-            throw new NotImplementedException();
+            foreach (SongVM song in _addedSongCollection)
+                if (SongVM.Comparison(song,SongViewModel.SelectedSong))
+                    return;
+            for (int i = 0; i < _deletedSongCollection.Count; i++)
+                if (SongVM.Comparison(_deletedSongCollection[i], SongViewModel.SelectedSong))
+                {
+                    _deletedSongCollection.Remove(_deletedSongCollection[i]);
+                    break;
+                }
+            _addedSongCollection.Add(SongViewModel.SelectedSong);
         }
 
         internal void DeleteButtonClick()
         {
-            throw new NotImplementedException();
+            foreach (SongInEntertainmentVM songInEntertainment in _songInEntertainmentCollection)
+                if (songInEntertainment.SongComparison(AddedSelectedSong))
+                {
+                    _deletedSongCollection.Add(AddedSelectedSong);
+                    break;
+                }
+            for (int i = 0; i < _addedSongCollection.Count; i++)
+                if (SongVM.Comparison(_addedSongCollection[i], AddedSelectedSong))
+                {
+                    _addedSongCollection.Remove(_addedSongCollection[i]);
+                    break;
+                }
         }
 
         internal void OkButtonClick()
         {
-            throw new NotImplementedException();
+            bool IsNew;
+
+            foreach (SongVM song in _addedSongCollection)
+            {
+                IsNew = true;
+                foreach (SongInEntertainmentVM songInEntertainment in _songInEntertainmentCollection)
+                    if (songInEntertainment.SongComparison(song))
+                    {
+                        IsNew = false;
+                        break;
+                    }
+                if (IsNew)
+                    (new SongInEntertainmentVM(song, Album)).SongInEntertainmentDL.Save();
+            }
+            foreach (SongVM song in _deletedSongCollection)
+                for (int i = 0; i < _songInEntertainmentCollection.Count; i++)
+                    if (_songInEntertainmentCollection[i].SongComparison(song))
+                    {
+                        _songInEntertainmentCollection[i].SongInEntertainmentDL.Delete();
+                        _songInEntertainmentCollection.Remove(_songInEntertainmentCollection[i]);
+                        break;
+                    }
         }
 
         public EditOrAddSongInEntertainmentWindowVM(EntertainmentVM entertainment)
@@ -70,13 +112,21 @@ namespace WpfCritic.ViewModel
             _songViewModel.DeleteButtonVisibility = Visibility.Collapsed;
 
             SongInEntertainment[] songInEntertainments = SongInEntertainment.GetSongInEntertainmentByEntertainment(_album.EntertainmentDL);
-            foreach (var songInEntertainment in songInEntertainments)
-                _songInEntertainmentCollection.Add();
 
-            Song[] songs = Song.GetSongsByAlbum(_album.EntertainmentDL);
-            if (songs != null)
+            if (songInEntertainments != null)
+            {
+                List<Guid> songIds = new List<Guid>();
+
+                foreach (var songInEntertainment in songInEntertainments)
+                {
+                    _songInEntertainmentCollection.Add(new SongInEntertainmentVM(songInEntertainment));
+                    songIds.Add(songInEntertainment.SongId);
+                }
+
+                Song[] songs = Song.GetSongsByIds(songIds.ToArray());
                 foreach (var song in songs)
                     _addedSongCollection.Add(new SongVM(song));
+            }
         }
 
     }

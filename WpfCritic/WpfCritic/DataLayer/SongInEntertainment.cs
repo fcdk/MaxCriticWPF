@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace WpfCritic.DataLayer
 {
@@ -33,15 +34,15 @@ namespace WpfCritic.DataLayer
                 _dataAdapter.SelectCommand.Parameters["@id"].Value = entertainment.Id;
 
             _dataAdapter.Fill(_dataTable);
-            DataRow[] selectedRows = _dataTable.Select("EntertainmentId = " + entertainment.Id.ToString());
-            if (selectedRows != null)
+            var selectedRows = from row in _dataTable.AsEnumerable().AsParallel()
+                               where (Guid)row["EntertainmentId"] == entertainment.Id
+                               select row;
+            foreach (DataRow dr in selectedRows)
             {
-                foreach (DataRow dr in selectedRows)
-                {
-                    result.Add(new SongInEntertainment(dr));
-                }
-                return result.ToArray();
+                result.Add(new SongInEntertainment(dr));
             }
+            if (result.Count != 0)
+                return result.ToArray();
             return null;
         }
 

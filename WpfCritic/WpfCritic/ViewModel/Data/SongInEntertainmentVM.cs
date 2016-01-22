@@ -33,5 +33,17 @@ namespace WpfCritic.ViewModel.Data
             _songInEntertainment = new SongInEntertainment(song.SongDL, entertainment.EntertainmentDL);
         }
 
+        public bool SongComparison(SongVM song)
+        {
+            return song.SongDL.Id == SongId;
+        }
+
+        public static bool Comparison (SongInEntertainmentVM songInEntertainment1, SongInEntertainmentVM songInEntertainment2)
+        {
+            if (songInEntertainment1 == null || songInEntertainment2 == null)
+                return false;
+            return Entity<SongInEntertainment>.Comparison(songInEntertainment1.SongInEntertainmentDL, songInEntertainment2.SongInEntertainmentDL);
+        }
+
     }
 }

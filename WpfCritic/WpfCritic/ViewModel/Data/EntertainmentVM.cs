@@ -172,5 +172,12 @@ namespace WpfCritic.ViewModel.Data
             }
         }
 
+        public static bool Comparison (EntertainmentVM entertainment1, EntertainmentVM entertainment2)
+        {
+            if (entertainment1 == null || entertainment2 == null)
+                return false;
+            return Entity<Entertainment>.Comparison(entertainment1.EntertainmentDL, entertainment2.EntertainmentDL);
+        }
+
     }
 }

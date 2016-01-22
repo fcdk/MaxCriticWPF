@@ -45,5 +45,12 @@ namespace WpfCritic.ViewModel.Data
             return Name + " " + Duration.ToString(@"hh\:mm\:ss");
         }
 
+        public static bool Comparison (SongVM song1, SongVM song2)
+        {
+            if (song1 == null || song2 == null)
+                return false;
+            return Entity<Song>.Comparison(song1.SongDL, song2.SongDL);
+        }
+
     }
 }

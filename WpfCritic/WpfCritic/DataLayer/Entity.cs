@@ -3,6 +3,7 @@ using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace WpfCritic.DataLayer
 {
@@ -56,7 +57,7 @@ namespace WpfCritic.DataLayer
             _dataAdapter.InsertCommand = commandBuilder.GetInsertCommand();
             _dataAdapter.DeleteCommand = commandBuilder.GetDeleteCommand();
 
-            _dataAdapter.SelectCommand.CommandText = "SELECT TOP(10) * FROM " + _tableName + ";";
+            _dataAdapter.SelectCommand.CommandText = "SELECT TOP(1) * FROM " + _tableName + ";";
             _dataAdapter.Fill(_dataTable);
 
             _dataTable.TableName = _tableName;
@@ -96,7 +97,10 @@ namespace WpfCritic.DataLayer
 
         public static T GetById(Guid id)
         {
-            DataRow[] result = _dataTable.Select(_idColumnName + " = '" + id.ToString() + "'");
+            var query = from row in _dataTable.AsEnumerable().AsParallel()
+                        where (Guid)row[_idColumnName] == id
+                        select row;
+            DataRow[] result = query.ToArray();
             if (result.Length == 1)
                 return (T)Activator.CreateInstance(typeof(T), result[0]);
             else
@@ -109,7 +113,12 @@ namespace WpfCritic.DataLayer
                     _dataAdapter.SelectCommand.Parameters["@id"].Value = id;
 
                 if (_dataAdapter.Fill(_dataTable) == 1)
-                    return (T)Activator.CreateInstance(typeof(T), _dataTable.Select(_idColumnName + " = '" + id.ToString() + "'")[0]);
+                {
+                    var selectedRow = from row in _dataTable.AsEnumerable().AsParallel()
+                                      where (Guid)row[_idColumnName] == id
+                                      select row;
+                    return (T)Activator.CreateInstance(typeof(T), selectedRow.ToArray()[0]);
+                }
                 return null;
             }
         } 
@@ -120,7 +129,7 @@ namespace WpfCritic.DataLayer
             _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + ((query == "") ? ";" : " WHERE " + query + ";");
             _dataAdapter.Fill(_dataTable);
             DataRow[] selectedRows = _dataTable.Select(query);
-            if (selectedRows != null)
+            if (selectedRows.Length != 0)
             {
                 foreach (DataRow dr in selectedRows)
                 {
@@ -147,15 +156,17 @@ namespace WpfCritic.DataLayer
                 _dataAdapter.SelectCommand.Parameters["@partOfName"].Value = partOfName;
 
             _dataAdapter.Fill(_dataTable);
-            DataRow[] selectedRows = _dataTable.Select(_nameColumnName + " LIKE '%" + partOfName + "%'");
-            if (selectedRows != null)
+
+            var selectedRows = from row in _dataTable.AsEnumerable().AsParallel()
+                               where row[_nameColumnName].ToString().Contains(partOfName)
+                               select row;
+
+            foreach (DataRow dr in selectedRows)
             {
-                foreach (DataRow dr in selectedRows)
-                {
-                    result.Add((T)Activator.CreateInstance(typeof(T), dr));
-                }
-                return result.ToArray();
+                result.Add((T)Activator.CreateInstance(typeof(T), dr));
             }
+            if (result.Count != 0)
+                return result.ToArray();
             return null;
         }
 
@@ -166,16 +177,22 @@ namespace WpfCritic.DataLayer
             _dataAdapter.SelectCommand.CommandText = "SELECT TOP(10) * FROM " + _tableName + ";";
 
             _dataAdapter.Fill(_dataTable);
-            int rowsCount = _dataTable.Rows.Count;
-            if(rowsCount == 0)
-                return null;
-            if (rowsCount > 10)
-                rowsCount = 10;
-            for (int i = 0; i < rowsCount; i++)
+            var selectedRows = (from row in _dataTable.AsEnumerable().AsParallel()
+                                select row).Take(10);
+            foreach (DataRow dr in selectedRows)
             {
-                result.Add((T)Activator.CreateInstance(typeof(T), _dataTable.Rows[i]));
+                result.Add((T)Activator.CreateInstance(typeof(T), dr));
             }
-            return result.ToArray(); 
+            if (result.Count != 0)
+                return result.ToArray();
+            return null;
+        }
+        
+        public static bool Comparison (Entity<T> entity1, Entity<T> entity2)
+        {
+            if (Object.ReferenceEquals(entity1, entity2)) { return true; }
+            if (entity1 == null || entity2 == null) { return false; }
+            return entity1.Id == entity2.Id;
         }
 
     }

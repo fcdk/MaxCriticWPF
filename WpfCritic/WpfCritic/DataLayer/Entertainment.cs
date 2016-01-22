@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace WpfCritic.DataLayer
 {
@@ -171,18 +172,16 @@ namespace WpfCritic.DataLayer
                 _dataAdapter.SelectCommand.Parameters["@type"].Value = type.ToString();
 
             _dataAdapter.Fill(_dataTable);
-            DataRow[] selectedRow = _dataTable.Select("EntertainmentType = '" + type.ToString() + "'");
-            if(selectedRow == null)
-                return null;
-            int selectedRowCount = selectedRow.Length;
-            if (selectedRowCount > 10)
-                selectedRowCount = 10;
-
-            for (int i = 0; i < selectedRowCount; i++)
+            var selectedRows = (from row in _dataTable.AsEnumerable().AsParallel()
+                                where (Entertainment.Type)Enum.Parse(typeof(Entertainment.Type), row["EntertainmentType"].ToString()) == type
+                                select row).Take(10);
+            foreach (DataRow dr in selectedRows)
             {
-                result.Add(new Entertainment(selectedRow[i]));
+                result.Add(new Entertainment(dr));
             }
-            return result.ToArray();
+            if (result.Count != 0)
+                return result.ToArray();
+            return null;
         }
 
         // по дефолту, если type=null, то запускаем поиск по всем типам
@@ -203,16 +202,16 @@ namespace WpfCritic.DataLayer
                 _dataAdapter.SelectCommand.Parameters["@type"].Value = type.ToString();
 
             _dataAdapter.Fill(_dataTable);
-            DataRow[] selectedRow = _dataTable.Select(_nameColumnName + " LIKE '%" + partOfName + "%' AND EntertainmentType = '" + type.ToString() + "'");
-
-            if (selectedRow != null)
+            var selectedRows = from row in _dataTable.AsEnumerable().AsParallel()
+                               where ((Entertainment.Type)Enum.Parse(typeof(Entertainment.Type), row["EntertainmentType"].ToString()) == type)
+                               && (row[_nameColumnName].ToString().Contains(partOfName))
+                               select row;
+            foreach (DataRow dr in selectedRows)
             {
-                foreach (DataRow dr in selectedRow)
-                {
-                    result.Add(new Entertainment(dr));
-                }
-                return result.ToArray();
+                result.Add(new Entertainment(dr));
             }
+            if (result.Count != 0)
+                return result.ToArray();
             return null;
         }
 
