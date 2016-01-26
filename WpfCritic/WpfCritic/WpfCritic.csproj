@@ -100,6 +100,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\Data\GenreVM.cs" />
     <Compile Include="ViewModel\Data\SongInEntertainmentVM.cs" />
     <Compile Include="ViewModel\Data\SongVM.cs" />
     <Compile Include="ViewModel\EditOrAddSongInEntertainmentWindowVM.cs" />
@@ -110,6 +111,9 @@
     </Compile>
     <Compile Include="View\EditOrAddSongWindow.xaml.cs">
       <DependentUpon>EditOrAddSongWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GenreUserControl.xaml.cs">
+      <DependentUpon>GenreUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SongUserControl.xaml.cs">
       <DependentUpon>SongUserControl.xaml</DependentUpon>
@@ -127,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EntertainmentUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GenreUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
