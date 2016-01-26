@@ -147,8 +147,11 @@ namespace WpfCritic.DataLayer
         {
             if (_nameColumnName == null)
                 return null;
+
+            partOfName = partOfName.ToLower();
+
             List<T> result = new List<T>();
-            _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE " + _nameColumnName + " LIKE '%' + @partOfName+ '%'";
+            _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE LOWER(" + _nameColumnName + ") LIKE '%' + @partOfName+ '%'";
 
             if (!_dataAdapter.SelectCommand.Parameters.Contains("@partOfName"))
                 _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@partOfName", partOfName));
@@ -158,7 +161,7 @@ namespace WpfCritic.DataLayer
             _dataAdapter.Fill(_dataTable);
 
             var selectedRows = from row in _dataTable.AsEnumerable().AsParallel()
-                               where row[_nameColumnName].ToString().Contains(partOfName)
+                               where row[_nameColumnName].ToString().ToLower().Contains(partOfName)
                                select row;
 
             foreach (DataRow dr in selectedRows)

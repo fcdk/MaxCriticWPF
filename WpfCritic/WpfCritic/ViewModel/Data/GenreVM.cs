@@ -7,7 +7,7 @@ namespace WpfCritic.ViewModel.Data
     {
         private Genre _genre;
 
-        public Genre SongDL
+        public Genre GenreDL
         {
             get { return _genre; }
         }

@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfCritic.View"
              xmlns:localdata="clr-namespace:WpfCritic.ViewModel.Data"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" Height="517.669">
     <Grid Background="AliceBlue">
         <Grid.Resources>
             <DataTemplate DataType="{x:Type localdata:GenreVM}">
@@ -30,6 +29,7 @@
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="2,4,2,4">
                 <Label Content="Введіть назву:" FontSize="13.333" />
                 <TextBox Text="{Binding PartOfNameForSearch}" Width="194" FontSize="13.333" />
+                <ComboBox Name="EntertainmentTypeComboBox" ItemsSource="{Binding GenreTypes}" SelectedItem="{Binding SelectedType}" Margin="4, 0, 0, 0" Padding="4,2,4,2" FontSize="13.333" Width="75" />
                 <Button Name="SearchButton" Content="Знайти" Margin="4, 0, 0, 0" Padding="4,2,4,2" Click="SearchButton_Click" />
             </StackPanel>
             <ListBox Grid.Row="2" Opacity="0.8" x:Name="SongsListBox" ItemsSource="{Binding GenreCollection}" SelectedItem="{Binding SelectedGenre}" />

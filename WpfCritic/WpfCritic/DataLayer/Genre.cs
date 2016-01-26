@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
 
 namespace WpfCritic.DataLayer
 {
@@ -48,6 +51,39 @@ namespace WpfCritic.DataLayer
             Name = name;
             GenreType = genreType;
             Summary = summary;
+        }
+
+        public static Genre[] GetByName(string partOfName, Entertainment.Type? type = null)
+        {
+            if (type == null)
+                return Entity<Genre>.GetByName(partOfName);
+
+            partOfName = partOfName.ToLower();
+
+            List<Genre> result = new List<Genre>();
+            _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE LOWER(" + _nameColumnName + ") LIKE '%' + @partOfName + '%' AND GenreType=@type";
+
+            if (!_dataAdapter.SelectCommand.Parameters.Contains("@partOfName"))
+                _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@partOfName", partOfName));
+            else
+                _dataAdapter.SelectCommand.Parameters["@partOfName"].Value = partOfName;
+            if (!_dataAdapter.SelectCommand.Parameters.Contains("@type"))
+                _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@type", type.ToString()));
+            else
+                _dataAdapter.SelectCommand.Parameters["@type"].Value = type.ToString();
+
+            _dataAdapter.Fill(_dataTable);
+            var selectedRows = from row in _dataTable.AsEnumerable().AsParallel()
+                               where ((Entertainment.Type)Enum.Parse(typeof(Entertainment.Type), row["GenreType"].ToString()) == type)
+                               && (row[_nameColumnName].ToString().ToLower().Contains(partOfName))
+                               select row;
+            foreach (DataRow dr in selectedRows)
+            {
+                result.Add(new Genre(dr));
+            }
+            if (result.Count != 0)
+                return result.ToArray();
+            return null;
         }
 
     }

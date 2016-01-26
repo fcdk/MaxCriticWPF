@@ -189,8 +189,11 @@ namespace WpfCritic.DataLayer
         {
             if (type == null)
                 return Entity<Entertainment>.GetByName(partOfName);
+
+            partOfName = partOfName.ToLower();
+
             List<Entertainment> result = new List<Entertainment>();
-            _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE " + _nameColumnName + " LIKE '%' + @partOfName + '%' AND EntertainmentType=@type";
+            _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE LOWER(" + _nameColumnName + ") LIKE '%' + @partOfName + '%' AND EntertainmentType=@type";
 
             if (!_dataAdapter.SelectCommand.Parameters.Contains("@partOfName"))
                 _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@partOfName", partOfName));
@@ -204,7 +207,7 @@ namespace WpfCritic.DataLayer
             _dataAdapter.Fill(_dataTable);
             var selectedRows = from row in _dataTable.AsEnumerable().AsParallel()
                                where ((Entertainment.Type)Enum.Parse(typeof(Entertainment.Type), row["EntertainmentType"].ToString()) == type)
-                               && (row[_nameColumnName].ToString().Contains(partOfName))
+                               && (row[_nameColumnName].ToString().ToLower().Contains(partOfName))
                                select row;
             foreach (DataRow dr in selectedRows)
             {

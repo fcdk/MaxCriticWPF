@@ -29,6 +29,11 @@
                     <local:SongUserControl x:Name="SongTabItem" DataContext="{Binding SongViewModel}" />
                 </TabItem.Content>
             </TabItem>
+            <TabItem Header="Жанри">
+                <TabItem.Content>
+                    <local:GenreUserControl x:Name="GenreTabItem" DataContext="{Binding GenreViewModel}" />
+                </TabItem.Content>
+            </TabItem>
         </TabControl>
 
     </Grid>
