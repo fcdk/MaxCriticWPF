@@ -123,7 +123,7 @@ namespace WpfCritic.ViewModel
                     songIds.Add(songInEntertainment.SongId);
                 }
 
-                Song[] songs = Song.GetSongsByIds(songIds.ToArray());
+                Song[] songs = Song.GetByIds(songIds.ToArray());
                 foreach (var song in songs)
                     _addedSongCollection.Add(new SongVM(song));
             }

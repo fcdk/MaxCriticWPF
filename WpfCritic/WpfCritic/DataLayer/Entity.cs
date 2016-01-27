@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace WpfCritic.DataLayer
 {
@@ -121,7 +122,35 @@ namespace WpfCritic.DataLayer
                 }
                 return null;
             }
-        } 
+        }
+
+        public static T[] GetByIds(Guid[] ids)
+        {
+            List<T> result = new List<T>();
+
+            StringBuilder sqlSelect = new StringBuilder(_idColumnName + " IN (");
+            foreach (Guid id in ids)
+            {
+                sqlSelect.Append("'");
+                sqlSelect.Append(id.ToString());
+                sqlSelect.Append("',");
+            }
+            sqlSelect.Length -= 1; // удалили последнюю запятую
+            sqlSelect.Append(")");
+            _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE " + sqlSelect.ToString();
+
+            _dataAdapter.Fill(_dataTable);
+            var selectedRows = from row in _dataTable.AsEnumerable().AsParallel()
+                               where ids.Contains((Guid)row[_idColumnName])
+                               select row;
+            foreach (DataRow dr in selectedRows)
+            {
+                result.Add((T)Activator.CreateInstance(typeof(T), dr));
+            }
+            if (result.Count != 0)
+                return result.ToArray();
+            return null;
+        }
 
         protected static T[] GetByQuery(string query)
         {

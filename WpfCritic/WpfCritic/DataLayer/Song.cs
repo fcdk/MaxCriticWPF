@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text;
 using System.Linq;
 
 namespace WpfCritic.DataLayer
@@ -65,34 +64,6 @@ namespace WpfCritic.DataLayer
                 }
                 return result.ToArray();
             }
-            return null;
-        }
-
-        public static Song[] GetSongsByIds(Guid[] ids)
-        {
-            List<Song> result = new List<Song>();
-
-            StringBuilder sqlSelect = new StringBuilder("SongId IN (");
-            foreach (Guid id in ids)
-            {
-                sqlSelect.Append("'");
-                sqlSelect.Append(id.ToString());
-                sqlSelect.Append("',");
-            }
-            sqlSelect.Length -= 1; // удалили последнюю запятую
-            sqlSelect.Append(")");
-            _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE " + sqlSelect.ToString();
-
-            _dataAdapter.Fill(_dataTable);
-            var selectedRows = from row in _dataTable.AsEnumerable().AsParallel()
-                               where ids.Contains((Guid)row[_idColumnName])
-                               select row;            
-            foreach (DataRow dr in selectedRows)
-            {
-                result.Add(new Song(dr));
-            }
-            if (result.Count != 0)
-                return result.ToArray();
             return null;
         }
 

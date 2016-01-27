@@ -1,6 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using WpfCritic.DataLayer;
+using WpfCritic.View;
 using WpfCritic.ViewModel.Data;
 
 namespace WpfCritic.ViewModel
@@ -112,20 +115,28 @@ namespace WpfCritic.ViewModel
 
         internal void AddButtonClick()
         {
-            ////EditOrAddSongWindow addOrEditSong = new EditOrAddSongWindow(this);
-            ////addOrEditSong.ShowDialog();
+            EditOrAddGenreWindow addOrEditGenre = new EditOrAddGenreWindow(this);
+            addOrEditGenre.ShowDialog();
         }
 
         internal void EditButtonClick()
         {
-            ////EditOrAddSongWindow addOrEditSong = new EditOrAddSongWindow(this, SelectedSong);
-            ////addOrEditSong.ShowDialog();
+            EditOrAddGenreWindow addOrEditGenre = new EditOrAddGenreWindow(this, SelectedGenre);
+            addOrEditGenre.ShowDialog();
         }
 
         internal void DeleteButtonClick()
         {
             SelectedGenre.GenreDL.Delete();
             _genreCollection.Remove(SelectedGenre);
+
+            List<Guid> ids = new List<Guid>();
+            foreach (GenreVM genre in _genreCollection)
+                ids.Add(genre.GenreDL.Id);
+            _genreCollection.Clear();
+            Genre[] genres = Genre.GetByIds(ids.ToArray());
+            foreach (Genre genre in genres)
+                _genreCollection.Add(new GenreVM(genre));
         }
 
         public GenreUserControlVM()

@@ -43,7 +43,7 @@ namespace WpfCritic.ViewModel.Data
         public string Summary
         {
             get { return _genre.Summary; }
-            set { _genre.Name = value; OnPropertyChanged("Summary"); }
+            set { _genre.Summary = value; OnPropertyChanged("Summary"); }
         }
 
         public GenreVM(Genre genre)
@@ -51,14 +51,21 @@ namespace WpfCritic.ViewModel.Data
             _genre = genre;
         }
 
-        public GenreVM(Genre parentGenre, string name, Entertainment.Type genreType, string summary)
+        public GenreVM(GenreVM parentGenre, string name, Entertainment.Type genreType, string summary)
         {
-            _genre = new Genre(parentGenre, name, genreType, summary);
+            if (parentGenre != null)
+                _genre = new Genre(parentGenre.GenreDL, name, genreType, summary);
+            else _genre = new Genre(null, name, genreType, summary);
         }
 
         public override string ToString()
         {
             return Name;
+        }
+        
+        public bool CanBeParentGenre(GenreVM genre)
+        {
+            return this.GenreDL.CanBeParentGenre(genre.GenreDL);
         }
 
     }

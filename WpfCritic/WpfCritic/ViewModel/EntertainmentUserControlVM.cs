@@ -14,7 +14,6 @@ namespace WpfCritic.ViewModel
         private string[] _entertainmentTypes = new string[] { "Усі", "Фільм", "Гра", "Серіал", "Музика" };
         private string _selectedType = "Усі";
         private string _partOfNameForSearch;
-        private bool _whenSelectedButtonEnabled;
 
         public ObservableCollection<EntertainmentVM> EntertainmentCollection
         {
