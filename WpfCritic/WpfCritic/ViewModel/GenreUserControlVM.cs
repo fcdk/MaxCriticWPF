@@ -15,6 +15,7 @@ namespace WpfCritic.ViewModel
         private string _partOfNameForSearch;
         private string[] _genreTypes = new string[] { "Усі", "Фільм", "Гра", "Серіал", "Музика" };
         private string _selectedType = "Усі";
+        private Visibility _genreTypesComboBoxVisibility;
         private Visibility _addButtonVisibility;
         private Visibility _editButtonVisibility;
         private Visibility _deleteButtonVisibility;
@@ -62,6 +63,16 @@ namespace WpfCritic.ViewModel
         public bool WhenSelectedButtonEnabled
         {
             get { return SelectedGenre != null; }
+        }
+
+        public Visibility GenreTypesComboBoxVisibility
+        {
+            get { return _genreTypesComboBoxVisibility; }
+            set
+            {
+                _genreTypesComboBoxVisibility = value;
+                OnPropertyChanged("GenreTypesComboBoxVisibility");
+            }
         }
 
         public Visibility AddButtonVisibility
@@ -139,13 +150,17 @@ namespace WpfCritic.ViewModel
                 _genreCollection.Add(new GenreVM(genre));
         }
 
-        public GenreUserControlVM()
+        public GenreUserControlVM(Entertainment.Type? type = null)
         {
+            GenreTypesComboBoxVisibility = Visibility.Visible;
             AddButtonVisibility = Visibility.Visible;
             EditButtonVisibility = Visibility.Visible;
             DeleteButtonVisibility = Visibility.Visible;
 
-            Genre[] genres = Genre.GetRandomFirstTen();
+            if (type != null)
+                _selectedType = EntertainmentVM.EntertainmentTypeToUkrString((Entertainment.Type)type);
+
+            Genre[] genres = Genre.GetRandomFirstTen(type);
             if (genres != null)
                 foreach (var genre in genres)
                     _genreCollection.Add(new GenreVM(genre));

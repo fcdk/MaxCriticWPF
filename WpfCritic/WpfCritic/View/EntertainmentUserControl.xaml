@@ -50,6 +50,7 @@
             	ItemsSource="{Binding EntertainmentCollection}" SelectedItem="{Binding SelectedEntertainment}" />
 
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button Name="genreButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Жанри" Click="genreButton_Click" />
                 <Button Name="songButton" Visibility="{Binding SongButtonVisibility}" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Пісні" Click="songButton_Click" />
             </StackPanel>
 

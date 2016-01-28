@@ -122,7 +122,32 @@ namespace WpfCritic.DataLayer
             return null;
         }
 
+        public static Genre[] GetRandomFirstTen(Entertainment.Type? type = null)
+        {
+            if (type == null)
+                return Entity<Genre>.GetRandomFirstTen();
 
+            List<Genre> result = new List<Genre>();
+
+            _dataAdapter.SelectCommand.CommandText = "SELECT TOP(10) * FROM " + _tableName + " WHERE GenreType=@type;";
+
+            if (!_dataAdapter.SelectCommand.Parameters.Contains("@type"))
+                _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@type", type.ToString()));
+            else
+                _dataAdapter.SelectCommand.Parameters["@type"].Value = type.ToString();
+
+            _dataAdapter.Fill(_dataTable);
+            var selectedRows = (from row in _dataTable.AsEnumerable().AsParallel()
+                                where (Entertainment.Type)Enum.Parse(typeof(Entertainment.Type), row["GenreType"].ToString()) == type
+                                select row).Take(10);
+            foreach (DataRow dr in selectedRows)
+            {
+                result.Add(new Genre(dr));
+            }
+            if (result.Count != 0)
+                return result.ToArray();
+            return null;
+        }
 
         public bool CanBeParentGenre(Genre genre)
         {

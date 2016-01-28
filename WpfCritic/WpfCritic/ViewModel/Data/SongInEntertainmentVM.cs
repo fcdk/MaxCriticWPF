@@ -35,7 +35,7 @@ namespace WpfCritic.ViewModel.Data
 
         public bool SongComparison(SongVM song)
         {
-            return song.SongDL.Id == SongId;
+            return song.SongDL.Id == this.SongId;
         }
 
         public static bool Comparison (SongInEntertainmentVM songInEntertainment1, SongInEntertainmentVM songInEntertainment2)

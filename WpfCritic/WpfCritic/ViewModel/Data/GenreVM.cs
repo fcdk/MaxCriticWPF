@@ -68,5 +68,12 @@ namespace WpfCritic.ViewModel.Data
             return this.GenreDL.CanBeParentGenre(genre.GenreDL);
         }
 
+        public static bool Comparison(GenreVM genre1, GenreVM genre2)
+        {
+            if (genre1 == null || genre2 == null)
+                return false;
+            return Entity<Genre>.Comparison(genre1.GenreDL, genre2.GenreDL);
+        }
+
     }
 }

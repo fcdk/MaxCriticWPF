@@ -41,5 +41,10 @@ namespace WpfCritic.View
         {
             ((EntertainmentUserControlVM)DataContext).SongButtonClick();
         }
+
+        private void genreButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((EntertainmentUserControlVM)DataContext).GenreButtonClick();
+        }
     }
 }

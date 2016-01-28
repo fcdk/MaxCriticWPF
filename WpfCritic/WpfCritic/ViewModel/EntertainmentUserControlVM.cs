@@ -101,7 +101,13 @@ namespace WpfCritic.ViewModel
                 entertainmentDetailsWindow.ShowDialog();
             }
         }
-        
+
+        internal void GenreButtonClick()
+        {
+            EditOrAddGenreInEntertainmentWindow editOrAddGenreInEntertainment = new EditOrAddGenreInEntertainmentWindow(SelectedEntertainment);
+            editOrAddGenreInEntertainment.ShowDialog();
+        }
+
         internal void SongButtonClick()
         {
             EditOrAddSongInEntertainmentWindow editOrAddSongInEntertainment = new EditOrAddSongInEntertainmentWindow(SelectedEntertainment);

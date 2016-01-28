@@ -160,8 +160,11 @@ namespace WpfCritic.DataLayer
             TrailerLink = trailerLink;
         }
 
-        public static Entertainment[] GetRandomFirstTen(Entertainment.Type type)
+        public static Entertainment[] GetRandomFirstTen(Entertainment.Type? type = null)
         {
+            if (type == null)
+                return Entity<Entertainment>.GetRandomFirstTen();
+
             List<Entertainment> result = new List<Entertainment>();
 
             _dataAdapter.SelectCommand.CommandText = "SELECT TOP(10) * FROM " + _tableName + " WHERE EntertainmentType=@type;";

@@ -4,28 +4,28 @@ using WpfCritic.ViewModel.Data;
 
 namespace WpfCritic.View
 {
-    public partial class EditOrAddSongInEntertainmentWindow : Window
+    public partial class EditOrAddGenreInEntertainmentWindow : Window
     {
-        public EditOrAddSongInEntertainmentWindow(EntertainmentVM entertainment)
+        public EditOrAddGenreInEntertainmentWindow(EntertainmentVM entertainment)
         {
             InitializeComponent();
 
-            DataContext = new EditOrAddSongInEntertainmentWindowVM(entertainment);
+            DataContext = new EditOrAddGenreInEntertainmentWindowVM(entertainment);
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            ((EditOrAddSongInEntertainmentWindowVM)DataContext).AddButtonClick();
+            ((EditOrAddGenreInEntertainmentWindowVM)DataContext).AddButtonClick();
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            ((EditOrAddSongInEntertainmentWindowVM)DataContext).DeleteButtonClick();
+            ((EditOrAddGenreInEntertainmentWindowVM)DataContext).DeleteButtonClick();
         }
 
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
-            ((EditOrAddSongInEntertainmentWindowVM)DataContext).OkButtonClick();
+            ((EditOrAddGenreInEntertainmentWindowVM)DataContext).OkButtonClick();
             this.Close();
         }
 
