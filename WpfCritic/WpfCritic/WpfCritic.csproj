@@ -117,6 +117,7 @@
     </ApplicationDefinition>
     <Compile Include="ViewModel\Data\GenreInEntertainmentVM.cs" />
     <Compile Include="ViewModel\Data\GenreVM.cs" />
+    <Compile Include="ViewModel\Data\PerformerVM.cs" />
     <Compile Include="ViewModel\Data\SongInEntertainmentVM.cs" />
     <Compile Include="ViewModel\Data\SongVM.cs" />
     <Compile Include="ViewModel\EditOrAddGenreInEntertainmentWindowVM.cs" />
@@ -124,6 +125,8 @@
     <Compile Include="ViewModel\EditOrAddSongInEntertainmentWindowVM.cs" />
     <Compile Include="ViewModel\EditOrAddSongWindowVM.cs" />
     <Compile Include="ViewModel\GenreUserControlVM.cs" />
+    <Compile Include="ViewModel\PerformerDetailsWindowVM.cs" />
+    <Compile Include="ViewModel\PerformerUserControlVM.cs" />
     <Compile Include="ViewModel\SongUserControlVM.cs" />
     <Compile Include="View\EditOrAddGenreInEntertainmentWindow.xaml.cs">
       <DependentUpon>EditOrAddGenreInEntertainmentWindow.xaml</DependentUpon>
@@ -139,6 +142,12 @@
     </Compile>
     <Compile Include="View\GenreUserControl.xaml.cs">
       <DependentUpon>GenreUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PerformerDetailsWindow.xaml.cs">
+      <DependentUpon>PerformerDetailsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PerformerUserControl.xaml.cs">
+      <DependentUpon>PerformerUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SongUserControl.xaml.cs">
       <DependentUpon>SongUserControl.xaml</DependentUpon>
@@ -215,6 +224,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\PerformerDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PerformerUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SongUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -265,6 +282,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="MC.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\noImage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

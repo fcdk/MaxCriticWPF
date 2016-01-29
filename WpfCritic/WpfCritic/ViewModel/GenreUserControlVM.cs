@@ -141,6 +141,8 @@ namespace WpfCritic.ViewModel
             SelectedGenre.GenreDL.Delete();
             _genreCollection.Remove(SelectedGenre);
 
+            // заново берутся все, кроме удаленного, потому что здесь есть ссылка на самого себя, срабатывает триггер при удалении
+            // (см. триггер)
             List<Guid> ids = new List<Guid>();
             foreach (GenreVM genre in _genreCollection)
                 ids.Add(genre.GenreDL.Id);

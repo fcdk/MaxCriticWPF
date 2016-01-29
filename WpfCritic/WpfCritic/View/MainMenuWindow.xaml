@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCritic.View"
         mc:Ignorable="d"
-        Title="MaxCritic" Height="617.197" Width="483.32" MinHeight="617.197" MinWidth="483.32">
+        Title="MaxCritic" Height="617.197" Width="519.32" MinHeight="617.197" MinWidth="519.32">
     <Grid Background="#FFD1D8FB">
 
         <Grid.RowDefinitions>
@@ -32,6 +32,11 @@
             <TabItem Header="Жанри">
                 <TabItem.Content>
                     <local:GenreUserControl x:Name="GenreTabItem" DataContext="{Binding GenreViewModel}" />
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Header="Додатки">
+                <TabItem.Content>
+                    <local:PerformerUserControl x:Name="PerformerTabItem" DataContext="{Binding PerformerViewModel}" />
                 </TabItem.Content>
             </TabItem>
         </TabControl>

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WpfCritic.View.GenreUserControl"
+﻿<UserControl x:Class="WpfCritic.View.PerformerUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,10 +8,10 @@
              mc:Ignorable="d" Height="517.669">
     <Grid Background="AliceBlue">
         <Grid.Resources>
-            <DataTemplate DataType="{x:Type localdata:GenreVM}">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Margin="4,0,0,0" Text="{Binding Path=Name}" FontWeight="Bold" FontSize="13.333" Background="{x:Null}" Foreground="#FF0056D3" />
-                    <TextBlock Margin="4,0,0,0" Text="{Binding Path=GenreTypeUkr, StringFormat='({0})'}" />
+            <DataTemplate DataType="{x:Type localdata:PerformerVM}">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Margin="4,0,0,0" Text="{Binding}" FontWeight="Bold" FontSize="13.333" Background="{x:Null}" Foreground="#FF0056D3" />
+                    <TextBlock Margin="4,0,0,0" Text="{Binding Path=PerformerTypeUkr, StringFormat='({0})'}" />
                 </StackPanel>
             </DataTemplate>
         </Grid.Resources>
@@ -25,14 +25,14 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="Жанри" Foreground="#FF00167C" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="16" />
+            <Label Grid.Row="0" Content="Додатковий контент" Foreground="#FF00167C" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="16" />
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="2,4,2,4">
-                <Label Content="Введіть назву:" FontSize="13.333" />
+                <Label Content="Введіть назву/прізвище:" FontSize="13.333" />
                 <TextBox Text="{Binding PartOfNameForSearch}" Width="194" FontSize="13.333" />
-                <ComboBox ItemsSource="{Binding GenreTypes}" SelectedItem="{Binding SelectedType}" Visibility="{Binding GenreTypesComboBoxVisibility}" Margin="4, 0, 0, 0" Padding="4,2,4,2" FontSize="13.333" Width="75" />
+                <ComboBox ItemsSource="{Binding PerformerTypes}" SelectedItem="{Binding SelectedType}" Visibility="{Binding PerformerTypesComboBoxVisibility}" Margin="4, 0, 0, 0" Padding="4,2,4,2" FontSize="13.333" Width="75" />
                 <Button Name="SearchButton" Content="Знайти" Margin="4, 0, 0, 0" Padding="4,2,4,2" Click="SearchButton_Click" />
             </StackPanel>
-            <ListBox Grid.Row="2" Opacity="0.8" ItemsSource="{Binding GenreCollection}" SelectedItem="{Binding SelectedGenre}" />
+            <ListBox Grid.Row="2" Opacity="0.8" x:Name="PerformersListBox" ItemsSource="{Binding PerformerCollection}" SelectedItem="{Binding SelectedPerformer}" MouseDoubleClick="PerformersListBox_MouseDoubleClick" />
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Name="addButton" Visibility="{Binding AddButtonVisibility}" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Додати" Click="addButton_Click" />
                 <Button Name="editButton" IsEnabled="{Binding WhenSelectedButtonEnabled}" Visibility="{Binding EditButtonVisibility}" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Редагувати" Click="editButton_Click" />

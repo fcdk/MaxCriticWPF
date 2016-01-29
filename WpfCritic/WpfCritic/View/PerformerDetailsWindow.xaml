@@ -1,0 +1,57 @@
+﻿<Window x:Class="WpfCritic.View.PerformerDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfCritic.View"
+        mc:Ignorable="d"
+        Title="Деталі додаткового контента" Height="471.872" Width="1001.745" MinHeight="471.872" MinWidth="1001.745">
+    <Grid Background="AliceBlue">
+        <Grid Margin="4,8,4,8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="21.333" FontWeight="Bold" Foreground="#FF00167C" Text="Додатковий контент" />
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Height="300" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding Image}" />
+                <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label Grid.Column="0" Grid.Row="0" Content="Тип додаткового контента:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding PerformerTypeUkr}" />
+                    <Label Grid.Column="0" Grid.Row="1" Content="{Binding NameLabel}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding Name}" />
+                    <Label Grid.Column="0" Grid.Row="2" Content="Прізвище:" Visibility="{Binding SurnameVisibility}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
+                    <TextBlock Grid.Column="1" Grid.Row="2" Visibility="{Binding SurnameVisibility}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding Surname}" />
+                    <Label Grid.Column="0" Grid.Row="3" Content="{Binding DateOfBirthLabel}" Visibility="{Binding DateOfBirthVisibility}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
+                    <TextBlock Grid.Column="1" Grid.Row="3" Visibility="{Binding DateOfBirthVisibility}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding DateOfBirth}" />
+                    <Label Grid.Column="0" Grid.Row="4" Content="{Binding SummaryLabel}" Visibility="{Binding SummaryVisibility}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
+                    <TextBlock Grid.Column="1" Grid.Row="4" Visibility="{Binding SummaryVisibility}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" TextWrapping="Wrap" Text="{Binding Summary}" />
+                </Grid>
+            </Grid>
+
+            <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Name="cancelButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Закрити" Click="cancelButton_Click" />
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Window>

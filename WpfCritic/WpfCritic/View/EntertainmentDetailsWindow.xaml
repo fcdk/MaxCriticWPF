@@ -22,7 +22,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Name="poster" Height="300" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding Poster}" />
+                    <Image Grid.Column="0" Height="300" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding Poster}" />
                     <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
