@@ -34,7 +34,7 @@
                     <Ellipse Height="20" Width="20" Fill="#FFFD0000" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     <Label Content="!" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13.333" />
                 </Grid>
-                <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding Name}" MaxLength="1024" />
+                <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding Name}" MaxLength="256" />
                 <Label Grid.Row="1" Grid.Column="0" Content="Тип жанру:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
                 <ComboBox Name="entertainmentTypeUkrComboBox" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding GenreTypes}" SelectedItem="{Binding GenreTypeUkr}" />
                 <Label Grid.Row="2" Grid.Column="0" Content="Батьківский жанр:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />

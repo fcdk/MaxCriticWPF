@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using WpfCritic.DataLayer;
 using WpfCritic.View;
@@ -137,14 +135,14 @@ namespace WpfCritic.ViewModel
 
         internal void AddButtonClick()
         {
-            //EditOrAddGenreWindow addOrEditGenre = new EditOrAddGenreWindow(this);
-            //addOrEditGenre.ShowDialog();
+            EditOrAddPerformerWindow addOrEditPerformer = new EditOrAddPerformerWindow(this);
+            addOrEditPerformer.ShowDialog();
         }
 
         internal void EditButtonClick()
         {
-            //EditOrAddGenreWindow addOrEditGenre = new EditOrAddGenreWindow(this, SelectedPerformer);
-            //addOrEditGenre.ShowDialog();
+            EditOrAddPerformerWindow addOrEditPerformer = new EditOrAddPerformerWindow(this, SelectedPerformer);
+            addOrEditPerformer.ShowDialog();
         }
 
         internal void DeleteButtonClick()

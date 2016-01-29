@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
-using System.Reflection;
 using System.Windows;
 using WpfCritic.DataLayer;
 using WpfCritic.ViewModel.Data;
@@ -118,7 +118,7 @@ namespace WpfCritic.ViewModel
 
             if (performer.Image == null)
             {                
-                _noImage = File.ReadAllBytes(noImageFile);
+                _noImage = File.ReadAllBytes(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\noImage.png");
             }
 
         }

@@ -71,7 +71,7 @@ namespace WpfCritic.ViewModel.Data
         public override string ToString()
         {
             if (_performer.PerformerType == Performer.Type.Person)
-                return Name + " " + Surname + " (" + ((DateTime)DateOfBirth).ToString("dd/MM/yyyy") + ")";
+                return Name + " " + (Surname == null ? String.Empty : Surname) + (DateOfBirth == null ? String.Empty : " (" + ((DateTime)DateOfBirth).ToString("dd/MM/yyyy") + ")");
             else return Name;
         }
 

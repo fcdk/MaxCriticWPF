@@ -10,7 +10,10 @@
         <Grid.Resources>
             <DataTemplate DataType="{x:Type localdata:PerformerVM}">
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Margin="4,0,0,0" Text="{Binding}" FontWeight="Bold" FontSize="13.333" Background="{x:Null}" Foreground="#FF0056D3" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="4,0,0,0" Text="{Binding Path=Name}" FontWeight="Bold" FontSize="13.333" Background="{x:Null}" Foreground="#FF0056D3" />
+                        <TextBlock Margin="4,0,0,0" Text="{Binding Path=Surname}" FontWeight="Bold" FontSize="13.333" Background="{x:Null}" Foreground="#FF0056D3" />
+                    </StackPanel>
                     <TextBlock Margin="4,0,0,0" Text="{Binding Path=PerformerTypeUkr, StringFormat='({0})'}" />
                 </StackPanel>
             </DataTemplate>

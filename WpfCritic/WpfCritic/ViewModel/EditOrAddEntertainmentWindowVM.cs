@@ -436,7 +436,7 @@ namespace WpfCritic.ViewModel
                 _enterteinment.Name = Name;
                 _enterteinment.ReleaseDate = (DateTime)ReleaseDate;
                 _enterteinment.Company = Company;
-                if (Poster != null)
+                if (Poster != null && Poster != String.Empty)
                     _enterteinment.Poster = File.ReadAllBytes(Poster);
                 _enterteinment.Summary = Summary;
                 _enterteinment.BuyLink = BuyLink;
