@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfCritic.View"
              xmlns:localdata="clr-namespace:WpfCritic.ViewModel.Data"
-             mc:Ignorable="d" Height="517.669">
+             mc:Ignorable="d" Height="517.669" MinWidth="454" >
     <Grid Background="AliceBlue">
 
         <Grid.Resources>
@@ -50,8 +50,9 @@
             	ItemsSource="{Binding EntertainmentCollection}" SelectedItem="{Binding SelectedEntertainment}" />
 
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left">
-                <Button Name="genreButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Жанри" Click="genreButton_Click" />
-                <Button Name="songButton" Visibility="{Binding SongButtonVisibility}" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Пісні" Click="songButton_Click" />
+                <Button Name="genreButton" IsEnabled="{Binding WhenSelectedButtonEnabled}" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Жанри" Click="genreButton_Click" />
+                <Button Name="performerButton" IsEnabled="{Binding WhenSelectedButtonEnabled}" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Додатковий контент" Click="performerButton_Click" />
+                <Button Name="songButton" Visibility="{Binding SongButtonVisibility}" IsEnabled="{Binding WhenSelectedButtonEnabled}" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Пісні" Click="songButton_Click" />
             </StackPanel>
 
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">

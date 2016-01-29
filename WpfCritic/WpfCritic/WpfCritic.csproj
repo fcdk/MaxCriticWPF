@@ -117,11 +117,14 @@
     </ApplicationDefinition>
     <Compile Include="ViewModel\Data\GenreInEntertainmentVM.cs" />
     <Compile Include="ViewModel\Data\GenreVM.cs" />
+    <Compile Include="ViewModel\Data\PerformerInEntertainmentVM.cs" />
     <Compile Include="ViewModel\Data\PerformerVM.cs" />
     <Compile Include="ViewModel\Data\SongInEntertainmentVM.cs" />
     <Compile Include="ViewModel\Data\SongVM.cs" />
     <Compile Include="ViewModel\EditOrAddGenreInEntertainmentWindowVM.cs" />
     <Compile Include="ViewModel\EditOrAddGenreWindowVM.cs" />
+    <Compile Include="ViewModel\EditOrAddPerformerInEntertainmentUserControlVM.cs" />
+    <Compile Include="ViewModel\EditOrAddPerformerInEntertainmentWindowVM.cs" />
     <Compile Include="ViewModel\EditOrAddPerformerWindowVM.cs" />
     <Compile Include="ViewModel\EditOrAddSongInEntertainmentWindowVM.cs" />
     <Compile Include="ViewModel\EditOrAddSongWindowVM.cs" />
@@ -134,6 +137,12 @@
     </Compile>
     <Compile Include="View\EditOrAddGenreWindow.xaml.cs">
       <DependentUpon>EditOrAddGenreWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditOrAddPerformerInEntertainmentUserControl.xaml.cs">
+      <DependentUpon>EditOrAddPerformerInEntertainmentUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditOrAddPerformerInEntertainmentWindow.xaml.cs">
+      <DependentUpon>EditOrAddPerformerInEntertainmentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditOrAddPerformerWindow.xaml.cs">
       <DependentUpon>EditOrAddPerformerWindow.xaml</DependentUpon>
@@ -165,6 +174,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EditOrAddGenreWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditOrAddPerformerInEntertainmentUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditOrAddPerformerInEntertainmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
