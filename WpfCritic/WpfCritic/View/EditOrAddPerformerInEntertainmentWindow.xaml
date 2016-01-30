@@ -19,7 +19,17 @@
             <TabControl Grid.Row="1" Background="AliceBlue">
                 <TabItem Header="Режисери" Visibility="{Binding MovieTabItemVisibility}">
                     <TabItem.Content>
-                        <local:EditOrAddPerformerInEntertainmentUserControl x:Name="MovieDirectorTabItem" Visibility="{Binding MovieTabItemVisibility}" DataContext="{Binding MovieDirectorViewModel}" />
+                        <local:EditOrAddPerformerInEntertainmentUserControl x:Name="MovieDirectorTabItem" DataContext="{Binding MovieDirectorViewModel}" />
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="Автори сюжету" Visibility="{Binding MovieTabItemVisibility}">
+                    <TabItem.Content>
+                        <local:EditOrAddPerformerInEntertainmentUserControl x:Name="MoviePlotWriterTabItem" DataContext="{Binding MoviePlotWriterViewModel}" />
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="Актори" Visibility="{Binding GameTabItemVisibility}">
+                    <TabItem.Content>
+                        <local:EditOrAddPerformerInEntertainmentUserControl x:Name="GameCastTabItem" DataContext="{Binding GameCastViewModel}" />
                     </TabItem.Content>
                 </TabItem>
             </TabControl>

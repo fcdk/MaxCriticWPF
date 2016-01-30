@@ -9,6 +9,8 @@ namespace WpfCritic.ViewModel
     {
         private EntertainmentVM _entertainment;
         private EditOrAddPerformerInEntertainmentUserControlVM _movieDirectorViewModel;
+        private EditOrAddPerformerInEntertainmentUserControlVM _moviePlotWriterViewModel;
+        private EditOrAddPerformerInEntertainmentUserControlVM _gameCastViewModel;
 
         public EntertainmentVM Entertainment
         {
@@ -25,21 +27,60 @@ namespace WpfCritic.ViewModel
             }
         }
 
+        public Visibility GameTabItemVisibility
+        {
+            get
+            {
+                if (_entertainment.EntertainmentType == DataLayer.Entertainment.Type.Game)
+                    return Visibility.Visible;
+                else return Visibility.Collapsed;
+            }
+        }
+
         public EditOrAddPerformerInEntertainmentUserControlVM MovieDirectorViewModel
         {
             get { return _movieDirectorViewModel; }
         }
+                
+        public EditOrAddPerformerInEntertainmentUserControlVM MoviePlotWriterViewModel
+        {
+            get { return _moviePlotWriterViewModel; }
+        }
+
+        public EditOrAddPerformerInEntertainmentUserControlVM GameCastViewModel
+        {
+            get { return _gameCastViewModel; }
+        }
 
         internal void OkButtonClick()
         {
-            _movieDirectorViewModel.Save();
+            if (_entertainment.EntertainmentType == DataLayer.Entertainment.Type.Movie)
+            {
+                _movieDirectorViewModel.Save();
+                _moviePlotWriterViewModel.Save();
+            }
+
+            if (_entertainment.EntertainmentType == DataLayer.Entertainment.Type.Game)
+            {
+                _gameCastViewModel.Save();
+            }
         }
 
         public EditOrAddPerformerInEntertainmentWindowVM(EntertainmentVM entertainment)
         {
             _entertainment = entertainment;
 
-            _movieDirectorViewModel = new EditOrAddPerformerInEntertainmentUserControlVM(entertainment, PerformerInEntertainment.Role.MovieDirector);
+            if (_entertainment.EntertainmentType == DataLayer.Entertainment.Type.Movie)
+            {
+                _movieDirectorViewModel = new EditOrAddPerformerInEntertainmentUserControlVM(entertainment, PerformerInEntertainment.Role.MovieDirector);
+                _moviePlotWriterViewModel = new EditOrAddPerformerInEntertainmentUserControlVM(entertainment, PerformerInEntertainment.Role.MoviePlotWriter);
+            }
+
+            if (_entertainment.EntertainmentType == DataLayer.Entertainment.Type.Game)
+            {
+                _gameCastViewModel = new EditOrAddPerformerInEntertainmentUserControlVM(entertainment, PerformerInEntertainment.Role.GameCast);
+            }
+
         }
 
     }
