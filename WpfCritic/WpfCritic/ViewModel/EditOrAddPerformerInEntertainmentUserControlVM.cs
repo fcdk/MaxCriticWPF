@@ -72,7 +72,7 @@ namespace WpfCritic.ViewModel
                     case PerformerInEntertainment.Role.MovieProducer:
                         return "Продюсери";
                     case PerformerInEntertainment.Role.MovieProduction:
-                        return "Продюсерські компанії";
+                        return "Компанії-виробники";
                     case PerformerInEntertainment.Role.TVCast:
                         return "Актори";
                     case PerformerInEntertainment.Role.TVNetwork:

@@ -122,6 +122,21 @@ namespace WpfCritic.DataLayer
             return null;
         }
 
+        public static Performer[] GetAlbumAuthorsByAlbum(Entertainment entertainment)
+        {
+            if (entertainment.EntertainmentType != Entertainment.Type.Album)
+                return null;
+
+            PerformerInEntertainment[] performerInEntertainments = PerformerInEntertainment.GetAlbumAuthorsPerformerInEntertainmentsByEntertainment(entertainment);
+            if (performerInEntertainments == null)
+                return null;
+            List<Guid> ids = new List<Guid>();
+            foreach (var performerInEntertainment in performerInEntertainments)
+                ids.Add(performerInEntertainment.PerformerId);
+
+            return Performer.GetByIds(ids.ToArray());
+        }
+
         public Performer(DataRow row) : base(row)
         {
             if (PerformerType == Performer.Type.Person)

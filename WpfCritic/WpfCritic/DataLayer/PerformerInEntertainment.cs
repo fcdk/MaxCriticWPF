@@ -56,6 +56,32 @@ namespace WpfCritic.DataLayer
             return null;
         }
 
+        public static PerformerInEntertainment[] GetAlbumAuthorsPerformerInEntertainmentsByEntertainment(Entertainment entertainment)
+        {
+            List<PerformerInEntertainment> result = new List<PerformerInEntertainment>();
+
+            _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE EntertainmentId=@id AND (PerformerRole='AlbumBand' OR PerformerRole='AlbumSinger')";
+
+            if (!_dataAdapter.SelectCommand.Parameters.Contains("@id"))
+                _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@id", entertainment.Id));
+            else
+                _dataAdapter.SelectCommand.Parameters["@id"].Value = entertainment.Id;
+
+            _dataAdapter.Fill(_dataTable);
+            var selectedRows = from row in _dataTable.AsEnumerable().AsParallel()
+                               where ((Guid)row["EntertainmentId"] == entertainment.Id)
+                               && (((PerformerInEntertainment.Role)Enum.Parse(typeof(PerformerInEntertainment.Role), row["PerformerRole"].ToString()) == PerformerInEntertainment.Role.AlbumSinger)
+                               || ((PerformerInEntertainment.Role)Enum.Parse(typeof(PerformerInEntertainment.Role), row["PerformerRole"].ToString()) == PerformerInEntertainment.Role.AlbumBand))
+                               select row;
+            foreach (DataRow dr in selectedRows)
+            {
+                result.Add(new PerformerInEntertainment(dr));
+            }
+            if (result.Count != 0)
+                return result.ToArray();
+            return null;
+        }
+
         public PerformerInEntertainment(DataRow row) : base(row) { }
         public PerformerInEntertainment(Performer performer, Entertainment entertainment, PerformerInEntertainment.Role performerRole) : base()
         {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCritic.View"
         mc:Ignorable="d"
-        Title="Додатковий контент головного контенту" Height="711.951" Width="971.857">
+        Title="Додатковий контент головного контенту" Height="711.951" Width="971.857" MinHeight="711.951" MinWidth="971.857">
     <Grid Background="AliceBlue">
         <Grid Margin="4,8,4,8">
             <Grid.RowDefinitions>
@@ -14,9 +14,9 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="{Binding Entertainment}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF00167C" FontFamily="Impact" FontSize="21.333" />
+            <TextBlock Grid.Row="0" Text="{Binding Entertainment}" Margin="2,4,2,4" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF00167C" FontFamily="Impact" FontSize="21.333" />
 
-            <TabControl Grid.Row="1" Background="AliceBlue">
+            <TabControl Grid.Row="1" SelectedIndex="{Binding SelectedTabIndex}" Background="AliceBlue">
                 <TabItem Header="Режисери" Visibility="{Binding MovieTabItemVisibility}">
                     <TabItem.Content>
                         <local:EditOrAddPerformerInEntertainmentUserControl x:Name="MovieDirectorTabItem" DataContext="{Binding MovieDirectorViewModel}" />
@@ -27,9 +27,64 @@
                         <local:EditOrAddPerformerInEntertainmentUserControl x:Name="MoviePlotWriterTabItem" DataContext="{Binding MoviePlotWriterViewModel}" />
                     </TabItem.Content>
                 </TabItem>
+                <TabItem Header="Головні герої" Visibility="{Binding MovieTabItemVisibility}">
+                    <TabItem.Content>
+                        <local:EditOrAddPerformerInEntertainmentUserControl x:Name="MoviePrincipalCastTabItem" DataContext="{Binding MoviePrincipalCastViewModel}" />
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="Актори" Visibility="{Binding MovieTabItemVisibility}">
+                    <TabItem.Content>
+                        <local:EditOrAddPerformerInEntertainmentUserControl x:Name="MovieCastTabItem" DataContext="{Binding MovieCastViewModel}" />
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="Продюсери" Visibility="{Binding MovieTabItemVisibility}">
+                    <TabItem.Content>
+                        <local:EditOrAddPerformerInEntertainmentUserControl x:Name="MovieProducerTabItem" DataContext="{Binding MovieProducerViewModel}" />
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="Компанії-виробники" Visibility="{Binding MovieTabItemVisibility}">
+                    <TabItem.Content>
+                        <local:EditOrAddPerformerInEntertainmentUserControl x:Name="MovieProductionTabItem" DataContext="{Binding MovieProductionViewModel}" />
+                    </TabItem.Content>
+                </TabItem>
                 <TabItem Header="Актори" Visibility="{Binding GameTabItemVisibility}">
                     <TabItem.Content>
                         <local:EditOrAddPerformerInEntertainmentUserControl x:Name="GameCastTabItem" DataContext="{Binding GameCastViewModel}" />
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="Компанії-розробники" Visibility="{Binding GameTabItemVisibility}">
+                    <TabItem.Content>
+                        <local:EditOrAddPerformerInEntertainmentUserControl x:Name="GameDeveloperCompanyTabItem" DataContext="{Binding GameDeveloperCompanyViewModel}" />
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="Ігрові платформи" Visibility="{Binding GameTabItemVisibility}">
+                    <TabItem.Content>
+                        <local:EditOrAddPerformerInEntertainmentUserControl x:Name="GamePlatformTabItem" DataContext="{Binding GamePlatformViewModel}" />
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="Актори" Visibility="{Binding TVSeriesTabItemVisibility}">
+                    <TabItem.Content>
+                        <local:EditOrAddPerformerInEntertainmentUserControl x:Name="TVCastTabItem" DataContext="{Binding TVCastViewModel}" />
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="Телевізійні канали" Visibility="{Binding TVSeriesTabItemVisibility}">
+                    <TabItem.Content>
+                        <local:EditOrAddPerformerInEntertainmentUserControl x:Name="TVNetworkTabItem" DataContext="{Binding TVNetworkViewModel}" />
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="Співаки" Visibility="{Binding AlbumTabItemVisibility}">
+                    <TabItem.Content>
+                        <local:EditOrAddPerformerInEntertainmentUserControl x:Name="AlbumSingerTabItem" DataContext="{Binding AlbumSingerViewModel}" />
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="Музичні групи" Visibility="{Binding AlbumTabItemVisibility}">
+                    <TabItem.Content>
+                        <local:EditOrAddPerformerInEntertainmentUserControl x:Name="AlbumBandTabItem" DataContext="{Binding AlbumBandViewModel}" />
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="Лейбли" Visibility="{Binding AlbumTabItemVisibility}">
+                    <TabItem.Content>
+                        <local:EditOrAddPerformerInEntertainmentUserControl x:Name="AlbumRecordLabelTabItem" DataContext="{Binding AlbumRecordLabelViewModel}" />
                     </TabItem.Content>
                 </TabItem>
             </TabControl>

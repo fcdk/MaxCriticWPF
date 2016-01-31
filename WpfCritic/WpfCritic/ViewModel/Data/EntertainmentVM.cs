@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using WpfCritic.DataLayer;
 
 namespace WpfCritic.ViewModel.Data
@@ -7,9 +8,29 @@ namespace WpfCritic.ViewModel.Data
     {
         private Entertainment _entertainment;
 
+        private string _albumAuthors; 
+
         public Entertainment EntertainmentDL
         {
             get { return _entertainment; }
+        }
+
+        public string AlbumAuthors
+        {
+            get
+            {
+                if (EntertainmentType == Entertainment.Type.Album)
+                    return _albumAuthors;
+                else return null;
+            }
+            set
+            {
+                if (EntertainmentType == Entertainment.Type.Album)
+                {
+                    _albumAuthors = value;
+                    OnPropertyChanged("AlbumAuthors");
+                }
+            }
         }
 
         public Entertainment.Type EntertainmentType
@@ -121,6 +142,8 @@ namespace WpfCritic.ViewModel.Data
         public EntertainmentVM(Entertainment entertainment)
         {
             _entertainment = entertainment;
+
+            this.AuthorsUpdate();
         }
 
         public EntertainmentVM(Entertainment.Type entertainmentType, string name, DateTime releaseDate, string company, byte[] poster,
@@ -129,12 +152,14 @@ namespace WpfCritic.ViewModel.Data
         {
             _entertainment = new Entertainment(entertainmentType, name, releaseDate, company, poster, summary, buyLink, mainLanguage,
             rating, ratingComment, movieRuntimeMinute, officialSite, movieCountries, tVSeason, budget, trailerLink);
+
+            this.AuthorsUpdate();
         }
 
         public override string ToString()
         {
             if (EntertainmentType == Entertainment.Type.Album)
-                return Name + " (" + ReleaseDate.Year + ")"; // заглушка, тут надо брать ещё авторов альбома!!!
+                return (AlbumAuthors == null ? String.Empty : AlbumAuthors + " ") + Name + " (" + ReleaseDate.Year + ")";
             return Name + " (" + ReleaseDate.Year + ")";
         }
 
@@ -177,6 +202,31 @@ namespace WpfCritic.ViewModel.Data
             if (entertainment1 == null || entertainment2 == null)
                 return false;
             return Entity<Entertainment>.Comparison(entertainment1.EntertainmentDL, entertainment2.EntertainmentDL);
+        }
+
+        public void AuthorsUpdate()
+        {
+            if (EntertainmentType != Entertainment.Type.Album)
+                return;
+            Performer[] authors = Performer.GetAlbumAuthorsByAlbum(_entertainment);
+            if (authors != null)
+            {
+                StringBuilder authorsStringBuilder = new StringBuilder("");
+                foreach (var author in authors)
+                {
+                    authorsStringBuilder.Append(author.Name);
+                    if (author.Surname != null && author.Surname != String.Empty)
+                    {
+                        authorsStringBuilder.Append(" ");
+                        authorsStringBuilder.Append(author.Surname);
+                    }
+                    authorsStringBuilder.Append(", ");
+                }
+                authorsStringBuilder.Length -= 2;
+                authorsStringBuilder.Append(" -");
+                AlbumAuthors = authorsStringBuilder.ToString();
+            }
+            else AlbumAuthors = String.Empty;
         }
 
     }
