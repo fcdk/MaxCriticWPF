@@ -30,6 +30,17 @@ namespace WpfCritic.ViewModel
             get { return _genreTypes; }
         }
 
+        public string PartOfName
+        {
+            get { return _partOfName; }
+            set
+            {
+                _partOfName = value;
+                OnPropertyChanged("PartOfName");
+                OnPropertyChanged("ParentGenresPick");
+            }
+        }
+
         public GenreVM[] ParentGenresPick
         {
             get
@@ -53,17 +64,6 @@ namespace WpfCritic.ViewModel
                 foreach (Genre genre in genres)
                     result.Add(new GenreVM(genre));
                 return result.ToArray();
-            }
-        }
-
-        public string PartOfName
-        {
-            get { return _partOfName; }
-            set
-            {
-                _partOfName = value;
-                OnPropertyChanged("PartOfName");
-                OnPropertyChanged("ParentGenresPick");
             }
         }
 
@@ -96,29 +96,21 @@ namespace WpfCritic.ViewModel
             get
             {
                 if (_genre == null)
-                    return "Додавання нової пісні";
-                return "Редагування пісні";
+                    return "Додавання нового жанру";
+                return "Редагування жанру";
             }
         }
 
         public Visibility NameErrorVisibility
         {
             get { return _nameErrorVisibility; }
-            set
-            {
-                _nameErrorVisibility = value;
-                OnPropertyChanged("NameErrorVisibility");
-            }
+            set{ _nameErrorVisibility = value; OnPropertyChanged("NameErrorVisibility"); }
         }
 
         public Visibility ParentGenreErrorVisibility
         {
             get { return _parentGenreErrorVisibility; }
-            set
-            {
-                _parentGenreErrorVisibility = value;
-                OnPropertyChanged("ParentGenreErrorVisibility");
-            }
+            set { _parentGenreErrorVisibility = value; OnPropertyChanged("ParentGenreErrorVisibility"); }
         }
 
         public EditOrAddGenreWindowVM(ICollectionsEntity collectionEntity, GenreVM genre = null)

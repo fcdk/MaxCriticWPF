@@ -6,6 +6,7 @@
         private SongUserControlVM _songViewModel = new SongUserControlVM();
         private GenreUserControlVM _genreViewModel = new GenreUserControlVM();
         private PerformerUserControlVM _performerViewModel = new PerformerUserControlVM();
+        private AwardUserControlVM _awardViewModel = new AwardUserControlVM();
 
         public EntertainmentUserControlVM EntertainmentViewModel
         {
@@ -25,6 +26,11 @@
         public PerformerUserControlVM PerformerViewModel
         {
             get { return _performerViewModel; }
+        }
+
+        public AwardUserControlVM AwardViewModel
+        {
+            get { return _awardViewModel; }
         }
 
     }

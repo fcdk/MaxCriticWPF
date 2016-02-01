@@ -1,0 +1,76 @@
+﻿<Window x:Class="WpfCritic.View.EditOrAddAwardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfCritic.View"
+        xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+        mc:Ignorable="d"
+        Title="Нагорода" Height="301.127" Width="657.519">
+    <Grid Background="AliceBlue">
+        <Grid.Resources>
+            <DataTemplate x:Key="PerformerAutoCompleteBoxItemTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{Binding Name}" />
+                    <Label Content="{Binding Surname}" />
+                </StackPanel>
+            </DataTemplate>
+        </Grid.Resources>
+
+        <Grid Margin="4,8,4,8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="{Binding HeaderText}"  Foreground="#FF00167C" FontFamily="Impact" FontSize="21.333" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Назва:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Grid Grid.Row="0" Grid.Column="1" ToolTip="Назва не може бути порожньою!" Visibility="{Binding NameErrorVisibility}" Margin="2,0,2,0">
+                    <Ellipse Height="20" Width="20" Fill="#FFFD0000" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Label Content="!" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13.333" />
+                </Grid>
+                <TextBox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding Name}" MaxLength="512" />
+                <Label Grid.Row="1" Grid.Column="0" Content="Номінація:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding Nomination}" MaxLength="512" />
+                <Label Grid.Row="2" Grid.Column="0" Content="Дата вручення:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Grid Grid.Row="2" Grid.Column="1" ToolTip="Дата вручення не може бути порожньою!" Visibility="{Binding DateErrorVisibility}" Margin="2,0,2,0">
+                    <Ellipse Height="20" Width="20" Fill="#FFFD0000" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Label Content="!" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13.333" />
+                </Grid>
+                <DatePicker Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" SelectedDate="{Binding Date}" />
+                <Label Grid.Row="3" Grid.Column="0" Content="Зображення:" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding Image}"/>
+                <Button Grid.Row="3" Grid.Column="3" Name="ImageButton" Content="Обзор" Click="ImageButton_Click" />
+                <Button Grid.Row="3" Grid.Column="4" Name="ImageClearButton" Visibility="{Binding ImageClearButtonVisibility}" Content="Очистити" Click="ImageClearButton_Click" />
+                <Label Grid.Row="4" Grid.Column="0" Content="Переможець (додатковий контент):" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <toolkit:AutoCompleteBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding Path=PartOfNamePerformer, Mode=TwoWay}" ItemsSource="{Binding PerformersPick}" SelectedItem="{Binding Performer, Mode=TwoWay}" ItemFilter="{Binding PerformerFilter}" IsTextCompletionEnabled="True" />
+                <Label Grid.Row="5" Grid.Column="0" Content="Переможець (контент):" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <toolkit:AutoCompleteBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding Path=PartOfNameEntertainment, Mode=TwoWay}" ItemsSource="{Binding EntertainmentsPick}" SelectedItem="{Binding Entertainment, Mode=TwoWay}" IsTextCompletionEnabled="True" />
+            </Grid>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Name="okButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="OK" Click="okButton_Click" />
+                <Button Name="cancelButton" Margin="4, 2, 0, 0" Padding="4,2,4,2" MinWidth="50" Content="Відмінити" Click="cancelButton_Click" />
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Window>

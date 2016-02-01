@@ -64,13 +64,33 @@ namespace WpfCritic.DataLayer
 
         public static Performer[] GetByName(string partOfName, Performer.Type? type = null)
         {
-            if (type == null)
-                return Entity<Performer>.GetByName(partOfName);
-
-            partOfName = partOfName.ToLower();
-
             List<Performer> result = new List<Performer>();
-            _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE LOWER(" + _nameColumnName + ") LIKE '%' + @partOfName + '%' AND PerformerType=@type";
+            partOfName = partOfName.ToLower();
+            
+            if (type == null)
+            {
+                _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE LOWER(Name) LIKE '%' + @partOfName + '%' OR LOWER(Surname) LIKE '%' + @partOfName + '%'";
+
+                if (!_dataAdapter.SelectCommand.Parameters.Contains("@partOfName"))
+                    _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@partOfName", partOfName));
+                else
+                    _dataAdapter.SelectCommand.Parameters["@partOfName"].Value = partOfName;
+
+                _dataAdapter.Fill(_dataTable);
+                var selectedRows1 = from row in _dataTable.AsEnumerable().AsParallel()
+                                   where (row["Name"].ToString().ToLower().Contains(partOfName) 
+                                   || row["Surname"].ToString().ToLower().Contains(partOfName))
+                                   select row;
+                foreach (DataRow dr in selectedRows1)
+                {
+                    result.Add(new Performer(dr));
+                }
+                if (result.Count != 0)
+                    return result.ToArray();
+                return null;
+            }              
+
+            _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE (LOWER(Name) LIKE '%' + @partOfName + '%' OR LOWER(Surname) LIKE '%' + @partOfName + '%') AND PerformerType=@type";
 
             if (!_dataAdapter.SelectCommand.Parameters.Contains("@partOfName"))
                 _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@partOfName", partOfName));
@@ -84,7 +104,7 @@ namespace WpfCritic.DataLayer
             _dataAdapter.Fill(_dataTable);
             var selectedRows = from row in _dataTable.AsEnumerable().AsParallel()
                                where ((Performer.Type)Enum.Parse(typeof(Performer.Type), row["PerformerType"].ToString()) == type)
-                               && (row[_nameColumnName].ToString().ToLower().Contains(partOfName))
+                               && (row["Name"].ToString().ToLower().Contains(partOfName) || row["Surname"].ToString().ToLower().Contains(partOfName))
                                select row;
             foreach (DataRow dr in selectedRows)
             {
@@ -137,11 +157,7 @@ namespace WpfCritic.DataLayer
             return Performer.GetByIds(ids.ToArray());
         }
 
-        public Performer(DataRow row) : base(row)
-        {
-            if (PerformerType == Performer.Type.Person)
-                _nameColumnName = "Surname"; // если Performer - человек, то поиск по имени в Entity будет производиться по фамилии
-        }
+        public Performer(DataRow row) : base(row){ }
         public Performer(string name, string surname, Performer.Type performerType, DateTime? dateOfBirth, byte[] image,
         string summary) : base()
         {
@@ -151,8 +167,6 @@ namespace WpfCritic.DataLayer
             DateOfBirth = dateOfBirth;
             Image = image;
             Summary = summary;
-            if (PerformerType == Performer.Type.Person)
-                _nameColumnName = "Surname"; // если Performer - человек, то поиск по имени в Entity будет производиться по фамилии
         }
 
         public enum Type { Person, GameDeveloperCompany, GamePlatform, MovieProduction, TVNetwork, RecordLabel, Band }

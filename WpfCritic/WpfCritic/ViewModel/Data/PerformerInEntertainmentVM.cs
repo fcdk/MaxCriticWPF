@@ -17,6 +17,7 @@ namespace WpfCritic.ViewModel.Data
             get { return _performerInEntertainment.PerformerId; }
             set { _performerInEntertainment.PerformerId = value; OnPropertyChanged("PerformerId"); }
         }
+
         public Guid EntertainmentId
         {
             get { return _performerInEntertainment.EntertainmentId; }

@@ -115,12 +115,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\AwardUserControlVM.cs" />
+    <Compile Include="ViewModel\Data\AwardVM.cs" />
     <Compile Include="ViewModel\Data\GenreInEntertainmentVM.cs" />
     <Compile Include="ViewModel\Data\GenreVM.cs" />
     <Compile Include="ViewModel\Data\PerformerInEntertainmentVM.cs" />
     <Compile Include="ViewModel\Data\PerformerVM.cs" />
     <Compile Include="ViewModel\Data\SongInEntertainmentVM.cs" />
     <Compile Include="ViewModel\Data\SongVM.cs" />
+    <Compile Include="ViewModel\EditOrAddAwardWindowVM.cs" />
     <Compile Include="ViewModel\EditOrAddGenreInEntertainmentWindowVM.cs" />
     <Compile Include="ViewModel\EditOrAddGenreWindowVM.cs" />
     <Compile Include="ViewModel\EditOrAddPerformerInEntertainmentUserControlVM.cs" />
@@ -132,6 +135,12 @@
     <Compile Include="ViewModel\PerformerDetailsWindowVM.cs" />
     <Compile Include="ViewModel\PerformerUserControlVM.cs" />
     <Compile Include="ViewModel\SongUserControlVM.cs" />
+    <Compile Include="View\AwardUserControl.xaml.cs">
+      <DependentUpon>AwardUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditOrAddAwardWindow.xaml.cs">
+      <DependentUpon>EditOrAddAwardWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EditOrAddGenreInEntertainmentWindow.xaml.cs">
       <DependentUpon>EditOrAddGenreInEntertainmentWindow.xaml</DependentUpon>
     </Compile>
@@ -165,6 +174,14 @@
     <Compile Include="View\SongUserControl.xaml.cs">
       <DependentUpon>SongUserControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AwardUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditOrAddAwardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\EditOrAddEntertainmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -39,6 +39,11 @@
                     <local:PerformerUserControl x:Name="PerformerTabItem" DataContext="{Binding PerformerViewModel}" />
                 </TabItem.Content>
             </TabItem>
+            <TabItem Header="Нагороди">
+                <TabItem.Content>
+                    <local:AwardUserControl x:Name="AwardTabItem" DataContext="{Binding AwardViewModel}" />
+                </TabItem.Content>
+            </TabItem>
         </TabControl>
 
     </Grid>

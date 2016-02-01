@@ -163,10 +163,10 @@ namespace WpfCritic.ViewModel
 
         internal void ImageButtonClick()
         {
-            OpenFileDialog posterBrowse = new OpenFileDialog();
-            posterBrowse.Filter = "Файлы рисунков|*.png;*.jpg;*.bmp;*.tif;*.gif";
-            if (posterBrowse.ShowDialog() == true)
-                Image = posterBrowse.FileName;
+            OpenFileDialog imageBrowse = new OpenFileDialog();
+            imageBrowse.Filter = "Файлы рисунков|*.png;*.jpg;*.bmp;*.tif;*.gif";
+            if (imageBrowse.ShowDialog() == true)
+                Image = imageBrowse.FileName;
         }
 
         internal void ImageClearButtonClick()
