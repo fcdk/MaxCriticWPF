@@ -1,4 +1,6 @@
-﻿namespace WpfCritic.ViewModel
+﻿using WpfCritic.DataLayer;
+
+namespace WpfCritic.ViewModel
 {
     public class MainMenuWindowVM : ViewModelBase
     {
@@ -31,6 +33,11 @@
         public AwardUserControlVM AwardViewModel
         {
             get { return _awardViewModel; }
+        }
+
+        public string Login
+        {
+            get { return Connection.Instance.Login; }
         }
 
     }

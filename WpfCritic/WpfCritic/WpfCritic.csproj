@@ -115,6 +115,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataLayer\Connection.cs" />
+    <Compile Include="ViewModel\AuthorizationWindowVM.cs" />
     <Compile Include="ViewModel\AwardUserControlVM.cs" />
     <Compile Include="ViewModel\Data\AwardVM.cs" />
     <Compile Include="ViewModel\Data\GenreInEntertainmentVM.cs" />
@@ -135,6 +137,9 @@
     <Compile Include="ViewModel\PerformerDetailsWindowVM.cs" />
     <Compile Include="ViewModel\PerformerUserControlVM.cs" />
     <Compile Include="ViewModel\SongUserControlVM.cs" />
+    <Compile Include="View\AuthorizationWindow.xaml.cs">
+      <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AwardUserControl.xaml.cs">
       <DependentUpon>AwardUserControl.xaml</DependentUpon>
     </Compile>
@@ -174,6 +179,10 @@
     <Compile Include="View\SongUserControl.xaml.cs">
       <DependentUpon>SongUserControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AuthorizationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AwardUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

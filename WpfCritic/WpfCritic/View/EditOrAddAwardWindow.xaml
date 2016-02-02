@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfCritic.View"
         xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         mc:Ignorable="d"
-        Title="Нагорода" Height="301.127" Width="657.519">
+        Title="Нагорода" Height="301.127" Width="657.519" MinHeight="301.127" MinWidth="657.519" ResizeMode="NoResize">
     <Grid Background="AliceBlue">
         <Grid.Resources>
             <DataTemplate x:Key="PerformerAutoCompleteBoxItemTemplate">

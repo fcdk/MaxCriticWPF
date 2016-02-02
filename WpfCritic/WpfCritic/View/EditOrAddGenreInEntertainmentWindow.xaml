@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfCritic.View"
         xmlns:localdata="clr-namespace:WpfCritic.ViewModel.Data"
         mc:Ignorable="d"
-        Title="Жанри контенту" Height="630.451" Width="792.857" MinHeight="630.451" MinWidth="792.857">
+        Title="Жанри контенту" Height="630.451" Width="792.857" MinHeight="630.451" MinWidth="792.857" ResizeMode="NoResize">
     <Grid Background="AliceBlue">
         <Grid Margin="4,8,4,8">
             <Grid.RowDefinitions>

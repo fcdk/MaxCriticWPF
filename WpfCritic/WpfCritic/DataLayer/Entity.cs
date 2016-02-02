@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Configuration;
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,6 @@ using System.Text;
 
 namespace WpfCritic.DataLayer
 {
-    [ConnectionName("MaxCritic")]
     public class Entity<T> where T : Entity<T>
     {
         protected static SqlDataAdapter _dataAdapter;
@@ -44,15 +42,11 @@ namespace WpfCritic.DataLayer
         static Entity()
         {
             _idColumnName = ((IdColumnNameAttribute)typeof(T).GetCustomAttributes(typeof(IdColumnNameAttribute), false)[0]).Name;
-            _connectionName = ((ConnectionNameAttribute)typeof(Entity<T>).GetCustomAttributes(typeof(ConnectionNameAttribute), false)[0]).Name;
             _tableName = ((TableNameAttribute)typeof(T).GetCustomAttributes(typeof(TableNameAttribute), false)[0]).Name;
             _nameColumnName = ((NameColumnNameAttribute)typeof(T).GetCustomAttributes(typeof(NameColumnNameAttribute), false)[0]).Name;
 
-            _connectionString = ConfigurationManager.ConnectionStrings[_connectionName].ConnectionString;
-            SqlConnection connection = new SqlConnection(_connectionString);
-
             string selectSQL = "SELECT * FROM " + _tableName + ";";
-            _dataAdapter = new SqlDataAdapter(selectSQL, connection);
+            _dataAdapter = new SqlDataAdapter(selectSQL, Connection.Instance.MSSQLConnection);
             SqlCommandBuilder commandBuilder = new SqlCommandBuilder(_dataAdapter);
             _dataAdapter.UpdateCommand = commandBuilder.GetUpdateCommand();
             _dataAdapter.InsertCommand = commandBuilder.GetInsertCommand();

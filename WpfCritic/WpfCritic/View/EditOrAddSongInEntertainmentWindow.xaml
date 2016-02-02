@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfCritic.View"
         xmlns:localdata="clr-namespace:WpfCritic.ViewModel.Data"
         mc:Ignorable="d"
-        Title="Пісні в альбомі" Height="618.756" Width="791.685" MinHeight="618.756" MinWidth="791.685">
+        Title="Пісні в альбомі" Height="618.756" Width="791.685" MinHeight="618.756" MinWidth="791.685" ResizeMode="NoResize">
     <Grid Background="AliceBlue">
         <Grid Margin="4,8,4,8">
             <Grid.RowDefinitions>

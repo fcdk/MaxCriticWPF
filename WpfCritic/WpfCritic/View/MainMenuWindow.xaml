@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCritic.View"
         mc:Ignorable="d"
-        Title="MaxCritic" Height="617.197" Width="519.32" MinHeight="617.197" MinWidth="519.32">
+        Height="627.197" Width="519.32" MinHeight="627.197" MinWidth="519.32" ResizeMode="NoResize">
     <Grid Background="#FFD1D8FB">
 
         <Grid.RowDefinitions>
@@ -13,10 +13,13 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
+        <Grid Grid.Row="0">
             <Label Content="MaxCritic" Foreground="#FF00167C" FontWeight="Bold" FontSize="21.333" FontFamily="Ravie"/>
-            <TextBlock Text="никнейм типа тут будет и ава"/>
-        </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                <Label Content="Ваш логін:" Foreground="#FF00167C" FontWeight="Bold" FontSize="13.333" />
+                <TextBlock Text="{Binding Login}" Foreground="#FF00167C" FontSize="13.333" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </StackPanel>
+        </Grid>
 
         <TabControl Grid.Row="1" Background="AliceBlue">
             <TabItem Header="Контент">
