@@ -14,7 +14,7 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="{Binding Entertainment}" Margin="2,4,2,4" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF00167C" FontFamily="Impact" FontSize="21.333" />
+            <TextBlock Grid.Row="0" Text="{Binding Entertainment.ToStringWithAlbumAuthors}" Margin="2,4,2,4" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF00167C" FontFamily="Impact" FontSize="21.333" />
 
             <TabControl Grid.Row="1" SelectedIndex="{Binding SelectedTabIndex}" Background="AliceBlue">
                 <TabItem Header="Режисери" Visibility="{Binding MovieTabItemVisibility}">

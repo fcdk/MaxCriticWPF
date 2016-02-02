@@ -33,6 +33,14 @@ namespace WpfCritic.ViewModel.Data
             }
         }
 
+        public string ToStringWithAlbumAuthors
+        {
+            get
+            {
+                return(AlbumAuthors == null ? String.Empty : AlbumAuthors + " ") + Name + " (" + ReleaseDate.Year + ")";
+            }
+        }
+
         public Entertainment.Type EntertainmentType
         {
             get { return _entertainment.EntertainmentType; }
@@ -158,8 +166,6 @@ namespace WpfCritic.ViewModel.Data
 
         public override string ToString()
         {
-            if (EntertainmentType == Entertainment.Type.Album)
-                return (AlbumAuthors == null ? String.Empty : AlbumAuthors + " ") + Name + " (" + ReleaseDate.Year + ")";
             return Name + " (" + ReleaseDate.Year + ")";
         }
 

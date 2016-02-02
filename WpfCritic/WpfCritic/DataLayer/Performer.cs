@@ -69,7 +69,7 @@ namespace WpfCritic.DataLayer
             
             if (type == null)
             {
-                _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE LOWER(Name) LIKE '%' + @partOfName + '%' OR LOWER(Surname) LIKE '%' + @partOfName + '%'";
+                _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE LOWER(Name) + ' ' + LOWER(ISNULL(Surname,'')) LIKE '%' + @partOfName + '%'";
 
                 if (!_dataAdapter.SelectCommand.Parameters.Contains("@partOfName"))
                     _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@partOfName", partOfName));
@@ -78,8 +78,7 @@ namespace WpfCritic.DataLayer
 
                 _dataAdapter.Fill(_dataTable);
                 var selectedRows1 = from row in _dataTable.AsEnumerable().AsParallel()
-                                   where (row["Name"].ToString().ToLower().Contains(partOfName) 
-                                   || row["Surname"].ToString().ToLower().Contains(partOfName))
+                                   where (row["Name"].ToString().ToLower()+ " " + row["Surname"].ToString().ToLower()).Contains(partOfName)
                                    select row;
                 foreach (DataRow dr in selectedRows1)
                 {
@@ -107,6 +106,32 @@ namespace WpfCritic.DataLayer
                                && (row["Name"].ToString().ToLower().Contains(partOfName) || row["Surname"].ToString().ToLower().Contains(partOfName))
                                select row;
             foreach (DataRow dr in selectedRows)
+            {
+                result.Add(new Performer(dr));
+            }
+            if (result.Count != 0)
+                return result.ToArray();
+            return null;
+        }
+
+        public static Performer[] GetForAutoCompleteBox(string partOfName)
+        {
+            List<Performer> result = new List<Performer>();
+            partOfName = partOfName.ToLower();
+
+            _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE LOWER(Name) + ISNULL(' ' + LOWER(Surname), '') + ISNULL(' (' + FORMAT(DateOfBirth, 'dd.MM.yyyy') + ')','') LIKE '%' + @partOfName + '%'";
+
+            if (!_dataAdapter.SelectCommand.Parameters.Contains("@partOfName"))
+                    _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@partOfName", partOfName));
+            else
+                _dataAdapter.SelectCommand.Parameters["@partOfName"].Value = partOfName;
+
+            _dataAdapter.Fill(_dataTable);
+            var selectedRows1 = from row in _dataTable.AsEnumerable().AsParallel()
+                                where (row["Name"].ToString().ToLower() + (row["Surname"] == DBNull.Value ? "" : " " + row["Surname"].ToString().ToLower()) + 
+                                (row["DateOfBirth"] == DBNull.Value ? "" : " (" + ((DateTime)row["DateOfBirth"]).ToString("dd/MM/yyyy")) + ")").Contains(partOfName)
+                                select row;
+            foreach (DataRow dr in selectedRows1)
             {
                 result.Add(new Performer(dr));
             }

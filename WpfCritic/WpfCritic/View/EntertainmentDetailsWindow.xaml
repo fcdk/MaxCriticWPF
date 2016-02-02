@@ -41,7 +41,7 @@
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="21.333" FontWeight="Bold" Foreground="#FF00167C" TextWrapping="Wrap" Text="{Binding Entertainment}" />
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Impact" FontSize="21.333" FontWeight="Bold" Foreground="#FF00167C" TextWrapping="Wrap" Text="{Binding Entertainment.ToStringWithAlbumAuthors}" />
                         <Label Grid.Column="0" Grid.Row="1" Content="Дата релізу:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />
                         <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Text="{Binding ReleaseDate}" />
                         <Label Grid.Column="0" Grid.Row="2" Content="Компанія-правовласник:" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" />

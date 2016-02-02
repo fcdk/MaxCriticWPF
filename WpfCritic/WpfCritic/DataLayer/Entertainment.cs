@@ -221,6 +221,31 @@ namespace WpfCritic.DataLayer
             return null;
         }
 
+        public static Entertainment[] GetForAutoCompleteBox(string partOfName)
+        {
+            List<Entertainment> result = new List<Entertainment>();
+            partOfName = partOfName.ToLower();
+
+            _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE LOWER(Name) + ' (' + FORMAT(ReleaseDate, 'yyyy') + ')' LIKE '%' + @partOfName + '%'";
+
+            if (!_dataAdapter.SelectCommand.Parameters.Contains("@partOfName"))
+                _dataAdapter.SelectCommand.Parameters.Add(new SqlParameter("@partOfName", partOfName));
+            else
+                _dataAdapter.SelectCommand.Parameters["@partOfName"].Value = partOfName;
+
+            _dataAdapter.Fill(_dataTable);
+            var selectedRows1 = from row in _dataTable.AsEnumerable().AsParallel()
+                                where (row["Name"].ToString().ToLower() + " (" + ((DateTime)row["ReleaseDate"]).ToString("yyyy") + ")").Contains(partOfName)
+                                select row;
+            foreach (DataRow dr in selectedRows1)
+            {
+                result.Add(new Entertainment(dr));
+            }
+            if (result.Count != 0)
+                return result.ToArray();
+            return null;
+        }
+
         public enum Type { Movie, Game, TVSeries, Album }
 
     }

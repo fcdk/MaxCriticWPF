@@ -26,6 +26,16 @@
             <Label Grid.Row="0" Content="{Binding HeaderText}"  Foreground="#FF00167C" FontFamily="Impact" FontSize="21.333" HorizontalAlignment="Center" VerticalAlignment="Center"  />
 
             <Grid Grid.Row="1">
+                <Grid.Resources>
+                    <DataTemplate x:Key="EntertainmentAutoCompleteBoxItemTemplate">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding AlbumAuthors}"/>
+                            <TextBlock Text="{Binding Name, StringFormat=' {0} '}"/>
+                            <TextBlock Text="{Binding ReleaseDate.Year, StringFormat='({0})'}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </Grid.Resources>
+                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="auto" />
@@ -61,9 +71,9 @@
                 <Button Grid.Row="3" Grid.Column="3" Name="ImageButton" Content="Обзор" Click="ImageButton_Click" />
                 <Button Grid.Row="3" Grid.Column="4" Name="ImageClearButton" Visibility="{Binding ImageClearButtonVisibility}" Content="Очистити" Click="ImageClearButton_Click" />
                 <Label Grid.Row="4" Grid.Column="0" Content="Переможець (додатковий контент):" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <toolkit:AutoCompleteBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding Path=PartOfNamePerformer, Mode=TwoWay}" ItemsSource="{Binding PerformersPick}" SelectedItem="{Binding Performer, Mode=TwoWay}" ItemFilter="{Binding PerformerFilter}" IsTextCompletionEnabled="True" />
+                <toolkit:AutoCompleteBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding Path=PartOfNamePerformer, Mode=TwoWay}" ItemsSource="{Binding PerformersPick}" SelectedItem="{Binding Performer, Mode=TwoWay}" ItemFilter="{Binding PerformerFilter}" IsTextCompletionEnabled="True" FilterMode="Contains" />
                 <Label Grid.Row="5" Grid.Column="0" Content="Переможець (контент):" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <toolkit:AutoCompleteBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding Path=PartOfNameEntertainment, Mode=TwoWay}" ItemsSource="{Binding EntertainmentsPick}" SelectedItem="{Binding Entertainment, Mode=TwoWay}" IsTextCompletionEnabled="True" />
+                <toolkit:AutoCompleteBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding Path=PartOfNameEntertainment, Mode=TwoWay}" ItemsSource="{Binding EntertainmentsPick}" SelectedItem="{Binding Entertainment, Mode=TwoWay}" ItemFilter="{Binding EntertainmentFilter}" ItemTemplate="{StaticResource EntertainmentAutoCompleteBoxItemTemplate}" IsTextCompletionEnabled="True" FilterMode="Contains" />
             </Grid>
 
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">

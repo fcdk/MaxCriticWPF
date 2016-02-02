@@ -51,8 +51,7 @@ namespace WpfCritic.ViewModel
                 if (PartOfNamePerformer.Length < 3)
                     return null;
 
-                Performer[] performers;
-                performers = DataLayer.Performer.GetByName(PartOfNamePerformer);
+                Performer[] performers = DataLayer.Performer.GetForAutoCompleteBox(PartOfNamePerformer);
 
                 if (performers == null)
                     return null;
@@ -84,8 +83,7 @@ namespace WpfCritic.ViewModel
                 if (PartOfNameEntertainment.Length < 3)
                     return null;
 
-                Entertainment[] entertainments;
-                entertainments = DataLayer.Entertainment.GetByName(PartOfNameEntertainment);
+                Entertainment[] entertainments = DataLayer.Entertainment.GetForAutoCompleteBox(PartOfNameEntertainment);
 
                 if (entertainments == null)
                     return null;
@@ -253,10 +251,19 @@ namespace WpfCritic.ViewModel
             get
             {
                 return (searchText, obj) =>
-                    (obj as PerformerVM).Name.ToLower().Contains(searchText.ToLower())
-                    || (obj as PerformerVM).Surname.ToLower().Contains(searchText.ToLower());
+                    (obj as PerformerVM).ToString().ToLower().Contains(searchText.ToLower());
             }
         }
+
+        public AutoCompleteFilterPredicate<object> EntertainmentFilter
+        {
+            get
+            {
+                return (searchText, obj) =>
+                    (obj as EntertainmentVM).ToString().ToLower().Contains(searchText.ToLower());
+            }
+        }
+
 
     }
 }
