@@ -60,9 +60,13 @@ namespace WpfCritic.Core
 
         public void Dispose()
         {
-            _writer.Flush();
-            _writer.Close();
-            _file.Close();
+            if (_writer != null)
+            {
+                _writer.Flush();
+                _writer.Close();
+            }
+            if (_file != null)
+                _file.Close();
         }
     }
 }

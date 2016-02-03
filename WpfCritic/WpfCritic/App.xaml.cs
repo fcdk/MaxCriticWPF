@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Windows;
+using WpfCritic.Core;
 
 namespace WpfCritic
 {
@@ -23,6 +24,8 @@ namespace WpfCritic
 
         protected override void OnExit(ExitEventArgs e)
         {
+            Logger.Instance.Dispose();
+
             if (_instanceMutex != null)
                 _instanceMutex.ReleaseMutex();
             base.OnExit(e);
