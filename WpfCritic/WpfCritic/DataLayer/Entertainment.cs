@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using WpfCritic.Core;
 
 namespace WpfCritic.DataLayer
 {
@@ -137,7 +138,10 @@ namespace WpfCritic.DataLayer
             }
         }
 
-        public Entertainment(DataRow row) : base(row) { }
+        public Entertainment(DataRow row) : base(row)
+        {
+            Logger.Info("Entertainment.Entertainment", "Створено екземпляр Entertainment.");
+        }
         public Entertainment(Entertainment.Type entertainmentType, string name, DateTime releaseDate, string company, byte[] poster,
         string summary, string buyLink, string mainLanguage, string rating, string ratingComment, int? movieRuntimeMinute,
         string officialSite, string movieCountries, byte? tVSeason, decimal? budget, string trailerLink) : base()
@@ -158,12 +162,16 @@ namespace WpfCritic.DataLayer
             TVSeason = tVSeason;
             Budget = budget;
             TrailerLink = trailerLink;
+
+            Logger.Info("Entertainment.Entertainment", "Створено екземпляр Entertainment.");
         }
 
         public static Entertainment[] GetRandomFirstTen(Entertainment.Type? type = null)
         {
             if (type == null)
                 return Entity<Entertainment>.GetRandomFirstTen();
+
+            Logger.Info("Entertainment.GetRandomFirstTen", "Спроба взяти з БД перші 10 записів Entertainment за типом.");
 
             List<Entertainment> result = new List<Entertainment>();
 
@@ -182,6 +190,9 @@ namespace WpfCritic.DataLayer
             {
                 result.Add(new Entertainment(dr));
             }
+
+            Logger.Info("Entertainment.GetRandomFirstTen", "Зчитано з БД перші 10 записів Entertainment за типом.");
+
             if (result.Count != 0)
                 return result.ToArray();
             return null;
@@ -192,6 +203,8 @@ namespace WpfCritic.DataLayer
         {
             if (type == null)
                 return Entity<Entertainment>.GetByName(partOfName);
+
+            Logger.Info("Entertainment.GetByName", "Спроба взяти з БД Entertainment за ім'ям та типом.");
 
             partOfName = partOfName.ToLower();
 
@@ -216,6 +229,9 @@ namespace WpfCritic.DataLayer
             {
                 result.Add(new Entertainment(dr));
             }
+
+            Logger.Info("Entertainment.GetByName", "Зчитано з БД Entertainment за ім'ям та типом.");
+
             if (result.Count != 0)
                 return result.ToArray();
             return null;
@@ -223,6 +239,8 @@ namespace WpfCritic.DataLayer
 
         public static Entertainment[] GetForAutoCompleteBox(string partOfName)
         {
+            Logger.Info("Entertainment.GetForAutoCompleteBox", "Спроба взяти з БД Entertainment для AutoCompleteBox.");
+
             List<Entertainment> result = new List<Entertainment>();
             partOfName = partOfName.ToLower();
 
@@ -241,6 +259,9 @@ namespace WpfCritic.DataLayer
             {
                 result.Add(new Entertainment(dr));
             }
+
+            Logger.Info("Entertainment.GetForAutoCompleteBox", "Зчитано з БД Entertainment для AutoCompleteBox.");
+
             if (result.Count != 0)
                 return result.ToArray();
             return null;

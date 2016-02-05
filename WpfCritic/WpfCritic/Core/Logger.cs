@@ -10,11 +10,12 @@ namespace WpfCritic.Core
         private static Logger _instance;
         private BinaryWriter _writer;
         private FileStream _file;
+        private bool _errorOffWrite = false;
 
         private Logger()
         {
             string logFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log.txt");
-            _file = File.Open(logFileName, FileMode.Create, FileAccess.ReadWrite, FileShare.None);
+            _file = File.Open(logFileName, FileMode.Append, FileAccess.Write, FileShare.None);
             _writer = new BinaryWriter(_file, Encoding.Default);
         }
 
@@ -47,14 +48,19 @@ namespace WpfCritic.Core
         {
             try
             {
-                if (_writer == null)
+                if (_writer == null || _errorOffWrite)
                     return;
 
                 _writer.Write(string.Format("{0} | {1} | {2} | {3} | {4}", DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss:fff"), level, title, message, Environment.NewLine));
             }
             catch (Exception ex)
             {
-                MessageBox.Show("WriteMessage error:" + ex);
+                var result = MessageBox.Show("Проблема з записом логів в файл, зверніться до адміністратора!" + Environment.NewLine + ex 
+                + Environment.NewLine + Environment.NewLine + "Більше не показувати це повідомлення (відключити логування)?",
+                "ERROR", MessageBoxButton.YesNo, MessageBoxImage.Error);
+
+                if (result == MessageBoxResult.Yes)
+                    _errorOffWrite = true;
             }
         }
 

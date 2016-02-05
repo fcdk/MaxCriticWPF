@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using WpfCritic.Core;
 
 namespace WpfCritic.DataLayer
 {
@@ -59,7 +60,10 @@ namespace WpfCritic.DataLayer
             }
         }
 
-        public Award(DataRow row) : base(row) { }
+        public Award(DataRow row) : base(row)
+        {
+            Logger.Info("Award.Award", "Екземпляр Award створений.");
+        }
         public Award(Performer performer, Entertainment entertainment, string name, string nomination, DateTime date,
         byte[] image) : base()
         {
@@ -73,6 +77,8 @@ namespace WpfCritic.DataLayer
             Nomination = nomination;
             Date = date;
             Image = image;
+
+            Logger.Info("Award.Award", "Екземпляр Award створений.");
         }
         
     }

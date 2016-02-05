@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WpfCritic.Core;
 
 namespace WpfCritic.DataLayer
 {
@@ -41,9 +42,13 @@ namespace WpfCritic.DataLayer
 
         static Entity()
         {
+            Logger.Info("Entity.Entity", "Вхід у статичний конструктор Entity.");
+            
             _idColumnName = ((IdColumnNameAttribute)typeof(T).GetCustomAttributes(typeof(IdColumnNameAttribute), false)[0]).Name;
             _tableName = ((TableNameAttribute)typeof(T).GetCustomAttributes(typeof(TableNameAttribute), false)[0]).Name;
             _nameColumnName = ((NameColumnNameAttribute)typeof(T).GetCustomAttributes(typeof(NameColumnNameAttribute), false)[0]).Name;
+
+            Logger.Info("Entity.Entity", "У статичному конструкторі Entity зчитано атрибути класу Т.");
 
             string selectSQL = "SELECT * FROM " + _tableName + ";";
             _dataAdapter = new SqlDataAdapter(selectSQL, Connection.Instance.MSSQLConnection);
@@ -52,11 +57,15 @@ namespace WpfCritic.DataLayer
             _dataAdapter.InsertCommand = commandBuilder.GetInsertCommand();
             _dataAdapter.DeleteCommand = commandBuilder.GetDeleteCommand();
 
+            Logger.Info("Entity.Entity", "У статичному конструкторі Entity створено SqlDataAdapter та згенеровані SQL-запити.");
+
             _dataAdapter.SelectCommand.CommandText = "SELECT TOP(1) * FROM " + _tableName + ";";
             _dataAdapter.Fill(_dataTable);
-
+                        
             _dataTable.TableName = _tableName;
             _dataTable.PrimaryKey = new DataColumn[] { _dataTable.Columns[_idColumnName] };
+
+            Logger.Info("Entity.Entity", "У статичному конструкторі Entity сформований DataTable.");
         }
 
         public Entity(DataRow row = null)
@@ -72,32 +81,48 @@ namespace WpfCritic.DataLayer
                 Id = Guid.NewGuid();
                 _isNew = true;
             }
+
+            Logger.Info("Entity.Entity", "Конструтор екземпляру Entity завершив роботу.");
         }
 
         public void Save()
         {
+            Logger.Info("Entity.Save", "Спроба збереження рядка в БД.");
+
             if (IsNew)
             {
                 _dataTable.Rows.Add(_row);
                 _isNew = false;
             }
             _dataAdapter.Update(new DataRow[] { _row });
+
+            Logger.Info("Entity.Save", "Рядок збережено в БД.");
         }
 
         public void Delete()
         {
+            Logger.Info("Entity.Save", "Спроба видалення рядка в БД.");
+
             _row.Delete();
             _dataAdapter.Update(new DataRow[] { _row });
+
+            Logger.Info("Entity.Save", "Рядок видалено з БД.");
         }
 
         public static T GetById(Guid id)
         {
+            Logger.Info("Entity.GetById", "Спроба взяти з БД запис Entity за id.");
+
             var query = from row in _dataTable.AsEnumerable().AsParallel()
                         where (Guid)row[_idColumnName] == id
                         select row;
             DataRow[] result = query.ToArray();
             if (result.Length == 1)
+            {
+                Logger.Info("Entity.GetById", "Зчитано з БД запис Entity за id.");
+
                 return (T)Activator.CreateInstance(typeof(T), result[0]);
+            }
             else
             {
                 _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE " + _idColumnName + "=@id;";
@@ -112,6 +137,9 @@ namespace WpfCritic.DataLayer
                     var selectedRow = from row in _dataTable.AsEnumerable().AsParallel()
                                       where (Guid)row[_idColumnName] == id
                                       select row;
+
+                    Logger.Info("Entity.GetById", "Зчитано з БД запис Entity за id.");
+
                     return (T)Activator.CreateInstance(typeof(T), selectedRow.ToArray()[0]);
                 }
                 return null;
@@ -120,6 +148,8 @@ namespace WpfCritic.DataLayer
 
         public static T[] GetByIds(Guid[] ids)
         {
+            Logger.Info("Entity.GetByIds", "Спроба взяти з БД записи Entity за id.");
+
             List<T> result = new List<T>();
 
             StringBuilder sqlSelect = new StringBuilder(_idColumnName + " IN (");
@@ -141,6 +171,9 @@ namespace WpfCritic.DataLayer
             {
                 result.Add((T)Activator.CreateInstance(typeof(T), dr));
             }
+
+            Logger.Info("Entity.GetById", "Зчитано з БД записи Entity за id.");
+
             if (result.Count != 0)
                 return result.ToArray();
             return null;
@@ -148,6 +181,8 @@ namespace WpfCritic.DataLayer
 
         protected static T[] GetByQuery(string query)
         {
+            Logger.Info("Entity.GetByQuery", "Спроба взяти з БД записи Entity за текстовим запитом.");
+
             List<T> result = new List<T>();
             _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + ((query == "") ? ";" : " WHERE " + query + ";");
             _dataAdapter.Fill(_dataTable);
@@ -158,18 +193,31 @@ namespace WpfCritic.DataLayer
                 {
                     result.Add((T)Activator.CreateInstance(typeof(T), dr));
                 }
+
+                Logger.Info("Entity.GetById", "Зчитано з БД записи Entity за текстовим запитом.");
+
                 return result.ToArray();
             }
             return null;
         }
 
         public static T[] GetAllItems()
-        { return GetByQuery(""); }
+        {
+            Logger.Info("Entity.GetAllItems", "Спроба взяти з БД всі записи Entity (перехід до функції з текстовим запитом).");
+
+            return GetByQuery("");
+        }
 
         public static T[] GetByName(string partOfName)
         {
+            Logger.Info("Entity.GetByName", "Спроба взяти з БД записи Entity за назвою.");
+
             if (_nameColumnName == null)
+            {
+                Logger.Warning("Entity.GetByName", "Ім'я було передано як null, жодного запису Entity не повернуто.");
+
                 return null;
+            }
 
             partOfName = partOfName.ToLower();
 
@@ -191,6 +239,9 @@ namespace WpfCritic.DataLayer
             {
                 result.Add((T)Activator.CreateInstance(typeof(T), dr));
             }
+
+            Logger.Info("Entity.GetByName", "Зчитано з БД записи Entity за назвою.");
+
             if (result.Count != 0)
                 return result.ToArray();
             return null;
@@ -198,6 +249,8 @@ namespace WpfCritic.DataLayer
 
         public static T[] GetRandomFirstTen()
         {
+            Logger.Info("Entity.GetRandomFirstTen", "Спроба взяти з БД перші 10 записів Entity.");
+
             List<T> result = new List<T>();
 
             _dataAdapter.SelectCommand.CommandText = "SELECT TOP(10) * FROM " + _tableName + ";";
@@ -209,6 +262,9 @@ namespace WpfCritic.DataLayer
             {
                 result.Add((T)Activator.CreateInstance(typeof(T), dr));
             }
+
+            Logger.Info("Entity.GetRandomFirstTen", "Зчитано з БД перші 10 записів Entity.");
+
             if (result.Count != 0)
                 return result.ToArray();
             return null;
@@ -216,6 +272,8 @@ namespace WpfCritic.DataLayer
         
         public static bool Comparison (Entity<T> entity1, Entity<T> entity2)
         {
+            Logger.Info("Entity.Comparison", "Порівняння двох екземплярів Entity.");
+
             if (Object.ReferenceEquals(entity1, entity2)) { return true; }
             if (entity1 == null || entity2 == null) { return false; }
             return entity1.Id == entity2.Id;

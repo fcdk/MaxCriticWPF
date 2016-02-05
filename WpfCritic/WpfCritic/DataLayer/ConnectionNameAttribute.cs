@@ -1,4 +1,5 @@
 ﻿using System;
+using WpfCritic.Core;
 
 namespace WpfCritic.DataLayer
 {
@@ -9,6 +10,8 @@ namespace WpfCritic.DataLayer
         public ConnectionNameAttribute(string name)
         {
             Name = name;
+
+            Logger.Info("ConnectionNameAttribute.ConnectionNameAttribute", "Створено екземпляр атрибута ConnectionNameAttribute.");
         }
     }
 }
