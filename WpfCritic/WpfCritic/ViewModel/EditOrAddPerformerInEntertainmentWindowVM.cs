@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 using WpfCritic.ViewModel.Data;
 
@@ -230,6 +231,7 @@ namespace WpfCritic.ViewModel
                     break;
             }
 
+            Logger.Info("EditOrAddPerformerInEntertainmentWindowVM.EditOrAddPerformerInEntertainmentWindowVM", "Екземпляр EditOrAddPerformerInEntertainmentWindowVM створений.");
         }
 
     }

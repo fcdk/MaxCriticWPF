@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 using WpfCritic.ViewModel.Data;
 
@@ -121,6 +122,7 @@ namespace WpfCritic.ViewModel
                 _noImage = File.ReadAllBytes(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\noImage.png");
             }
 
+            Logger.Info("PerformerDetailsWindowVM.PerformerDetailsWindowVM", "Екземпляр PerformerDetailsWindowVM створений.");
         }
 
     }

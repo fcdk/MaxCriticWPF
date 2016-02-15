@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using WpfCritic.Core;
 using WpfCritic.ViewModel.Data;
 
 namespace WpfCritic.ViewModel
@@ -80,6 +81,8 @@ namespace WpfCritic.ViewModel
 
             NameErrorVisibility = Visibility.Hidden;
             DurationErrorVisibility = Visibility.Hidden;
+
+            Logger.Info("EditOrAddSongWindow.EditOrAddSongWindow", "Екземпляр EditOrAddSongWindow створений.");
         }
 
         internal bool OkButtonClick()

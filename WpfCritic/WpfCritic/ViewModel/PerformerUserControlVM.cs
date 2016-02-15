@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 using WpfCritic.View;
 using WpfCritic.ViewModel.Data;
@@ -165,6 +166,8 @@ namespace WpfCritic.ViewModel
             if (performers != null)
                 foreach (var performer in performers)
                     _performerCollection.Add(new PerformerVM(performer));
+
+            Logger.Info("PerformerUserControlVM.PerformerUserControlVM", "Екземпляр PerformerUserControlVM створений.");
         }
 
     }

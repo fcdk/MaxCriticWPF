@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Navigation;
+using WpfCritic.Core;
 using WpfCritic.View;
 using WpfCritic.ViewModel.Data;
 
@@ -197,6 +198,8 @@ namespace WpfCritic.ViewModel
         public EntertainmentDetailsWindowVM(EntertainmentVM entertainment)
         {
             _entertainment = entertainment;
+
+            Logger.Info("EntertainmentDetailsWindowVM.EntertainmentDetailsWindowVM", "Екземпляр EntertainmentDetailsWindowVM створений.");
         }
 
     }

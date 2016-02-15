@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Windows;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 using WpfCritic.ViewModel.Data;
 
@@ -308,6 +309,8 @@ namespace WpfCritic.ViewModel
             if (EntertainmentVM.EntertainmentTypeUkrStringToEngEnum(EntertainmentTypeUkr) == Entertainment.Type.Album)
                 TrailerLinkErrorVisibility = Visibility.Collapsed;
             else TrailerLinkErrorVisibility = Visibility.Hidden;
+
+            Logger.Info("EditOrAddEntertainmentWindowVM.EditOrAddEntertainmentWindowVM", "Екземпляр EditOrAddEntertainmentWindowVM створений.");
         }
 
         internal void entertainmentTypeUkrComboBoxSelectionChanged()

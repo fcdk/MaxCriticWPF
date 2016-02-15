@@ -1,4 +1,5 @@
 ﻿using System;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 
 namespace WpfCritic.ViewModel.Data
@@ -33,20 +34,28 @@ namespace WpfCritic.ViewModel.Data
         public PerformerInEntertainmentVM(PerformerInEntertainment performerInEntertainment)
         {
             _performerInEntertainment = performerInEntertainment;
+
+            Logger.Info("PerformerInEntertainmentVM.PerformerInEntertainmentVM", "Екземпляр PerformerInEntertainmentVM створений.");
         }
 
         public PerformerInEntertainmentVM(PerformerVM performer, EntertainmentVM entertainment, PerformerInEntertainment.Role performerRole)
         {
             _performerInEntertainment = new PerformerInEntertainment(performer.PerformerDL, entertainment.EntertainmentDL, performerRole);
+
+            Logger.Info("PerformerInEntertainmentVM.PerformerInEntertainmentVM", "Екземпляр PerformerInEntertainmentVM створений.");
         }
 
         public bool PerformerComparison(PerformerVM performer)
         {
+            Logger.Info("PerformerInEntertainmentVM.PerformerComparison", "Порівняння даного екзмпляра жанру з жанром у PerformerInEntertainmentVM.");
+
             return performer.PerformerDL.Id == this.PerformerId;
         }
 
         public static bool Comparison(PerformerInEntertainmentVM performerInEntertainment1, PerformerInEntertainmentVM performerInEntertainment2)
         {
+            Logger.Info("PerformerInEntertainmentVM.Comparison", "Порівняння двох екземплярів PerformerInEntertainmentVM.");
+
             if (performerInEntertainment1 == null || performerInEntertainment2 == null)
                 return false;
             return Entity<PerformerInEntertainment>.Comparison(performerInEntertainment1.PerformerInEntertainmentDL, performerInEntertainment2.PerformerInEntertainmentDL);

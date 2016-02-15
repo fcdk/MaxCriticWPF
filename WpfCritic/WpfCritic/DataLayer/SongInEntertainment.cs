@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using WpfCritic.Core;
 
 namespace WpfCritic.DataLayer
 {
@@ -22,8 +23,22 @@ namespace WpfCritic.DataLayer
             set { Row["EntertainmentId"] = value; }
         }
 
+        public SongInEntertainment(DataRow row) : base(row)
+        {
+            Logger.Info("SongInEntertainment.SongInEntertainment", "Створено екземпляр SongInEntertainment.");
+        }
+        public SongInEntertainment(Song song, Entertainment entertainment) : base()
+        {
+            SongId = song.Id;
+            EntertainmentId = entertainment.Id;
+
+            Logger.Info("SongInEntertainment.SongInEntertainment", "Створено екземпляр SongInEntertainment.");
+        }
+
         public static SongInEntertainment[] GetSongInEntertainmentByEntertainment(Entertainment entertainment)
         {
+            Logger.Info("SongInEntertainment.GetSongInEntertainmentByEntertainment", "Спроба взяти з БД записи SongInEntertainment за Entertainment.");
+
             List<SongInEntertainment> result = new List<SongInEntertainment>();
 
             _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE EntertainmentId=@id";
@@ -41,16 +56,12 @@ namespace WpfCritic.DataLayer
             {
                 result.Add(new SongInEntertainment(dr));
             }
+
+            Logger.Info("SongInEntertainment.GetSongInEntertainmentByEntertainment", "Зчитано з БД записи SongInEntertainment за Entertainment.");
+
             if (result.Count != 0)
                 return result.ToArray();
             return null;
-        }
-
-        public SongInEntertainment(DataRow row) : base(row) { }
-        public SongInEntertainment(Song song, Entertainment entertainment) : base()
-        {
-            SongId = song.Id;
-            EntertainmentId = entertainment.Id;
         }
 
     }

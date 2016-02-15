@@ -15,11 +15,6 @@ namespace WpfCritic.ViewModel
             set { _login = value; OnPropertyChanged("Login"); }
         }
 
-        public string pass
-        {
-            get; set;
-        }
-
         internal bool OkButtonClick(string hashedPassword)
         {
             string _connectionName = ((ConnectionNameAttribute)typeof(AuthorizationWindowVM).GetCustomAttributes(typeof(ConnectionNameAttribute), false)[0]).Name;

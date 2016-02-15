@@ -1,4 +1,5 @@
 ﻿using System;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 
 namespace WpfCritic.ViewModel.Data
@@ -49,6 +50,8 @@ namespace WpfCritic.ViewModel.Data
         public GenreVM(Genre genre)
         {
             _genre = genre;
+
+            Logger.Info("GenreVM.GenreVM", "Екземпляр GenreVM створений.");
         }
 
         public GenreVM(GenreVM parentGenre, string name, Entertainment.Type genreType, string summary)
@@ -56,6 +59,8 @@ namespace WpfCritic.ViewModel.Data
             if (parentGenre != null)
                 _genre = new Genre(parentGenre.GenreDL, name, genreType, summary);
             else _genre = new Genre(null, name, genreType, summary);
+
+            Logger.Info("GenreVM.GenreVM", "Екземпляр GenreVM створений.");
         }
 
         public override string ToString()
@@ -65,11 +70,15 @@ namespace WpfCritic.ViewModel.Data
         
         public bool CanBeParentGenre(GenreVM genre)
         {
+            Logger.Info("GenreVM.CanBeParentGenre", "Перевірка на те, чи може бути екземпляр класу бути батьківський для даного.");
+
             return this.GenreDL.CanBeParentGenre(genre.GenreDL);
         }
 
         public static bool Comparison(GenreVM genre1, GenreVM genre2)
         {
+            Logger.Info("GenreVM.Comparison", "Порівняння двох екземплярів GenreVM.");
+
             if (genre1 == null || genre2 == null)
                 return false;
             return Entity<Genre>.Comparison(genre1.GenreDL, genre2.GenreDL);

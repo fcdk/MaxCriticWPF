@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 using WpfCritic.ViewModel.Data;
 
@@ -129,6 +130,8 @@ namespace WpfCritic.ViewModel
 
             NameErrorVisibility = Visibility.Hidden;
             ParentGenreErrorVisibility = Visibility.Hidden;
+
+            Logger.Info("EditOrAddGenreWindowVM.EditOrAddGenreWindowVM", "Екземпляр EditOrAddGenreWindowVM створений.");
         }
 
         internal bool OkButtonClick()

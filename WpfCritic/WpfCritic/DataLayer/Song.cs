@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using WpfCritic.Core;
 
 namespace WpfCritic.DataLayer
 {
@@ -32,12 +33,17 @@ namespace WpfCritic.DataLayer
             }
         }
 
-        public Song(DataRow row) : base(row) { }
+        public Song(DataRow row) : base(row)
+        {
+            Logger.Info("Song.Song", "Створено екземпляр Song.");
+        }
         public Song(string name, TimeSpan duration, string lyrics) : base()
         {
             Name = name;
             Duration = duration;
             Lyrics = lyrics;
+
+            Logger.Info("Song.Song", "Створено екземпляр Song.");
         }
 
     }

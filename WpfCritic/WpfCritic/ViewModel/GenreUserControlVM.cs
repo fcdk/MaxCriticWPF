@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 using WpfCritic.View;
 using WpfCritic.ViewModel.Data;
@@ -166,6 +167,8 @@ namespace WpfCritic.ViewModel
             if (genres != null)
                 foreach (var genre in genres)
                     _genreCollection.Add(new GenreVM(genre));
+
+            Logger.Info("GenreUserControlVM.GenreUserControlVM", "Екземпляр GenreUserControlVM створений.");
         }
 
     }

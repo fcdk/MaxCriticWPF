@@ -1,4 +1,5 @@
 ﻿using System;
+using WpfCritic.Core;
 
 namespace WpfCritic.DataLayer
 {
@@ -9,6 +10,8 @@ namespace WpfCritic.DataLayer
         public NameColumnNameAttribute(string name)
         {
             Name = name;
+
+            Logger.Info("NameColumnNameAttribute.NameColumnNameAttribute", "Створено екземпляр атрибута NameColumnNameAttribute.");
         }
     }
 }

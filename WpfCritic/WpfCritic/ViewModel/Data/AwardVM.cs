@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 
 namespace WpfCritic.ViewModel.Data
@@ -62,11 +63,15 @@ namespace WpfCritic.ViewModel.Data
         public AwardVM(Award award)
         {
             _award = award;
+
+            Logger.Info("AwardVM.AwardVM", "Екземпляр AwardVM створений.");
         }
 
         public AwardVM(PerformerVM performer, EntertainmentVM entertainment, string name, string nomination, DateTime date, byte[] image)
         {
             _award = new Award(performer == null ? null : performer.PerformerDL, entertainment == null ? null : entertainment.EntertainmentDL, name, nomination, date, image);
+
+            Logger.Info("AwardVM.AwardVM", "Екземпляр AwardVM створений.");
         }
 
         public override string ToString()
@@ -76,6 +81,8 @@ namespace WpfCritic.ViewModel.Data
 
         public static bool Comparison(AwardVM award1, AwardVM award2)
         {
+            Logger.Info("AwardVM.Comparison", "Порівняння двох екземплярів AwardVM.");
+
             if (award1 == null || award2 == null)
                 return false;
             return Entity<Award>.Comparison(award1.AwardDL, award2.AwardDL);

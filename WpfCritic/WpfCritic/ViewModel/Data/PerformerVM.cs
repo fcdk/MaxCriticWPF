@@ -1,4 +1,5 @@
 ﻿using System;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 
 namespace WpfCritic.ViewModel.Data
@@ -61,11 +62,15 @@ namespace WpfCritic.ViewModel.Data
         public PerformerVM(Performer performer)
         {
             _performer = performer;
+
+            Logger.Info("PerformerVM.PerformerVM", "Екземпляр PerformerVM створений.");
         }
 
         public PerformerVM(string name, string surname, Performer.Type performerType, DateTime? dateOfBirth, byte[] image, string summary)
         {
             _performer = new Performer(name, surname, performerType, dateOfBirth, image, summary);
+
+            Logger.Info("PerformerVM.PerformerVM", "Екземпляр PerformerVM створений.");
         }
 
         public override string ToString()
@@ -123,6 +128,8 @@ namespace WpfCritic.ViewModel.Data
 
         public static bool Comparison(PerformerVM performer1, PerformerVM performer2)
         {
+            Logger.Info("PerformerVM.Comparison", "Порівняння двох екземплярів PerformerVM.");
+
             if (performer1 == null || performer2 == null)
                 return false;
             return Entity<Performer>.Comparison(performer1.PerformerDL, performer2.PerformerDL);

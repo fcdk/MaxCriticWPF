@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCritic.View"
         mc:Ignorable="d"
-        Title="Деталі контента" Height="471.872" Width="1001.745" MinHeight="471.872" MinWidth="1001.745" Closing="Window_Closing">
+        Title="Деталі контента" Height="471.872" Width="1001.745" MinHeight="471.872" MinWidth="1001.745" Closing="Window_Closing" Loaded="Window_Loaded">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Background="AliceBlue">
             <Grid Margin="4,8,4,8">

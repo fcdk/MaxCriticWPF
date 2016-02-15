@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using WpfCritic.Core;
 
 namespace WpfCritic.DataLayer
 {
@@ -69,7 +70,10 @@ namespace WpfCritic.DataLayer
             set { Row["CheckedByAdmin"] = value; }
         }
 
-        public Review(DataRow row) : base(row) { }
+        public Review(DataRow row) : base(row)
+        {
+            Logger.Info("Review.Review", "Створено екземпляр Review.");
+        }
         public Review(UserCritic userCritic, Entertainment entertainment, byte point, string opinion, DateTimeOffset time,
         string link, string publication, int helpful, int unhelpful, bool checkedByAdmin) : base()
         {
@@ -83,6 +87,8 @@ namespace WpfCritic.DataLayer
             Helpful = helpful;
             Unhelpful = unhelpful;
             CheckedByAdmin = checkedByAdmin;
+
+            Logger.Info("Review.Review", "Створено екземпляр Review.");
         }
 
     }

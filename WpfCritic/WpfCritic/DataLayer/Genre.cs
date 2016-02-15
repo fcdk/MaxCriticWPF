@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using WpfCritic.Core;
 
 namespace WpfCritic.DataLayer
 {
@@ -42,7 +43,10 @@ namespace WpfCritic.DataLayer
             }
         }
 
-        public Genre(DataRow row) : base(row) { }
+        public Genre(DataRow row) : base(row)
+        {
+            Logger.Info("Genre.Genre", "Створено екземпляр Genre.");
+        }
         public Genre(Genre parentGenre, string name, Entertainment.Type genreType, string summary) : base()
         {
             if (parentGenre == null)
@@ -51,10 +55,14 @@ namespace WpfCritic.DataLayer
             Name = name;
             GenreType = genreType;
             Summary = summary;
+
+            Logger.Info("Genre.Genre", "Створено екземпляр Genre.");
         }
 
         public static Genre[] GetByName(string partOfName, Entertainment.Type? type = null)
         {
+            Logger.Info("Genre.GetByName", "Спроба взяти з БД записи Genre за назвою.");
+
             if (type == null)
                 return Entity<Genre>.GetByName(partOfName);
 
@@ -81,13 +89,18 @@ namespace WpfCritic.DataLayer
             {
                 result.Add(new Genre(dr));
             }
+
+            Logger.Info("Entity.GetByName", "Зчитано з БД записи Genre за назвою.");
+
             if (result.Count != 0)
                 return result.ToArray();
-            return null;
+            return null;            
         }
 
         public static Genre[] GetByNameExceptId(string partOfName, Entertainment.Type type, Guid id)
         {
+            Logger.Info("Genre.GetByNameExceptId", "Спроба взяти з БД записи Genre за назвою, за виключенням одного за ID.");
+
             List<Genre> result = new List<Genre>();
 
             partOfName = partOfName.ToLower();
@@ -117,6 +130,9 @@ namespace WpfCritic.DataLayer
             {
                 result.Add(new Genre(dr));
             }
+
+            Logger.Info("Entity.GetByName", "Зчитано з БД записи Genre за назвою, за виключенням одного за ID.");
+
             if (result.Count != 0)
                 return result.ToArray();
             return null;
@@ -124,6 +140,8 @@ namespace WpfCritic.DataLayer
 
         public static Genre[] GetRandomFirstTen(Entertainment.Type? type = null)
         {
+            Logger.Info("Genre.GetRandomFirstTen", "Спроба взяти з БД перші 10 записів Genre за типом.");
+
             if (type == null)
                 return Entity<Genre>.GetRandomFirstTen();
 
@@ -144,6 +162,9 @@ namespace WpfCritic.DataLayer
             {
                 result.Add(new Genre(dr));
             }
+
+            Logger.Info("Genre.GetRandomFirstTen", "Зчитано з БД перші 10 записів Genre за типом.");
+
             if (result.Count != 0)
                 return result.ToArray();
             return null;
@@ -151,6 +172,8 @@ namespace WpfCritic.DataLayer
 
         public bool CanBeParentGenre(Genre genre)
         {
+            Logger.Info("Genre.CanBeParentGenre", "Початок перевірки на те, чи може бути екземпляр класу бути батьківський для даного.");
+
             if (genre.ParentGenreId == null)
                 return true;
             if (genre.ParentGenreId == this.Id)

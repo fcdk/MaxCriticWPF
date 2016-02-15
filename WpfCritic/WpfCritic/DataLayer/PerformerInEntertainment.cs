@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using WpfCritic.Core;
 
 namespace WpfCritic.DataLayer
 {
@@ -25,10 +26,25 @@ namespace WpfCritic.DataLayer
         {
             get { return (PerformerInEntertainment.Role)Enum.Parse(typeof(PerformerInEntertainment.Role), Row["PerformerRole"].ToString()); }
             set { Row["PerformerRole"] = value; }
+        }               
+
+        public PerformerInEntertainment(DataRow row) : base(row)
+        {
+            Logger.Info("PerformerInEntertainment.PerformerInEntertainment", "Створено екземпляр PerformerInEntertainment.");
+        }
+        public PerformerInEntertainment(Performer performer, Entertainment entertainment, PerformerInEntertainment.Role performerRole) : base()
+        {
+            PerformerId = performer.Id;
+            EntertainmentId = entertainment.Id;
+            PerformerRole = performerRole;
+
+            Logger.Info("PerformerInEntertainment.PerformerInEntertainment", "Створено екземпляр PerformerInEntertainment.");
         }
 
         public static PerformerInEntertainment[] GetPerformerInEntertainmentByEntertainmentAndRole(Entertainment entertainment, PerformerInEntertainment.Role role)
         {
+            Logger.Info("PerformerInEntertainment.GetPerformerInEntertainmentByEntertainmentAndRole", "Спроба взяти з БД записи PerformerInEntertainment за Entertainment та ролью.");
+
             List<PerformerInEntertainment> result = new List<PerformerInEntertainment>();
 
             _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE EntertainmentId=@id AND PerformerRole=@role";
@@ -51,6 +67,9 @@ namespace WpfCritic.DataLayer
             {
                 result.Add(new PerformerInEntertainment(dr));
             }
+
+            Logger.Info("PerformerInEntertainment.GetPerformerInEntertainmentByEntertainmentAndRole", "Зчитано з БД записи PerformerInEntertainment за Entertainment та ролью.");
+
             if (result.Count != 0)
                 return result.ToArray();
             return null;
@@ -58,6 +77,8 @@ namespace WpfCritic.DataLayer
 
         public static PerformerInEntertainment[] GetAlbumAuthorsPerformerInEntertainmentsByEntertainment(Entertainment entertainment)
         {
+            Logger.Info("PerformerInEntertainment.GetAlbumAuthorsPerformerInEntertainmentsByEntertainment", "Спроба взяти з БД записи PerformerInEntertainment авторів альбому за Entertainment.");
+
             List<PerformerInEntertainment> result = new List<PerformerInEntertainment>();
 
             _dataAdapter.SelectCommand.CommandText = "SELECT * FROM " + _tableName + " WHERE EntertainmentId=@id AND (PerformerRole='AlbumBand' OR PerformerRole='AlbumSinger')";
@@ -77,17 +98,12 @@ namespace WpfCritic.DataLayer
             {
                 result.Add(new PerformerInEntertainment(dr));
             }
+
+            Logger.Info("PerformerInEntertainment.GetPerformerInEntertainmentByEntertainmentAndRole", "Зчитано з БД записи PerformerInEntertainment авторів альбому за Entertainment.");
+
             if (result.Count != 0)
                 return result.ToArray();
             return null;
-        }
-
-        public PerformerInEntertainment(DataRow row) : base(row) { }
-        public PerformerInEntertainment(Performer performer, Entertainment entertainment, PerformerInEntertainment.Role performerRole) : base()
-        {
-            PerformerId = performer.Id;
-            EntertainmentId = entertainment.Id;
-            PerformerRole = performerRole;
         }
 
         public enum Role { MovieDirector, MoviePlotWriter, MoviePrincipalCast, MovieCast, MovieProducer, MovieProduction,

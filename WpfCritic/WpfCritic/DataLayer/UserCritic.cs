@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using WpfCritic.Core;
 
 namespace WpfCritic.DataLayer
 {
@@ -94,7 +95,10 @@ namespace WpfCritic.DataLayer
             }
         }
 
-        public UserCritic(DataRow row) : base(row) { }
+        public UserCritic(DataRow row) : base(row)
+        {
+            Logger.Info("UserCritic.UserCritic", "Створено екземпляр UserCritic.");
+        }
         public UserCritic(string username, string name, string surname, DateTime? dateOfBirth, GenderType? gender, string country,
         string publicationCompany, UserCritic.Role userRole, string email, byte[] image) : base()
         {
@@ -108,6 +112,8 @@ namespace WpfCritic.DataLayer
             UserRole = userRole;
             Email = email;
             Image = image;
+
+            Logger.Info("UserCritic.UserCritic", "Створено екземпляр UserCritic.");
         }
 
         public enum GenderType { Male, Female }

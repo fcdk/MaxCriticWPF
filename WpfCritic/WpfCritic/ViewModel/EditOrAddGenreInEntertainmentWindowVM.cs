@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 using WpfCritic.ViewModel.Data;
 
@@ -129,6 +130,8 @@ namespace WpfCritic.ViewModel
                 foreach (var genre in genres)
                     _addedGenreCollection.Add(new GenreVM(genre));
             }
+
+            Logger.Info("EditOrAddGenreInEntertainmentWindowVM.EditOrAddGenreInEntertainmentWindowVM", "Екземпляр EditOrAddGenreInEntertainmentWindowVM створений.");
         }
 
     }

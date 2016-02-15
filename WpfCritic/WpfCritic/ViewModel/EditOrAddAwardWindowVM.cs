@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 using WpfCritic.ViewModel.Data;
 
@@ -181,6 +182,8 @@ namespace WpfCritic.ViewModel
             }
             NameErrorVisibility = Visibility.Hidden;
             DateErrorVisibility = Visibility.Hidden;
+
+            Logger.Info("EditOrAddAwardWindowVM.EditOrAddAwardWindowVM", "Екземпляр EditOrAddAwardWindowVM створений.");
         }
 
         internal void ImageButtonClick()

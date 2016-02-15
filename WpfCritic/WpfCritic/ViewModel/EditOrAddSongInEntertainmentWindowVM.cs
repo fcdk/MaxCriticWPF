@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 using WpfCritic.ViewModel.Data;
 
@@ -126,6 +127,8 @@ namespace WpfCritic.ViewModel
                 Song[] songs = Song.GetByIds(songIds.ToArray());
                 foreach (var song in songs)
                     _addedSongCollection.Add(new SongVM(song));
+
+                Logger.Info("EditOrAddSongInEntertainmentWindowVM.EditOrAddSongInEntertainmentWindowVM", "Екземпляр EditOrAddSongInEntertainmentWindowVM створений.");
             }
         }
 

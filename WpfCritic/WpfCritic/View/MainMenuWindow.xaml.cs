@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WpfCritic.Core;
 using WpfCritic.ViewModel;
 
 namespace WpfCritic.View
@@ -12,6 +13,8 @@ namespace WpfCritic.View
             InitializeComponent();
 
             DataContext = _viewModel;
+
+            Logger.Info("MainMenuWindow.MainMenuWindow", "Екземпляр MainMenuWindow створений.");
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 
 namespace WpfCritic.ViewModel.Data
@@ -33,11 +34,15 @@ namespace WpfCritic.ViewModel.Data
         public SongVM(Song song)
         {
             _song = song;
+
+            Logger.Info("SongVM.SongVM", "Екземпляр SongVM створений.");
         }
 
         public SongVM(string name, TimeSpan duration, string lyrics)
         {
             _song = new Song(name, duration, lyrics);
+
+            Logger.Info("SongVM.SongVM", "Екземпляр SongVM створений.");
         }
 
         public override string ToString()
@@ -47,6 +52,8 @@ namespace WpfCritic.ViewModel.Data
 
         public static bool Comparison (SongVM song1, SongVM song2)
         {
+            Logger.Info("SongVM.Comparison", "Порівняння двох екземплярів GenreInEntertainmentVM.");
+
             if (song1 == null || song2 == null)
                 return false;
             return Entity<Song>.Comparison(song1.SongDL, song2.SongDL);

@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Windows;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 using WpfCritic.ViewModel.Data;
 
@@ -151,6 +152,8 @@ namespace WpfCritic.ViewModel
                     ImageClearButtonVisibility = Visibility.Visible;
             }
             NameErrorVisibility = Visibility.Hidden;
+
+            Logger.Info("EditOrAddPerformerWindowVM.EditOrAddPerformerWindowVM", "Екземпляр EditOrAddPerformerWindowVM створений.");
         }
 
         internal void PerformerTypeUkrComboBoxSelectionChanged()

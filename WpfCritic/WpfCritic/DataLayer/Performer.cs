@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using WpfCritic.Core;
 
 namespace WpfCritic.DataLayer
 {
@@ -64,6 +65,8 @@ namespace WpfCritic.DataLayer
 
         public static Performer[] GetByName(string partOfName, Performer.Type? type = null)
         {
+            Logger.Info("Performer.GetByName", "Спроба взяти з БД записи Performer за назвою.");
+
             List<Performer> result = new List<Performer>();
             partOfName = partOfName.ToLower();
             
@@ -84,6 +87,9 @@ namespace WpfCritic.DataLayer
                 {
                     result.Add(new Performer(dr));
                 }
+
+                Logger.Info("Performer.GetByName", "Зчитано з БД записи Performer за назвою.");
+
                 if (result.Count != 0)
                     return result.ToArray();
                 return null;
@@ -109,6 +115,9 @@ namespace WpfCritic.DataLayer
             {
                 result.Add(new Performer(dr));
             }
+
+            Logger.Info("Performer.GetByName", "Зчитано з БД записи Performer за назвою.");
+
             if (result.Count != 0)
                 return result.ToArray();
             return null;
@@ -116,6 +125,8 @@ namespace WpfCritic.DataLayer
 
         public static Performer[] GetForAutoCompleteBox(string partOfName)
         {
+            Logger.Info("Performer.GetForAutoCompleteBox", "Спроба взяти з БД записи Performer для автозаповнення текстового поля.");
+
             List<Performer> result = new List<Performer>();
             partOfName = partOfName.ToLower();
 
@@ -135,6 +146,9 @@ namespace WpfCritic.DataLayer
             {
                 result.Add(new Performer(dr));
             }
+
+            Logger.Info("Performer.GetForAutoCompleteBox", "Зчитано з БД записи Performer для автозаповнення текстового поля.");
+
             if (result.Count != 0)
                 return result.ToArray();
             return null;
@@ -142,6 +156,8 @@ namespace WpfCritic.DataLayer
 
         public static Performer[] GetRandomFirstTen(Performer.Type? type = null)
         {
+            Logger.Info("Performer.GetRandomFirstTen", "Спроба взяти з БД перші 10 записів Performer.");
+
             if (type == null)
                 return Entity<Performer>.GetRandomFirstTen();
 
@@ -162,6 +178,9 @@ namespace WpfCritic.DataLayer
             {
                 result.Add(new Performer(dr));
             }
+
+            Logger.Info("Performer.GetRandomFirstTen", "Зчитано з БД перші 10 записів Performer.");
+
             if (result.Count != 0)
                 return result.ToArray();
             return null;
@@ -169,6 +188,8 @@ namespace WpfCritic.DataLayer
 
         public static Performer[] GetAlbumAuthorsByAlbum(Entertainment entertainment)
         {
+            Logger.Info("Performer.GetAlbumAuthorsByAlbum", "Спроба взяти з БД записи альбомів за виконавцем.");
+
             if (entertainment.EntertainmentType != Entertainment.Type.Album)
                 return null;
 
@@ -179,10 +200,15 @@ namespace WpfCritic.DataLayer
             foreach (var performerInEntertainment in performerInEntertainments)
                 ids.Add(performerInEntertainment.PerformerId);
 
+            Logger.Info("Performer.GetAlbumAuthorsByAlbum", "Зчитано з БД записи альбомів за виконавцем.");
+
             return Performer.GetByIds(ids.ToArray());
         }
 
-        public Performer(DataRow row) : base(row){ }
+        public Performer(DataRow row) : base(row)
+        {
+            Logger.Info("Performer.Performer", "Створено екземпляр Performer.");
+        }
         public Performer(string name, string surname, Performer.Type performerType, DateTime? dateOfBirth, byte[] image,
         string summary) : base()
         {
@@ -192,6 +218,8 @@ namespace WpfCritic.DataLayer
             DateOfBirth = dateOfBirth;
             Image = image;
             Summary = summary;
+
+            Logger.Info("Performer.Performer", "Створено екземпляр Performer.");
         }
 
         public enum Type { Person, GameDeveloperCompany, GamePlatform, MovieProduction, TVNetwork, RecordLabel, Band }

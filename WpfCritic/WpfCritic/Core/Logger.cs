@@ -8,15 +8,17 @@ namespace WpfCritic.Core
     public class Logger : IDisposable
     {
         private static Logger _instance;
-        private BinaryWriter _writer;
+        private StreamWriter _writer;
         private FileStream _file;
         private bool _errorOffWrite = false;
 
         private Logger()
         {
-            string logFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log.txt");
+            //путь к лог-файлу: C:\Users\max\AppData\Roaming\MaxCritic\Log.txt
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MaxCritic");
+            string logFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+@"\MaxCritic", "Log.txt");
             _file = File.Open(logFileName, FileMode.Append, FileAccess.Write, FileShare.None);
-            _writer = new BinaryWriter(_file, Encoding.Default);
+            _writer = new StreamWriter(_file, Encoding.Default);
         }
 
         public static Logger Instance

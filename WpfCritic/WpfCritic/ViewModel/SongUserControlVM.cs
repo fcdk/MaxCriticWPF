@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 using WpfCritic.View;
 using WpfCritic.ViewModel.Data;
@@ -122,6 +123,8 @@ namespace WpfCritic.ViewModel
             if (songs != null)
                 foreach (var song in songs)
                     _songCollection.Add(new SongVM(song));
+
+            Logger.Info("SongUserControlVM.SongUserControlVM", "Екземпляр SongUserControlVM створений.");
         }
 
     }

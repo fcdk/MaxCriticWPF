@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 using WpfCritic.View;
 using WpfCritic.ViewModel.Data;
@@ -84,6 +85,8 @@ namespace WpfCritic.ViewModel
             if (awards != null)
                 foreach (var award in awards)
                     _awardCollection.Add(new AwardVM(award));
+
+            Logger.Info("AwardUserControlVM.AwardUserControlVM", "Екземпляр AwardUserControlVM створений.");
         }
 
     }

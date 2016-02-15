@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 
 namespace WpfCritic.ViewModel.Data
@@ -152,6 +153,8 @@ namespace WpfCritic.ViewModel.Data
             _entertainment = entertainment;
 
             this.AuthorsUpdate();
+
+            Logger.Info("EntertainmentVM.EntertainmentVM", "Екземпляр EntertainmentVM створений.");
         }
 
         public EntertainmentVM(Entertainment.Type entertainmentType, string name, DateTime releaseDate, string company, byte[] poster,
@@ -162,6 +165,8 @@ namespace WpfCritic.ViewModel.Data
             rating, ratingComment, movieRuntimeMinute, officialSite, movieCountries, tVSeason, budget, trailerLink);
 
             this.AuthorsUpdate();
+
+            Logger.Info("EntertainmentVM.EntertainmentVM", "Екземпляр EntertainmentVM створений.");
         }
 
         public override string ToString()
@@ -205,6 +210,8 @@ namespace WpfCritic.ViewModel.Data
 
         public static bool Comparison (EntertainmentVM entertainment1, EntertainmentVM entertainment2)
         {
+            Logger.Info("AwardVM.Comparison", "Порівняння двох екземплярів AwardVM.");
+
             if (entertainment1 == null || entertainment2 == null)
                 return false;
             return Entity<Entertainment>.Comparison(entertainment1.EntertainmentDL, entertainment2.EntertainmentDL);
@@ -212,6 +219,8 @@ namespace WpfCritic.ViewModel.Data
 
         public void AuthorsUpdate()
         {
+            Logger.Info("AwardVM.AuthorsUpdate", "Початок оновлення авторів альбома.");
+
             if (EntertainmentType != Entertainment.Type.Album)
                 return;
             Performer[] authors = Performer.GetAlbumAuthorsByAlbum(_entertainment);
@@ -233,6 +242,8 @@ namespace WpfCritic.ViewModel.Data
                 AlbumAuthors = authorsStringBuilder.ToString();
             }
             else AlbumAuthors = String.Empty;
+
+            Logger.Info("AwardVM.AuthorsUpdate", "Завершено оновлення авторів альбома.");
         }
 
     }

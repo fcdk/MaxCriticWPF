@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 using WpfCritic.View;
 using WpfCritic.ViewModel.Data;
@@ -146,6 +147,8 @@ namespace WpfCritic.ViewModel
                 {
                     _entertainmentCollection.Add(new EntertainmentVM(entert));
                 }
+
+            Logger.Info("EntertainmentUserControlVM.EntertainmentUserControlVM", "Екземпляр EntertainmentUserControlVM створений.");
         }
 
     }

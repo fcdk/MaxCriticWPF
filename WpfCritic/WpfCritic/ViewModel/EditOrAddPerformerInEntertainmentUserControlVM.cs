@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using WpfCritic.Core;
 using WpfCritic.DataLayer;
 using WpfCritic.ViewModel.Data;
 
@@ -115,6 +116,8 @@ namespace WpfCritic.ViewModel
 
         public void Save()
         {
+            Logger.Info("EditOrAddPerformerInEntertainmentUserControlVM.Save", "Почато збереження PerformerInEntertainment в EditOrAddPerformerInEntertainmentUserControlVM.");
+
             bool IsNew;
 
             foreach (PerformerVM performer in _addedPerformerCollection)
@@ -137,6 +140,8 @@ namespace WpfCritic.ViewModel
                         _performerInEntertainmentCollection.Remove(_performerInEntertainmentCollection[i]);
                         break;
                     }
+
+            Logger.Info("EditOrAddPerformerInEntertainmentUserControlVM.Save", "Завершено збереження PerformerInEntertainment в EditOrAddPerformerInEntertainmentUserControlVM.");
         }
 
         public EditOrAddPerformerInEntertainmentUserControlVM(EntertainmentVM entertainment, PerformerInEntertainment.Role role)
@@ -217,6 +222,8 @@ namespace WpfCritic.ViewModel
                 foreach (var performer in performers)
                     _addedPerformerCollection.Add(new PerformerVM(performer));
             }
+
+            Logger.Info("EditOrAddPerformerInEntertainmentUserControlVM.EditOrAddPerformerInEntertainmentUserControlVM", "Екземпляр EditOrAddPerformerInEntertainmentUserControlVM створений.");
         }
 
     }
