@@ -22,7 +22,7 @@ namespace WpfCritic.View
 
             DataContext = new EntertainmentDetailsWindowVM(_entertainment);
 
-            ////YoutubeVideo.Navigate(new Uri(_entertainment.TrailerLink.Replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/")));
+            YoutubeVideo.Navigate(new Uri(_entertainment.TrailerLink.Replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/")));
 
             Logger.Info("EntertainmentDetailsWindow.EntertainmentDetailsWindow", "Екземпляр EntertainmentDetailsWindow створений.");
         }
@@ -54,26 +54,26 @@ namespace WpfCritic.View
             Logger.Info("EntertainmentDetailsWindow.Window_Closing", "Завершене оброблення закриття вікна.");
         }
 
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            Logger.Info("EntertainmentDetailsWindow.Window_Loaded", "Почате асинхронне оброблення події після завантаження вікна.");
+        //private async void Window_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    Logger.Info("EntertainmentDetailsWindow.Window_Loaded", "Почате асинхронне оброблення події після завантаження вікна.");
 
-            await YoutubeVideoInitialize();
+        //    await YoutubeVideoInitialize();
 
-            Logger.Info("EntertainmentDetailsWindow.Window_Closing", "Завершене асинхронне оброблення закриття вікна.");
-        }
+        //    Logger.Info("EntertainmentDetailsWindow.Window_Closing", "Завершене асинхронне оброблення закриття вікна.");
+        //}
 
-        private async Task YoutubeVideoInitialize()
-        {
-            await Task.Run(() =>
-            {
-                if (_entertainment.TrailerLink != String.Empty)
-                    YoutubeVideo.Dispatcher.InvokeAsync(new Action(() =>
-                  {
-                      YoutubeVideo.Navigate(new Uri(_entertainment.TrailerLink.Replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/")));
-                  }));
-            });
-        }
+        //private async Task YoutubeVideoInitialize()
+        //{
+        //    await Task.Run(() =>
+        //    {
+        //        if (_entertainment.TrailerLink != String.Empty)
+        //            YoutubeVideo.Dispatcher.InvokeAsync(new Action(() =>
+        //          {
+        //              YoutubeVideo.Navigate(new Uri(_entertainment.TrailerLink.Replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/")));
+        //          }));
+        //    });
+        //}
 
     }
 }

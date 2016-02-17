@@ -1,6 +1,11 @@
-﻿using System.Windows;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
 using WpfCritic.Core;
+using WpfCritic.DataLayer;
 using WpfCritic.ViewModel;
+using WpfCritic.ViewModel.Data;
 
 namespace WpfCritic.View
 {
@@ -15,6 +20,18 @@ namespace WpfCritic.View
             DataContext = _viewModel;
 
             Logger.Info("MainMenuWindow.MainMenuWindow", "Екземпляр MainMenuWindow створений.");
+
+            Entertainment[] moviesWithTrailers = Array.FindAll(Entertainment.GetRandomFirstTen(), (ent) => ent.TrailerLink != null && ent.TrailerLink != String.Empty);
+            if (moviesWithTrailers.Length != 0)
+            {
+                Thread thread = new Thread(() =>
+                {
+                    EntertainmentDetailsWindow eDW = new EntertainmentDetailsWindow(new EntertainmentVM(moviesWithTrailers[0]));
+                    eDW.Show();
+                });
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
+            }      
         }
 
     }
