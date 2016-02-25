@@ -14,7 +14,7 @@ namespace WpfCritic.Core
 
         private Logger()
         {
-            //путь к лог-файлу: C:\Users\max\AppData\Roaming\MaxCritic\Log.txt
+            //путь к лог-файлу: C:\Users\{USERNAME}\AppData\Roaming\MaxCritic\Log.txt
             Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MaxCritic");
             string logFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+@"\MaxCritic", "Log.txt");
             _file = File.Open(logFileName, FileMode.Append, FileAccess.Write, FileShare.None);
