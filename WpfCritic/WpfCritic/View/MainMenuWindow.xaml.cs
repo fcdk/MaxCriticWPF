@@ -21,17 +21,17 @@ namespace WpfCritic.View
 
             Logger.Info("MainMenuWindow.MainMenuWindow", "Екземпляр MainMenuWindow створений.");
 
-            Entertainment[] moviesWithTrailers = Array.FindAll(Entertainment.GetRandomFirstTen(), (ent) => ent.TrailerLink != null && ent.TrailerLink != String.Empty);
-            if (moviesWithTrailers.Length != 0)
-            {
-                Thread thread = new Thread(() =>
-                {
-                    EntertainmentDetailsWindow eDW = new EntertainmentDetailsWindow(new EntertainmentVM(moviesWithTrailers[0]));
-                    eDW.Show();
-                });
-                thread.SetApartmentState(ApartmentState.STA);
-                thread.Start();
-            }      
+            ////Entertainment[] moviesWithTrailers = Array.FindAll(Entertainment.GetRandomFirstTen(), (ent) => ent.TrailerLink != null && ent.TrailerLink != String.Empty);
+            ////if (moviesWithTrailers.Length != 0)
+            ////{
+            ////    Thread thread = new Thread(() =>
+            ////    {
+            ////        EntertainmentDetailsWindow eDW = new EntertainmentDetailsWindow(new EntertainmentVM(moviesWithTrailers[0]));
+            ////        eDW.Show();
+            ////    });
+            ////    thread.SetApartmentState(ApartmentState.STA);
+            ////    thread.Start();
+            ////}      
         }
 
     }
